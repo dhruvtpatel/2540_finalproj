@@ -1,0 +1,9 @@
+[
+  {
+    "module": "functions_with_assertions.py",
+    "status": "success",
+    "counterexamples": [],
+    "runtime": 0.779900074005127,
+    "error": null
+  }
+]

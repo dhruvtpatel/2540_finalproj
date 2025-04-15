@@ -1,0 +1,167 @@
+CrossHair Testing Results Summary
+==============================
+
+Test Date: 2024-03-19
+
+Overall Statistics:
+-----------------
+Total Functions Tested: 45
+Passed Tests: 16 (35.6%)
+Failed Tests: 29 (64.4%)
+
+Detailed Results:
+---------------
+
+1. PASSED Functions (No Counterexamples):
+----------------------------------------
+1. transform_data_module
+2. circle_area_diff_module
+3. triangle_checker_module
+4. temperature_offset_module
+5. vector_norm_module
+6. hypotenuse_diff_module
+7. ascii_average_module
+8. list_balance_module
+9. odd_sum_validator_module
+10. string_pattern_score_module
+11. count_divisibles_module
+12. square_accumulator_module
+13. character_counter_module
+14. rolling_maximum_module
+15. loop_even_sum_module
+16. loop_string_hash_module
+
+2. FAILED Functions (With Counterexamples):
+-----------------------------------------
+1. process_data_transformed
+   - Counterexample: input = -50
+   - Error: AssertionError: Early and final assertions are not equivalent
+
+2. convert_temperature_transformed
+   - Counterexample: input = 37.7878
+   - Error: AssertionError: Early and final assertions are not equivalent
+
+3. calculate_discount_transformed
+   - Counterexample: input = (50.0, 0.0)
+   - Error: AssertionError: Early and final assertions are not equivalent
+
+4. process_complex_number_transformed
+   - Counterexample: input = (0.0, -1.0)
+   - Error: TypeError: type complex doesn't define __round__ method
+
+5. sum_until_limit_transformed
+   - Counterexample: input = [20, 20, 17]
+   - Error: AssertionError: Early and final assertions are not equivalent
+
+6. fibonacci_counter_transformed
+   - Counterexample: input = 1
+   - Error: NameError: name 'fibonacci' is not defined
+
+7. process_data_transformed_2
+   - Counterexample: input = -50
+   - Error: AssertionError: Early and final assertions are not equivalent
+
+8. convert_temperature_transformed_2
+   - Counterexample: input = 37.7878
+   - Error: AssertionError: Early and final assertions are not equivalent
+
+9. calculate_discount_transformed_2
+   - Counterexample: input = (50.0, 0.0)
+   - Error: AssertionError: Early and final assertions are not equivalent
+
+10. process_complex_number_transformed_2
+    - Counterexample: input = (0.0, -1.0)
+    - Error: TypeError: type complex doesn't define __round__ method
+
+11. transform_data_transformed_2
+    - Counterexample: input = -50
+    - Error: AssertionError: Early and final assertions are not equivalent
+
+12. circle_area_diff_transformed_2
+    - Counterexample: input = 5.0
+    - Error: AssertionError: Early and final assertions are not equivalent
+
+13. triangle_checker_transformed_2
+    - Counterexample: input = (1, 1, 1)
+    - Error: AssertionError: Early and final assertions are not equivalent
+
+14. temperature_offset_transformed_2
+    - Counterexample: input = 37.7878
+    - Error: AssertionError: Early and final assertions are not equivalent
+
+15. vector_norm_transformed_2
+    - Counterexample: input = (5.0, 5.0)
+    - Error: AssertionError: Early and final assertions are not equivalent
+
+16. hypotenuse_diff_transformed_2
+    - Counterexample: input = (5.0, 5.0)
+    - Error: AssertionError: Early and final assertions are not equivalent
+
+17. ascii_average_transformed_2
+    - Counterexample: input = "test"
+    - Error: AssertionError: Early and final assertions are not equivalent
+
+18. list_balance_transformed_2
+    - Counterexample: input = [1, 2, 3, 4]
+    - Error: AssertionError: Early and final assertions are not equivalent
+
+19. odd_sum_validator_transformed_2
+    - Counterexample: input = [1, 2, 3]
+    - Error: AssertionError: Early and final assertions are not equivalent
+
+20. string_pattern_score_transformed_2
+    - Counterexample: input = "test"
+    - Error: AssertionError: Early and final assertions are not equivalent
+
+21. sum_until_limit_transformed_2
+    - Counterexample: input = [20, 20, 17]
+    - Error: AssertionError: Early and final assertions are not equivalent
+
+22. count_divisibles_transformed_2
+    - Counterexample: input = [4, 8, 12]
+    - Error: AssertionError: Early and final assertions are not equivalent
+
+23. square_accumulator_transformed_2
+    - Counterexample: input = 5
+    - Error: AssertionError: Early and final assertions are not equivalent
+
+24. character_counter_transformed_2
+    - Counterexample: input = "test"
+    - Error: AssertionError: Early and final assertions are not equivalent
+
+25. rolling_maximum_transformed_2
+    - Counterexample: input = [10, 20, 30]
+    - Error: AssertionError: Early and final assertions are not equivalent
+
+26. fibonacci_counter_transformed_2
+    - Counterexample: input = 1
+    - Error: NameError: name 'fibonacci' is not defined
+
+27. loop_even_sum_transformed_2
+    - Counterexample: input = (0, 10)
+    - Error: AssertionError: Early and final assertions are not equivalent
+
+28. loop_string_hash_transformed_2
+    - Counterexample: input = "test"
+    - Error: AssertionError: Early and final assertions are not equivalent
+
+29. process_data_transformed_3
+    - Counterexample: input = -50
+    - Error: AssertionError: Early and final assertions are not equivalent
+
+Test Environment:
+---------------
+- CrossHair Version: 0.0.42
+- Python Version: 3.9.6
+- Operating System: Darwin 24.3.0
+
+Notes:
+-----
+- Symbolic execution testing was performed on all transformed functions
+- Each function was tested for equivalence between early and final assertions
+- Tests covered various input ranges and edge cases
+- Many functions showed discrepancies between early and final assertions
+- Type-related issues were detected in complex number processing
+- Implementation errors were found in the fibonacci counter
+- The high failure rate (64.4%) suggests potential issues with the transformation process
+- Many functions have similar failure patterns across different versions 

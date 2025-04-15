@@ -1,0 +1,380 @@
+[
+  {
+    "function": "ascii_average",
+    "fuzz": {
+      "is_equivalent": false,
+      "counterexample": {
+        "s": "AbIIm"
+      },
+      "runtime": 0.013116836547851562
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.0002429485321044922
+    }
+  },
+  {
+    "function": "calculate_discount",
+    "fuzz": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.012868165969848633
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.00021409988403320312
+    }
+  },
+  {
+    "function": "character_counter",
+    "fuzz": {
+      "is_equivalent": false,
+      "counterexample": {
+        "text": "jEazljAIUcvieompnadc"
+      },
+      "runtime": 0.0018219947814941406
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.0002980232238769531
+    }
+  },
+  {
+    "function": "circle_area_diff",
+    "fuzz": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.01241922378540039
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.0002238750457763672
+    }
+  },
+  {
+    "function": "convert_temperature",
+    "fuzz": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.008966207504272461
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.00016999244689941406
+    }
+  },
+  {
+    "function": "count_divisibles",
+    "fuzz": {
+      "is_equivalent": false,
+      "counterexample": {
+        "nums": [
+          24,
+          56,
+          -68,
+          32,
+          26,
+          -49,
+          -29,
+          -73
+        ]
+      },
+      "runtime": 0.0003681182861328125
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.0001628398895263672
+    }
+  },
+  {
+    "function": "fibonacci_counter",
+    "fuzz": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.011310100555419922
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.00021409988403320312
+    }
+  },
+  {
+    "function": "hypotenuse_diff",
+    "fuzz": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.014075040817260742
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.0002586841583251953
+    }
+  },
+  {
+    "function": "index_weighted_sum",
+    "fuzz": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.01129293441772461
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.00017905235290527344
+    }
+  },
+  {
+    "function": "list_balance",
+    "fuzz": {
+      "is_equivalent": false,
+      "counterexample": {
+        "nums": [
+          -98,
+          -93
+        ]
+      },
+      "runtime": 0.0007910728454589844
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.00019407272338867188
+    }
+  },
+  {
+    "function": "loop_even_sum",
+    "fuzz": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.013123273849487305
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.00020194053649902344
+    }
+  },
+  {
+    "function": "loop_string_hash",
+    "fuzz": {
+      "is_equivalent": false,
+      "counterexample": {
+        "text": "oinEekcnbp"
+      },
+      "runtime": 0.00434112548828125
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.00015687942504882812
+    }
+  },
+  {
+    "function": "nested_loop_checker",
+    "fuzz": {
+      "is_equivalent": false,
+      "counterexample": {
+        "limit": 184
+      },
+      "runtime": 0.07065129280090332
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.00024390220642089844
+    }
+  },
+  {
+    "function": "odd_sum_validator",
+    "fuzz": {
+      "is_equivalent": false,
+      "counterexample": {
+        "lst": [
+          -67
+        ]
+      },
+      "runtime": 0.003862142562866211
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.0001850128173828125
+    }
+  },
+  {
+    "function": "process_complex_number",
+    "fuzz": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.010657072067260742
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.0001537799835205078
+    }
+  },
+  {
+    "function": "process_data",
+    "fuzz": {
+      "is_equivalent": false,
+      "counterexample": {
+        "x": 50
+      },
+      "runtime": 0.003289937973022461
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.0001239776611328125
+    }
+  },
+  {
+    "function": "quadratic_discriminant",
+    "fuzz": {
+      "is_equivalent": false,
+      "counterexample": {
+        "a": 402,
+        "b": 969,
+        "c": 167
+      },
+      "runtime": 0.0016360282897949219
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.00018095970153808594
+    }
+  },
+  {
+    "function": "rolling_maximum",
+    "fuzz": {
+      "is_equivalent": false,
+      "counterexample": {
+        "values": [
+          -3,
+          -1,
+          12,
+          89,
+          2,
+          1
+        ]
+      },
+      "runtime": 0.0003478527069091797
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.0001609325408935547
+    }
+  },
+  {
+    "function": "square_accumulator",
+    "fuzz": {
+      "is_equivalent": false,
+      "counterexample": {
+        "x": 406
+      },
+      "runtime": 0.0007719993591308594
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.00015997886657714844
+    }
+  },
+  {
+    "function": "string_pattern_score",
+    "fuzz": {
+      "is_equivalent": false,
+      "counterexample": {
+        "s": "ghpbkcyiIotio"
+      },
+      "runtime": 0.0006349086761474609
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.00014591217041015625
+    }
+  },
+  {
+    "function": "sum_until_limit",
+    "fuzz": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.02044200897216797
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.0002532005310058594
+    }
+  },
+  {
+    "function": "temperature_offset",
+    "fuzz": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.01282191276550293
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.00020313262939453125
+    }
+  },
+  {
+    "function": "transform_data",
+    "fuzz": {
+      "is_equivalent": false,
+      "counterexample": {
+        "input_value": 33
+      },
+      "runtime": 0.005219936370849609
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.00013709068298339844
+    }
+  },
+  {
+    "function": "triangle_checker",
+    "fuzz": {
+      "is_equivalent": false,
+      "counterexample": {
+        "a": 260,
+        "b": 396,
+        "c": 610
+      },
+      "runtime": 0.0004029273986816406
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.00020885467529296875
+    }
+  },
+  {
+    "function": "vector_norm",
+    "fuzz": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.013421773910522461
+    },
+    "nagini": {
+      "is_equivalent": true,
+      "counterexample": null,
+      "runtime": 0.0002048015594482422
+    }
+  }
+]

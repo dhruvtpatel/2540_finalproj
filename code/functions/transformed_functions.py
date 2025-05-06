@@ -260,4 +260,246 @@ def loop_string_hash_transformed(text: str):
     final = hash_val % 200
     b_final = (final == 66)
     assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+
+def function_11_transformed(x: int):
+    b_early = (((x + 15) % 90 * 2) % 100 == 46)  # Using median of random range (15) for deterministic check
+    import random
+    rand_val = random.randint(10, 20)
+    calc = (x + rand_val) % 90
+    final = (calc * 2) % 100
+    b_final = (final == 46)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+
+def function_12_transformed(x: int):
+    b_early = (sum(int(d) for d in str(abs(x))) + len(str(abs(x)))) * 2 == 44
+    digits = [int(d) for d in str(abs(x))]
+    total = sum(digits)
+    adjusted = total + len(digits)
+    result = adjusted * 2
+    b_final = (result == 44)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return result
+
+def function_13_transformed(x: int):
+    b_early = (((x + 15) % 90 * 2) % 100 == 46)  # Using median of random range
+    import random
+    rand_val = random.randint(10, 20)
+    calc = (x + rand_val) % 90
+    final = (calc * 2) % 100
+    b_final = (final == 46)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+
+def function_14_transformed(x: int):
+    import math
+    b_early = math.ceil(x * 1.5) + 4 == 55
+    val = x * 1.5
+    rounded = math.ceil(val)
+    adj = rounded + 4
+    b_final = (adj == 55)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return adj
+
+def function_15_transformed(x: int):
+    import math
+    b_early = (int(math.sqrt(math.factorial(x))) % 50 == 30)
+    fact = math.factorial(x)
+    root = int(math.sqrt(fact))
+    final = root % 50
+    b_final = (final == 30)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+
+def function_16_transformed(x: int):
+    b_early = (sum(int(d) for d in str(abs(x))) + len(str(abs(x)))) * 2 == 44
+    digits = [int(d) for d in str(abs(x))]
+    total = sum(digits)
+    adjusted = total + len(digits)
+    result = adjusted * 2
+    b_final = (result == 44)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return result
+
+def function_17_transformed(x: int):
+    b_early = (((x + 15) % 90 * 2) % 100 == 46)  # Using median of random range
+    import random
+    rand_val = random.randint(10, 20)
+    calc = (x + rand_val) % 90
+    final = (calc * 2) % 100
+    b_final = (final == 46)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+
+def function_18_transformed(x: int):
+    b_early = ((x % 6) * 7 + 3) * 2 == 60
+    val = (x % 6) * 7 + 3
+    scaled = val * 2
+    b_final = (scaled == 60)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return scaled
+
+def function_19_transformed(x: int):
+    b_early = (((x + 15) % 90 * 2) % 100 == 46)  # Using median of random range
+    import random
+    rand_val = random.randint(10, 20)
+    calc = (x + rand_val) % 90
+    final = (calc * 2) % 100
+    b_final = (final == 46)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+
+def function_20_transformed(x: int):
+    import math
+    b_early = (int(math.sqrt(math.factorial(x))) % 50 == 30)
+    fact = math.factorial(x)
+    root = int(math.sqrt(fact))
+    final = root % 50
+    b_final = (final == 30)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+
+def function_21_transformed(x: int):
+    b_early = ((x % 6) * 7 + 3) * 2 == 60
+    val = (x % 6) * 7 + 3
+    scaled = val * 2
+    b_final = (scaled == 60)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return scaled
+
+def function_22_transformed(x: int):
+    import math
+    b_early = math.ceil(x * 1.5) + 4 == 55
+    val = x * 1.5
+    rounded = math.ceil(val)
+    adj = rounded + 4
+    b_final = (adj == 55)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return adj
+
+def function_23_transformed(x: int):
+    b_early = (((x + 15) % 90 * 2) % 100 == 46)  # Using median of random range
+    import random
+    rand_val = random.randint(10, 20)
+    calc = (x + rand_val) % 90
+    final = (calc * 2) % 100
+    b_final = (final == 46)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+
+def function_24_transformed(x: int):
+    b_early = (sum(int(d) for d in str(abs(x))) + len(str(abs(x)))) * 2 == 44
+    digits = [int(d) for d in str(abs(x))]
+    total = sum(digits)
+    adjusted = total + len(digits)
+    result = adjusted * 2
+    b_final = (result == 44)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return result
+
+def function_25_transformed(x: int):
+    import math
+    b_early = (int(math.sqrt(math.factorial(x))) % 50 == 30)
+    fact = math.factorial(x)
+    root = int(math.sqrt(fact))
+    final = root % 50
+    b_final = (final == 30)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+
+def function_26_transformed(x: int):
+    import math
+    b_early = math.ceil(x * 1.5) + 4 == 55
+    val = x * 1.5
+    rounded = math.ceil(val)
+    adj = rounded + 4
+    b_final = (adj == 55)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return adj
+
+def function_27_transformed(x: int):
+    b_early = ((x % 6) * 7 + 3) * 2 == 60
+    val = (x % 6) * 7 + 3
+    scaled = val * 2
+    b_final = (scaled == 60)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return scaled
+
+def function_28_transformed(x: int):
+    b_early = (sum(int(d) for d in str(abs(x))) + len(str(abs(x)))) * 2 == 44
+    digits = [int(d) for d in str(abs(x))]
+    total = sum(digits)
+    adjusted = total + len(digits)
+    result = adjusted * 2
+    b_final = (result == 44)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return result
+
+def function_29_transformed(x: int):
+    b_early = (((x + 15) % 90 * 2) % 100 == 46)  # Using median of random range
+    import random
+    rand_val = random.randint(10, 20)
+    calc = (x + rand_val) % 90
+    final = (calc * 2) % 100
+    b_final = (final == 46)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+
+def function_30_transformed(x: int):
+    import math
+    b_early = (int(math.sqrt(math.factorial(x))) % 50 == 30)
+    fact = math.factorial(x)
+    root = int(math.sqrt(fact))
+    final = root % 50
+    b_final = (final == 30)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+
+def function_31_transformed(x: int):
+    b_early = (((x + 15) % 90 * 2) % 100 == 46)  # Using median of random range
+    import random
+    rand_val = random.randint(10, 20)
+    calc = (x + rand_val) % 90
+    final = (calc * 2) % 100
+    b_final = (final == 46)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+
+def function_32_transformed(x: int):
+    b_early = (sum(int(d) for d in str(abs(x))) + len(str(abs(x)))) * 2 == 44
+    digits = [int(d) for d in str(abs(x))]
+    total = sum(digits)
+    adjusted = total + len(digits)
+    result = adjusted * 2
+    b_final = (result == 44)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return result
+
+def function_33_transformed(x: int):
+    b_early = ((x % 6) * 7 + 3) * 2 == 60
+    val = (x % 6) * 7 + 3
+    scaled = val * 2
+    b_final = (scaled == 60)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return scaled
+
+def function_34_transformed(x: int):
+    import math
+    b_early = math.ceil(x * 1.5) + 4 == 55
+    val = x * 1.5
+    rounded = math.ceil(val)
+    adj = rounded + 4
+    b_final = (adj == 55)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return adj
+
+def function_35_transformed(x: int):
+    import math
+    b_early = (int(math.sqrt(math.factorial(x))) % 50 == 30)
+    fact = math.factorial(x)
+    root = int(math.sqrt(fact))
+    final = root % 50
+    b_final = (final == 30)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
     return final 

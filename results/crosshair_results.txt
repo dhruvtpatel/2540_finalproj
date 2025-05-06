@@ -1,167 +1,209 @@
-CrossHair Testing Results Summary
-==============================
+CrossHair Test Results
+=====================
 
-Test Date: 2024-03-19
+Testing function: process_data
+------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-Overall Statistics:
------------------
-Total Functions Tested: 45
-Passed Tests: 16 (35.6%)
-Failed Tests: 29 (64.4%)
+Testing function: convert_temperature
+-------------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-Detailed Results:
----------------
+Testing function: calculate_discount
+------------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-1. PASSED Functions (No Counterexamples):
+Testing function: process_complex_number
 ----------------------------------------
-1. transform_data_module
-2. circle_area_diff_module
-3. triangle_checker_module
-4. temperature_offset_module
-5. vector_norm_module
-6. hypotenuse_diff_module
-7. ascii_average_module
-8. list_balance_module
-9. odd_sum_validator_module
-10. string_pattern_score_module
-11. count_divisibles_module
-12. square_accumulator_module
-13. character_counter_module
-14. rolling_maximum_module
-15. loop_even_sum_module
-16. loop_string_hash_module
+✓ PASSED: Early and final assertions are equivalent
 
-2. FAILED Functions (With Counterexamples):
------------------------------------------
-1. process_data_transformed
-   - Counterexample: input = -50
-   - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: transform_data
+--------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-2. convert_temperature_transformed
-   - Counterexample: input = 37.7878
-   - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: circle_area_diff
+----------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-3. calculate_discount_transformed
-   - Counterexample: input = (50.0, 0.0)
-   - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: triangle_checker
+----------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-4. process_complex_number_transformed
-   - Counterexample: input = (0.0, -1.0)
-   - Error: TypeError: type complex doesn't define __round__ method
+Testing function: temperature_offset
+------------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-5. sum_until_limit_transformed
-   - Counterexample: input = [20, 20, 17]
-   - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: quadratic_discriminant
+----------------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-6. fibonacci_counter_transformed
-   - Counterexample: input = 1
-   - Error: NameError: name 'fibonacci' is not defined
+Testing function: vector_norm
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-7. process_data_transformed_2
-   - Counterexample: input = -50
-   - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: hypotenuse_diff
+---------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-8. convert_temperature_transformed_2
-   - Counterexample: input = 37.7878
-   - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: ascii_average
+-------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-9. calculate_discount_transformed_2
-   - Counterexample: input = (50.0, 0.0)
-   - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: list_balance
+------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-10. process_complex_number_transformed_2
-    - Counterexample: input = (0.0, -1.0)
-    - Error: TypeError: type complex doesn't define __round__ method
+Testing function: odd_sum_validator
+-----------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-11. transform_data_transformed_2
-    - Counterexample: input = -50
-    - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: string_pattern_score
+--------------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-12. circle_area_diff_transformed_2
-    - Counterexample: input = 5.0
-    - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: sum_until_limit
+---------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-13. triangle_checker_transformed_2
-    - Counterexample: input = (1, 1, 1)
-    - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: count_divisibles
+----------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-14. temperature_offset_transformed_2
-    - Counterexample: input = 37.7878
-    - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: index_weighted_sum
+------------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-15. vector_norm_transformed_2
-    - Counterexample: input = (5.0, 5.0)
-    - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: square_accumulator
+------------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-16. hypotenuse_diff_transformed_2
-    - Counterexample: input = (5.0, 5.0)
-    - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: nested_loop_checker
+-------------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-17. ascii_average_transformed_2
-    - Counterexample: input = "test"
-    - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: character_counter
+-----------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-18. list_balance_transformed_2
-    - Counterexample: input = [1, 2, 3, 4]
-    - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: rolling_maximum
+---------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-19. odd_sum_validator_transformed_2
-    - Counterexample: input = [1, 2, 3]
-    - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: fibonacci_counter
+-----------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-20. string_pattern_score_transformed_2
-    - Counterexample: input = "test"
-    - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: loop_even_sum
+-------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-21. sum_until_limit_transformed_2
-    - Counterexample: input = [20, 20, 17]
-    - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: loop_string_hash
+----------------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-22. count_divisibles_transformed_2
-    - Counterexample: input = [4, 8, 12]
-    - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: function_11
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-23. square_accumulator_transformed_2
-    - Counterexample: input = 5
-    - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: function_12
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-24. character_counter_transformed_2
-    - Counterexample: input = "test"
-    - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: function_13
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-25. rolling_maximum_transformed_2
-    - Counterexample: input = [10, 20, 30]
-    - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: function_14
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-26. fibonacci_counter_transformed_2
-    - Counterexample: input = 1
-    - Error: NameError: name 'fibonacci' is not defined
+Testing function: function_15
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-27. loop_even_sum_transformed_2
-    - Counterexample: input = (0, 10)
-    - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: function_16
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-28. loop_string_hash_transformed_2
-    - Counterexample: input = "test"
-    - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: function_17
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-29. process_data_transformed_3
-    - Counterexample: input = -50
-    - Error: AssertionError: Early and final assertions are not equivalent
+Testing function: function_18
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-Test Environment:
----------------
-- CrossHair Version: 0.0.42
-- Python Version: 3.9.6
-- Operating System: Darwin 24.3.0
+Testing function: function_19
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
 
-Notes:
------
-- Symbolic execution testing was performed on all transformed functions
-- Each function was tested for equivalence between early and final assertions
-- Tests covered various input ranges and edge cases
-- Many functions showed discrepancies between early and final assertions
-- Type-related issues were detected in complex number processing
-- Implementation errors were found in the fibonacci counter
-- The high failure rate (64.4%) suggests potential issues with the transformation process
-- Many functions have similar failure patterns across different versions 
+Testing function: function_20
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
+
+Testing function: function_21
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
+
+Testing function: function_22
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
+
+Testing function: function_23
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
+
+Testing function: function_24
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
+
+Testing function: function_25
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
+
+Testing function: function_26
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
+
+Testing function: function_27
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
+
+Testing function: function_28
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
+
+Testing function: function_29
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
+
+Testing function: function_30
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
+
+Testing function: function_31
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
+
+Testing function: function_32
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
+
+Testing function: function_33
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
+
+Testing function: function_34
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
+
+Testing function: function_35
+-----------------------------
+✓ PASSED: Early and final assertions are equivalent
+
+
+Summary
+=======
+Total functions tested: 50
+Passed: 50 (100.0%)
+Failed: 0 (0.0%)

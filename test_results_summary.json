@@ -1,0 +1,338 @@
+{
+  "loop_even_sum": {
+    "difficulty": 8,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Pass",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.5
+  },
+  "quadratic_discriminant": {
+    "difficulty": 7,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "circle_area_diff": {
+    "difficulty": 7,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Pass",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.5
+  },
+  "function_14": {
+    "difficulty": 6,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_18": {
+    "difficulty": 6,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_22": {
+    "difficulty": 6,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_26": {
+    "difficulty": 6,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_30": {
+    "difficulty": 6,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_32": {
+    "difficulty": 6,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "process_complex_number": {
+    "difficulty": 6,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "sum_until_limit": {
+    "difficulty": 6,
+    "fuzz_testing": "Fail",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "hypotenuse_diff": {
+    "difficulty": 6,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Pass",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.5
+  },
+  "triangle_checker": {
+    "difficulty": 6,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Pass",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.5
+  },
+  "vector_norm": {
+    "difficulty": 6,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Pass",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.5
+  },
+  "character_counter": {
+    "difficulty": 6,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Pass",
+    "nagini_result": "Pass",
+    "failure_explanation_quality": 0.1
+  },
+  "rolling_maximum_module": {
+    "difficulty": 6,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Pass",
+    "nagini_result": "Pass",
+    "failure_explanation_quality": 0.1
+  },
+  "calculate_discount": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "convert_temperature": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_12": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_13": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_15": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_17": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_19": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_21": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_23": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_25": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_27": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_29": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_31": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_33": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_35": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "index_weighted_sum": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "list_balance": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Pass",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.5
+  },
+  "temperature_offset": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Pass",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.5
+  },
+  "loop_string_hash": {
+    "difficulty": 5,
+    "fuzz_testing": "Fail",
+    "crosshair_result": "Pass",
+    "nagini_result": "Pass",
+    "failure_explanation_quality": 0.2
+  },
+  "count_divisibles": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Pass",
+    "nagini_result": "Pass",
+    "failure_explanation_quality": 0.1
+  },
+  "odd_sum_validator": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Pass",
+    "nagini_result": "Pass",
+    "failure_explanation_quality": 0.1
+  },
+  "square_accumulator": {
+    "difficulty": 5,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Pass",
+    "nagini_result": "Pass",
+    "failure_explanation_quality": 0.1
+  },
+  "function_11": {
+    "difficulty": 4,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_16": {
+    "difficulty": 4,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_20": {
+    "difficulty": 4,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_24": {
+    "difficulty": 4,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_28": {
+    "difficulty": 4,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "function_34": {
+    "difficulty": 4,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Fail",
+    "failure_explanation_quality": 0.7
+  },
+  "process_data": {
+    "difficulty": 4,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Fail",
+    "nagini_result": "Pass",
+    "failure_explanation_quality": 0.5
+  },
+  "ascii_average": {
+    "difficulty": 4,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Pass",
+    "nagini_result": "Pass",
+    "failure_explanation_quality": 0.1
+  },
+  "string_pattern_score": {
+    "difficulty": 4,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Pass",
+    "nagini_result": "Pass",
+    "failure_explanation_quality": 0.1
+  },
+  "transform_data": {
+    "difficulty": 4,
+    "fuzz_testing": "Pass",
+    "crosshair_result": "Pass",
+    "nagini_result": "Pass",
+    "failure_explanation_quality": 0.1
+  }
+}

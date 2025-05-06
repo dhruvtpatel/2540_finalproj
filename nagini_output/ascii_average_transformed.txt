@@ -1,0 +1,19 @@
+=== STDOUT ===
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGBUS (0xa) at pc=0x0000000102675724, pid=72668, tid=259
+#
+# JRE version:  (11.0.26) (build )
+# Java VM: OpenJDK 64-Bit Server VM (11.0.26+0, mixed mode, tiered, compressed oops, g1 gc, bsd-aarch64)
+# Problematic frame:
+# V  [libjvm.dylib+0x2d9724]  CodeHeap::allocate(unsigned long)+0x1d4
+#
+# No core dump will be written. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# An error report file with more information is saved as:
+# /Users/sohamgupta/Desktop/2540_finalproj/hs_err_pid72668.log
+#
+#
+
+=== STDERR ===

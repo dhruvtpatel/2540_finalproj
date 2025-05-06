@@ -1,0 +1,1152 @@
+Program Difficulty Ratings:
+==================================================
+
+process_data:
+Overall Difficulty: 5/10
+
+Component Scores:
+  params          0.40
+  operations      1.80
+  control_flow    0.60
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.06
+  loops           0.00
+  calls           0.00
+  branches        0.45
+
+Metrics:
+  Parameters:       1
+  Operations:       1
+  Control Flow:     1
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.3
+--------------------------------------------------
+
+convert_temperature:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      3.60
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.37
+  loops           0.00
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       3
+  Control Flow:     0
+  Data Types:       float
+  Assertions:       1
+  Math Complexity:  0.8
+--------------------------------------------------
+
+calculate_discount:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          1.60
+  operations      2.85
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.16
+  loops           0.00
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       2
+  Operations:       2
+  Control Flow:     0
+  Data Types:       float, float
+  Assertions:       1
+  Math Complexity:  0.5
+--------------------------------------------------
+
+process_complex_number:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          1.60
+  operations      0.00
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.65
+  loops           0.00
+  calls           2.59
+  branches        0.00
+
+Metrics:
+  Parameters:       2
+  Operations:       0
+  Control Flow:     0
+  Data Types:       float, float
+  Assertions:       1
+  Math Complexity:  1.1
+--------------------------------------------------
+
+transform_data:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      3.60
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.22
+  loops           0.00
+  calls           0.00
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       3
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.6
+--------------------------------------------------
+
+circle_area_diff:
+Overall Difficulty: 7/10
+
+Component Scores:
+  params          0.40
+  operations      4.65
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 1.43
+  loops           0.00
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       5
+  Control Flow:     0
+  Data Types:       float
+  Assertions:       1
+  Math Complexity:  1.7
+--------------------------------------------------
+
+triangle_checker:
+Overall Difficulty: 7/10
+
+Component Scores:
+  params          3.60
+  operations      1.80
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.00
+  loops           0.00
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       3
+  Operations:       1
+  Control Flow:     0
+  Data Types:       int, int, int
+  Assertions:       1
+  Math Complexity:  0.0
+--------------------------------------------------
+
+temperature_offset:
+Overall Difficulty: 7/10
+
+Component Scores:
+  params          0.40
+  operations      4.18
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.37
+  loops           0.00
+  calls           1.30
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       4
+  Control Flow:     0
+  Data Types:       float
+  Assertions:       1
+  Math Complexity:  0.8
+--------------------------------------------------
+
+quadratic_discriminant:
+Overall Difficulty: 9/10
+
+Component Scores:
+  params          3.60
+  operations      4.65
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 1.43
+  loops           0.00
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       3
+  Operations:       5
+  Control Flow:     0
+  Data Types:       int, int, int
+  Assertions:       1
+  Math Complexity:  1.7
+--------------------------------------------------
+
+vector_norm:
+Overall Difficulty: 8/10
+
+Component Scores:
+  params          1.60
+  operations      3.60
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 2.09
+  loops           0.00
+  calls           1.30
+  branches        0.00
+
+Metrics:
+  Parameters:       2
+  Operations:       3
+  Control Flow:     0
+  Data Types:       float, float
+  Assertions:       1
+  Math Complexity:  2.1
+--------------------------------------------------
+
+hypotenuse_diff:
+Overall Difficulty: 9/10
+
+Component Scores:
+  params          1.60
+  operations      2.85
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.65
+  loops           0.00
+  calls           6.17
+  branches        0.00
+
+Metrics:
+  Parameters:       2
+  Operations:       2
+  Control Flow:     0
+  Data Types:       float, float
+  Assertions:       1
+  Math Complexity:  1.1
+--------------------------------------------------
+
+ascii_average:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      1.80
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.06
+  loops           0.00
+  calls           2.59
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       1
+  Control Flow:     0
+  Data Types:       str
+  Assertions:       1
+  Math Complexity:  0.3
+--------------------------------------------------
+
+list_balance:
+Overall Difficulty: 8/10
+
+Component Scores:
+  params          0.40
+  operations      2.85
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.16
+  loops           0.00
+  calls           4.22
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       2
+  Control Flow:     0
+  Data Types:       list
+  Assertions:       1
+  Math Complexity:  0.5
+--------------------------------------------------
+
+odd_sum_validator:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      2.85
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.22
+  loops           0.00
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       2
+  Control Flow:     0
+  Data Types:       list
+  Assertions:       1
+  Math Complexity:  0.6
+--------------------------------------------------
+
+string_pattern_score:
+Overall Difficulty: 5/10
+
+Component Scores:
+  params          0.40
+  operations      1.80
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.06
+  loops           0.00
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       1
+  Control Flow:     0
+  Data Types:       str
+  Assertions:       1
+  Math Complexity:  0.3
+--------------------------------------------------
+
+function_11:
+Overall Difficulty: 7/10
+
+Component Scores:
+  params          0.40
+  operations      4.18
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.45
+  loops           0.00
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       4
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.9
+--------------------------------------------------
+
+function_12:
+Overall Difficulty: 9/10
+
+Component Scores:
+  params          0.40
+  operations      2.85
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.16
+  loops           0.00
+  calls           6.17
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       2
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.5
+--------------------------------------------------
+
+function_13:
+Overall Difficulty: 7/10
+
+Component Scores:
+  params          0.40
+  operations      4.18
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.45
+  loops           0.00
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       4
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.9
+--------------------------------------------------
+
+function_14:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      2.85
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.55
+  loops           0.00
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       2
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  1.0
+--------------------------------------------------
+
+function_15:
+Overall Difficulty: 7/10
+
+Component Scores:
+  params          0.40
+  operations      1.80
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 1.43
+  loops           0.00
+  calls           2.59
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       1
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  1.7
+--------------------------------------------------
+
+function_16:
+Overall Difficulty: 9/10
+
+Component Scores:
+  params          0.40
+  operations      2.85
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.16
+  loops           0.00
+  calls           6.17
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       2
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.5
+--------------------------------------------------
+
+function_17:
+Overall Difficulty: 7/10
+
+Component Scores:
+  params          0.40
+  operations      4.18
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.45
+  loops           0.00
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       4
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.9
+--------------------------------------------------
+
+function_18:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      4.18
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.45
+  loops           0.00
+  calls           0.00
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       4
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.9
+--------------------------------------------------
+
+function_19:
+Overall Difficulty: 7/10
+
+Component Scores:
+  params          0.40
+  operations      4.18
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.45
+  loops           0.00
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       4
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.9
+--------------------------------------------------
+
+function_20:
+Overall Difficulty: 7/10
+
+Component Scores:
+  params          0.40
+  operations      1.80
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 1.43
+  loops           0.00
+  calls           2.59
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       1
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  1.7
+--------------------------------------------------
+
+function_21:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      4.18
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.45
+  loops           0.00
+  calls           0.00
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       4
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.9
+--------------------------------------------------
+
+function_22:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      2.85
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.55
+  loops           0.00
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       2
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  1.0
+--------------------------------------------------
+
+function_23:
+Overall Difficulty: 7/10
+
+Component Scores:
+  params          0.40
+  operations      4.18
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.45
+  loops           0.00
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       4
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.9
+--------------------------------------------------
+
+function_24:
+Overall Difficulty: 9/10
+
+Component Scores:
+  params          0.40
+  operations      2.85
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.16
+  loops           0.00
+  calls           6.17
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       2
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.5
+--------------------------------------------------
+
+function_25:
+Overall Difficulty: 7/10
+
+Component Scores:
+  params          0.40
+  operations      1.80
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 1.43
+  loops           0.00
+  calls           2.59
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       1
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  1.7
+--------------------------------------------------
+
+function_26:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      2.85
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.55
+  loops           0.00
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       2
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  1.0
+--------------------------------------------------
+
+function_27:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      4.18
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.45
+  loops           0.00
+  calls           0.00
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       4
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.9
+--------------------------------------------------
+
+function_28:
+Overall Difficulty: 9/10
+
+Component Scores:
+  params          0.40
+  operations      2.85
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.16
+  loops           0.00
+  calls           6.17
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       2
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.5
+--------------------------------------------------
+
+function_29:
+Overall Difficulty: 7/10
+
+Component Scores:
+  params          0.40
+  operations      4.18
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.45
+  loops           0.00
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       4
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.9
+--------------------------------------------------
+
+function_30:
+Overall Difficulty: 7/10
+
+Component Scores:
+  params          0.40
+  operations      1.80
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 1.43
+  loops           0.00
+  calls           2.59
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       1
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  1.7
+--------------------------------------------------
+
+function_31:
+Overall Difficulty: 7/10
+
+Component Scores:
+  params          0.40
+  operations      4.18
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.45
+  loops           0.00
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       4
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.9
+--------------------------------------------------
+
+function_32:
+Overall Difficulty: 9/10
+
+Component Scores:
+  params          0.40
+  operations      2.85
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.16
+  loops           0.00
+  calls           6.17
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       2
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.5
+--------------------------------------------------
+
+function_33:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      4.18
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.45
+  loops           0.00
+  calls           0.00
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       4
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.9
+--------------------------------------------------
+
+function_34:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      2.85
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.55
+  loops           0.00
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       2
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  1.0
+--------------------------------------------------
+
+function_35:
+Overall Difficulty: 7/10
+
+Component Scores:
+  params          0.40
+  operations      1.80
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 1.43
+  loops           0.00
+  calls           2.59
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       1
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  1.7
+--------------------------------------------------
+
+sum_until_limit:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      1.80
+  control_flow    0.60
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.00
+  loops           0.50
+  calls           0.40
+  branches        0.45
+
+Metrics:
+  Parameters:       1
+  Operations:       1
+  Control Flow:     1
+  Data Types:       list
+  Assertions:       1
+  Math Complexity:  0.0
+--------------------------------------------------
+
+count_divisibles:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      2.85
+  control_flow    0.60
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.22
+  loops           0.50
+  calls           0.00
+  branches        0.45
+
+Metrics:
+  Parameters:       1
+  Operations:       2
+  Control Flow:     1
+  Data Types:       list
+  Assertions:       1
+  Math Complexity:  0.6
+--------------------------------------------------
+
+index_weighted_sum:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      2.85
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.22
+  loops           0.50
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       2
+  Control Flow:     0
+  Data Types:       list
+  Assertions:       1
+  Math Complexity:  0.6
+--------------------------------------------------
+
+square_accumulator:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      2.85
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.22
+  loops           0.50
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       2
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.6
+--------------------------------------------------
+
+nested_loop_checker:
+Overall Difficulty: 7/10
+
+Component Scores:
+  params          0.40
+  operations      1.80
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.06
+  loops           2.00
+  calls           1.30
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       1
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.3
+--------------------------------------------------
+
+character_counter:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      1.80
+  control_flow    0.60
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.06
+  loops           0.50
+  calls           0.00
+  branches        0.45
+
+Metrics:
+  Parameters:       1
+  Operations:       1
+  Control Flow:     1
+  Data Types:       str
+  Assertions:       1
+  Math Complexity:  0.3
+--------------------------------------------------
+
+rolling_maximum:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      1.80
+  control_flow    0.60
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.00
+  loops           0.50
+  calls           0.40
+  branches        0.45
+
+Metrics:
+  Parameters:       1
+  Operations:       1
+  Control Flow:     1
+  Data Types:       list
+  Assertions:       1
+  Math Complexity:  0.0
+--------------------------------------------------
+
+fibonacci_counter:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      2.85
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.06
+  loops           0.50
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       2
+  Control Flow:     0
+  Data Types:       int
+  Assertions:       1
+  Math Complexity:  0.3
+--------------------------------------------------
+
+loop_even_sum:
+Overall Difficulty: 8/10
+
+Component Scores:
+  params          1.60
+  operations      3.60
+  control_flow    0.60
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.22
+  loops           0.50
+  calls           0.40
+  branches        0.45
+
+Metrics:
+  Parameters:       2
+  Operations:       3
+  Control Flow:     1
+  Data Types:       int, int
+  Assertions:       1
+  Math Complexity:  0.6
+--------------------------------------------------
+
+loop_string_hash:
+Overall Difficulty: 6/10
+
+Component Scores:
+  params          0.40
+  operations      2.85
+  control_flow    0.00
+  data_types      0.25
+  assertions      0.20
+  math_complexity 0.22
+  loops           0.50
+  calls           0.40
+  branches        0.00
+
+Metrics:
+  Parameters:       1
+  Operations:       2
+  Control Flow:     0
+  Data Types:       str
+  Assertions:       1
+  Math Complexity:  0.6
+--------------------------------------------------

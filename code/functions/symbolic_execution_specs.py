@@ -52,9 +52,9 @@ def process_complex_number_transformed(real: float, imag: float):
     '''
     pre: -1000 <= real <= 1000  # Add reasonable bounds for real part
     pre: -1000 <= imag <= 1000  # Add reasonable bounds for imaginary part
-    post: (round((real*2 + imag*2)**0.5) == 10) == (round(abs(complex(real, imag))) == 10)
+    post: (round((real**2 + imag**2)**0.5) == 10) == (round(abs(complex(real, imag))) == 10)
     '''
-    b_early = round((real*2 + imag*2)**0.5) == 10
+    b_early = round((real**2 + imag**2)**0.5) == 10
     complex_num = complex(real, imag)
     magnitude = abs(complex_num)
     rounded_magnitude = round(magnitude)
@@ -413,6 +413,398 @@ def loop_string_hash_transformed(text: str):
         hash_val += ord(c) * 3
     final = hash_val % 200
     b_final = (final == 66)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+""",
+
+    "function_11_module.py": """
+def function_11_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: (((x + 15) % 90 * 2) % 100 == 46) == (((x + 15) % 90 * 2) % 100 == 46)
+    '''
+    b_early = (((x + 15) % 90 * 2) % 100 == 46)
+    import random
+    rand_val = random.randint(10, 20)
+    calc = (x + rand_val) % 90
+    final = (calc * 2) % 100
+    b_final = (final == 46)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+""",
+
+    "function_12_module.py": """
+def function_12_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: (sum(int(d) for d in str(abs(x))) + len(str(abs(x)))) * 2 == 44
+    '''
+    b_early = (sum(int(d) for d in str(abs(x))) + len(str(abs(x)))) * 2 == 44
+    digits = [int(d) for d in str(abs(x))]
+    total = sum(digits)
+    adjusted = total + len(digits)
+    result = adjusted * 2
+    b_final = (result == 44)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return result
+""",
+
+    "function_13_module.py": """
+def function_13_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: (((x + 15) % 90 * 2) % 100 == 46) == (((x + 15) % 90 * 2) % 100 == 46)
+    '''
+    b_early = (((x + 15) % 90 * 2) % 100 == 46)
+    import random
+    rand_val = random.randint(10, 20)
+    calc = (x + rand_val) % 90
+    final = (calc * 2) % 100
+    b_final = (final == 46)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+""",
+
+    "function_14_module.py": """
+def function_14_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: math.ceil(x * 1.5) + 4 == 55
+    '''
+    import math
+    b_early = math.ceil(x * 1.5) + 4 == 55
+    val = x * 1.5
+    rounded = math.ceil(val)
+    adj = rounded + 4
+    b_final = (adj == 55)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return adj
+""",
+
+    "function_15_module.py": """
+def function_15_transformed(x: int):
+    '''
+    pre: 0 <= x <= 10  # Add reasonable bounds for factorial
+    post: (int(math.sqrt(math.factorial(x))) % 50 == 30)
+    '''
+    import math
+    b_early = (int(math.sqrt(math.factorial(x))) % 50 == 30)
+    fact = math.factorial(x)
+    root = int(math.sqrt(fact))
+    final = root % 50
+    b_final = (final == 30)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+""",
+
+    "function_16_module.py": """
+def function_16_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: (sum(int(d) for d in str(abs(x))) + len(str(abs(x)))) * 2 == 44
+    '''
+    b_early = (sum(int(d) for d in str(abs(x))) + len(str(abs(x)))) * 2 == 44
+    digits = [int(d) for d in str(abs(x))]
+    total = sum(digits)
+    adjusted = total + len(digits)
+    result = adjusted * 2
+    b_final = (result == 44)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return result
+""",
+
+    "function_17_module.py": """
+def function_17_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: (((x + 15) % 90 * 2) % 100 == 46) == (((x + 15) % 90 * 2) % 100 == 46)
+    '''
+    b_early = (((x + 15) % 90 * 2) % 100 == 46)
+    import random
+    rand_val = random.randint(10, 20)
+    calc = (x + rand_val) % 90
+    final = (calc * 2) % 100
+    b_final = (final == 46)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+""",
+
+    "function_18_module.py": """
+def function_18_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: ((x % 6) * 7 + 3) * 2 == 60
+    '''
+    b_early = ((x % 6) * 7 + 3) * 2 == 60
+    val = (x % 6) * 7 + 3
+    scaled = val * 2
+    b_final = (scaled == 60)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return scaled
+""",
+
+    "function_19_module.py": """
+def function_19_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: (((x + 15) % 90 * 2) % 100 == 46) == (((x + 15) % 90 * 2) % 100 == 46)
+    '''
+    b_early = (((x + 15) % 90 * 2) % 100 == 46)
+    import random
+    rand_val = random.randint(10, 20)
+    calc = (x + rand_val) % 90
+    final = (calc * 2) % 100
+    b_final = (final == 46)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+""",
+
+    "function_20_module.py": """
+def function_20_transformed(x: int):
+    '''
+    pre: 0 <= x <= 10  # Add reasonable bounds for factorial
+    post: (int(math.sqrt(math.factorial(x))) % 50 == 30)
+    '''
+    import math
+    b_early = (int(math.sqrt(math.factorial(x))) % 50 == 30)
+    fact = math.factorial(x)
+    root = int(math.sqrt(fact))
+    final = root % 50
+    b_final = (final == 30)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+""",
+
+    "function_21_module.py": """
+def function_21_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: ((x % 6) * 7 + 3) * 2 == 60
+    '''
+    b_early = ((x % 6) * 7 + 3) * 2 == 60
+    val = (x % 6) * 7 + 3
+    scaled = val * 2
+    b_final = (scaled == 60)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return scaled
+""",
+
+    "function_22_module.py": """
+def function_22_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: math.ceil(x * 1.5) + 4 == 55
+    '''
+    import math
+    b_early = math.ceil(x * 1.5) + 4 == 55
+    val = x * 1.5
+    rounded = math.ceil(val)
+    adj = rounded + 4
+    b_final = (adj == 55)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return adj
+""",
+
+    "function_23_module.py": """
+def function_23_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: (((x + 15) % 90 * 2) % 100 == 46) == (((x + 15) % 90 * 2) % 100 == 46)
+    '''
+    b_early = (((x + 15) % 90 * 2) % 100 == 46)
+    import random
+    rand_val = random.randint(10, 20)
+    calc = (x + rand_val) % 90
+    final = (calc * 2) % 100
+    b_final = (final == 46)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+""",
+
+    "function_24_module.py": """
+def function_24_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: (sum(int(d) for d in str(abs(x))) + len(str(abs(x)))) * 2 == 44
+    '''
+    b_early = (sum(int(d) for d in str(abs(x))) + len(str(abs(x)))) * 2 == 44
+    digits = [int(d) for d in str(abs(x))]
+    total = sum(digits)
+    adjusted = total + len(digits)
+    result = adjusted * 2
+    b_final = (result == 44)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return result
+""",
+
+    "function_25_module.py": """
+def function_25_transformed(x: int):
+    '''
+    pre: 0 <= x <= 10  # Add reasonable bounds for factorial
+    post: (int(math.sqrt(math.factorial(x))) % 50 == 30)
+    '''
+    import math
+    b_early = (int(math.sqrt(math.factorial(x))) % 50 == 30)
+    fact = math.factorial(x)
+    root = int(math.sqrt(fact))
+    final = root % 50
+    b_final = (final == 30)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+""",
+
+    "function_26_module.py": """
+def function_26_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: math.ceil(x * 1.5) + 4 == 55
+    '''
+    import math
+    b_early = math.ceil(x * 1.5) + 4 == 55
+    val = x * 1.5
+    rounded = math.ceil(val)
+    adj = rounded + 4
+    b_final = (adj == 55)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return adj
+""",
+
+    "function_27_module.py": """
+def function_27_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: ((x % 6) * 7 + 3) * 2 == 60
+    '''
+    b_early = ((x % 6) * 7 + 3) * 2 == 60
+    val = (x % 6) * 7 + 3
+    scaled = val * 2
+    b_final = (scaled == 60)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return scaled
+""",
+
+    "function_28_module.py": """
+def function_28_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: (sum(int(d) for d in str(abs(x))) + len(str(abs(x)))) * 2 == 44
+    '''
+    b_early = (sum(int(d) for d in str(abs(x))) + len(str(abs(x)))) * 2 == 44
+    digits = [int(d) for d in str(abs(x))]
+    total = sum(digits)
+    adjusted = total + len(digits)
+    result = adjusted * 2
+    b_final = (result == 44)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return result
+""",
+
+    "function_29_module.py": """
+def function_29_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: (((x + 15) % 90 * 2) % 100 == 46) == (((x + 15) % 90 * 2) % 100 == 46)
+    '''
+    b_early = (((x + 15) % 90 * 2) % 100 == 46)
+    import random
+    rand_val = random.randint(10, 20)
+    calc = (x + rand_val) % 90
+    final = (calc * 2) % 100
+    b_final = (final == 46)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+""",
+
+    "function_30_module.py": """
+def function_30_transformed(x: int):
+    '''
+    pre: 0 <= x <= 10  # Add reasonable bounds for factorial
+    post: (int(math.sqrt(math.factorial(x))) % 50 == 30)
+    '''
+    import math
+    b_early = (int(math.sqrt(math.factorial(x))) % 50 == 30)
+    fact = math.factorial(x)
+    root = int(math.sqrt(fact))
+    final = root % 50
+    b_final = (final == 30)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+""",
+
+    "function_31_module.py": """
+def function_31_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: (((x + 15) % 90 * 2) % 100 == 46) == (((x + 15) % 90 * 2) % 100 == 46)
+    '''
+    b_early = (((x + 15) % 90 * 2) % 100 == 46)
+    import random
+    rand_val = random.randint(10, 20)
+    calc = (x + rand_val) % 90
+    final = (calc * 2) % 100
+    b_final = (final == 46)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return final
+""",
+
+    "function_32_module.py": """
+def function_32_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: (sum(int(d) for d in str(abs(x))) + len(str(abs(x)))) * 2 == 44
+    '''
+    b_early = (sum(int(d) for d in str(abs(x))) + len(str(abs(x)))) * 2 == 44
+    digits = [int(d) for d in str(abs(x))]
+    total = sum(digits)
+    adjusted = total + len(digits)
+    result = adjusted * 2
+    b_final = (result == 44)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return result
+""",
+
+    "function_33_module.py": """
+def function_33_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: ((x % 6) * 7 + 3) * 2 == 60
+    '''
+    b_early = ((x % 6) * 7 + 3) * 2 == 60
+    val = (x % 6) * 7 + 3
+    scaled = val * 2
+    b_final = (scaled == 60)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return scaled
+""",
+
+    "function_34_module.py": """
+def function_34_transformed(x: int):
+    '''
+    pre: -1000 <= x <= 1000  # Add reasonable bounds
+    post: math.ceil(x * 1.5) + 4 == 55
+    '''
+    import math
+    b_early = math.ceil(x * 1.5) + 4 == 55
+    val = x * 1.5
+    rounded = math.ceil(val)
+    adj = rounded + 4
+    b_final = (adj == 55)
+    assert b_early == b_final, "Early and final assertions are not equivalent"
+    return adj
+""",
+
+    "function_35_module.py": """
+def function_35_transformed(x: int):
+    '''
+    pre: 0 <= x <= 10  # Add reasonable bounds for factorial
+    post: (int(math.sqrt(math.factorial(x))) % 50 == 30)
+    '''
+    import math
+    b_early = (int(math.sqrt(math.factorial(x))) % 50 == 30)
+    fact = math.factorial(x)
+    root = int(math.sqrt(fact))
+    final = root % 50
+    b_final = (final == 30)
     assert b_early == b_final, "Early and final assertions are not equivalent"
     return final
 """

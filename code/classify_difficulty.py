@@ -1,4 +1,5 @@
 import ast
+import os
 import math
 import inspect
 from typing import Dict, List, Tuple
@@ -179,24 +180,109 @@ programs = {
     "loop_string_hash": loop_string_hash
 }
 
+# Create output directory if it doesn't exist
+os.makedirs("difficulty_ratings", exist_ok=True)
 
-print("Program Difficulty Ratings:")
-print("=" * 50)
+# Open file for writing
+with open("difficulty_ratings/program_difficulties.txt", "w") as f:
+    f.write("Program Difficulty Ratings:\n")
+    f.write("=" * 50 + "\n")
 
-for name, func in programs.items():
-    source = inspect.getsource(func)
-    difficulty, scores, metrics = rate_program_difficulty(source)
+    for name, func in programs.items():
+        source = inspect.getsource(func)
+        difficulty, scores, metrics = rate_program_difficulty(source)
 
-    print(f"\n{name}:")
-    print(f"Overall Difficulty: {difficulty}/10")
-    print("\nComponent Scores:")
-    for component, score in scores.items():
-        print(f"  {component:15} {score:.2f}")
-    print("\nMetrics:")
-    print(f"  Parameters:       {metrics.num_params}")
-    print(f"  Operations:       {metrics.num_operations}")
-    print(f"  Control Flow:     {metrics.control_flow_depth}")
-    print(f"  Data Types:       {', '.join(metrics.data_types)}")
-    print(f"  Assertions:       {metrics.num_assertions}")
-    print(f"  Math Complexity:  {metrics.math_complexity:.1f}")
-    print("-" * 50)
+        # Write to file
+        f.write(f"\n{name}:\n")
+        f.write(f"Overall Difficulty: {difficulty}/10\n")
+        f.write("\nComponent Scores:\n")
+        for component, score in scores.items():
+            f.write(f"  {component:15} {score:.2f}\n")
+        f.write("\nMetrics:\n")
+        f.write(f"  Parameters:       {metrics.num_params}\n")
+        f.write(f"  Operations:       {metrics.num_operations}\n")
+        f.write(f"  Control Flow:     {metrics.control_flow_depth}\n")
+        f.write(f"  Data Types:       {', '.join(metrics.data_types)}\n")
+        f.write(f"  Assertions:       {metrics.num_assertions}\n")
+        f.write(f"  Math Complexity:  {metrics.math_complexity:.1f}\n")
+        f.write("-" * 50 + "\n")
+
+        # Also print to console
+        print(f"\n{name}:")
+        print(f"Overall Difficulty: {difficulty}/10")
+        print("\nComponent Scores:")
+        for component, score in scores.items():
+            print(f"  {component:15} {score:.2f}")
+        print("\nMetrics:")
+        print(f"  Parameters:       {metrics.num_params}")
+        print(f"  Operations:       {metrics.num_operations}")
+        print(f"  Control Flow:     {metrics.control_flow_depth}")
+        print(f"  Data Types:       {', '.join(metrics.data_types)}")
+        print(f"  Assertions:       {metrics.num_assertions}")
+        print(f"  Math Complexity:  {metrics.math_complexity:.1f}")
+        print("-" * 50)
+
+def generate_latex_table_from_scores(txt_path, latex_path):
+    with open(txt_path, 'r') as f:
+        lines = f.readlines()
+
+    table_rows = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        # Find a program name (ends with ':' and not indented)
+        if line.strip().endswith(':') and not line.startswith(' '):
+            program = line.strip()[:-1]
+            if program in ['Metrics', 'Program Difficulty Ratings']:
+                i += 1
+                continue
+            program_latex = program.replace('_', r'\_')
+            overall = ''
+            scores = []
+            j = i + 1
+            # Find Overall Difficulty
+            while j < len(lines) and 'Overall Difficulty:' not in lines[j]:
+                j += 1
+            if j < len(lines) and 'Overall Difficulty:' in lines[j]:
+                overall_line = lines[j]
+                overall = overall_line.split(':')[1].strip().replace('/10','')
+            # Find Component Scores
+            while j < len(lines) and 'Component Scores:' not in lines[j]:
+                j += 1
+            if j < len(lines) and 'Component Scores:' in lines[j]:
+                j += 1  # move to first score line
+                for _ in range(9):
+                    if j < len(lines):
+                        parts = lines[j].split()
+                        if len(parts) >= 2:
+                            scores.append(parts[-1])
+                        j += 1
+            if len(scores) == 9 and overall:
+                row = f"{program_latex} & " + ' & '.join(scores) + f" & {overall} \\"  # LaTeX row
+                table_rows.append(row)
+            i = j  # move to next program block
+        else:
+            i += 1
+
+    header = r"""
+\begin{table*}[ht]
+\centering
+\scriptsize
+\begin{tabular}{lcccccccccc}
+\hline
+\textbf{Program} & \textbf{Param} & \textbf{Op} & \textbf{CF} & \textbf{DT} & \textbf{Assert} & \textbf{Math} & \textbf{Loop} & \textbf{Call} & \textbf{Branch} & \textbf{Total} \\
+\hline
+"""
+    footer = r"""
+\hline
+\end{tabular}
+\caption{Subscores and Total Score for Each Program}
+\end{table*}
+"""
+    with open(latex_path, 'w') as f:
+        f.write(header)
+        for row in table_rows:
+            f.write(row + '\n')
+        f.write(footer)
+
+generate_latex_table_from_scores('difficulty_ratings/program_difficulties.txt', 'difficulty_ratings/program_difficulties_table.tex')

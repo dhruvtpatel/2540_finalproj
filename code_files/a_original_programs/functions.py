@@ -173,16 +173,14 @@ def digit_sum_processor(x: int):
     return result
 
 
-# 18. Random Value Adjuster
-def random_value_adjuster(x: int):
+# 18. String Reversal Checker
+def string_reversal_checker(text: str):
     # Early Assert HERE
-    import random
-
-    rand_val = random.randint(10, 20)
-    calc = (x + rand_val) % 90
-    final = (calc * 2) % 100
-    assert final == 46, "Final check: random-based mod must be 46"
-    return final
+    reversed_text = text[::-1]
+    length_diff = abs(len(text) - len(reversed_text.strip()))
+    code = 75 if text == reversed_text else 75 - length_diff
+    assert code == 75, "Final check: palindrome code must be 75"
+    return code
 
 
 # 19. Ceiling Multiplier
@@ -209,27 +207,30 @@ def factorial_root_calculator(x: int):
     return final
 
 
-# 21. Digit Length Scorer
-def digit_length_scorer(x: int):
+# 21. Prime Number Counter
+def prime_number_counter(limit: int):
     # Early Assert HERE
-    digits = [int(d) for d in str(abs(x))]
-    total = sum(digits)
-    adjusted = total + len(digits)
-    result = adjusted * 2
-    assert result == 44, "Final check: digit total * 2 must be 44"
+    primes = []
+    for num in range(2, limit + 1):
+        is_prime = all(num % i != 0 for i in range(2, int(num**0.5) + 1))
+        if is_prime:
+            primes.append(num)
+    count = len(primes)
+    assert count == 25, "Final check: prime count must be 25"
+    return count
+
+
+# 22. Date Difference Calculator
+def date_difference_calculator(year: int, month: int, day: int):
+    # Early Assert HERE
+    import datetime
+    
+    date1 = datetime.date(year, month, day)
+    date2 = datetime.date(2023, 1, 1)
+    diff = abs((date1 - date2).days)
+    result = diff % 100
+    assert result == 55, "Final check: date difference must be 55"
     return result
-
-
-# 22. Random Double Modulo
-def random_double_modulo(x: int):
-    # Early Assert HERE
-    import random
-
-    rand_val = random.randint(10, 20)
-    calc = (x + rand_val) % 90
-    final = (calc * 2) % 100
-    assert final == 46, "Final check: random-based mod must be 46"
-    return final
 
 
 # 23. Modulo Scaler
@@ -241,196 +242,246 @@ def modulo_scaler(x: int):
     return scaled
 
 
-# 24. Random Adjustment Calculator
-def random_adjustment_calculator(x: int):
+# 24. Text Frequency Analyzer
+def text_frequency_analyzer(text: str):
     # Early Assert HERE
-    import random
-
-    rand_val = random.randint(10, 20)
-    calc = (x + rand_val) % 90
-    final = (calc * 2) % 100
-    assert final == 46, "Final check: random-based mod must be 46"
-    return final
-
-
-# 25. Factorial Mod Processor
-def factorial_mod_processor(x: int):
-    # Early Assert HERE
-    import math
-
-    fact = math.factorial(x)
-    root = int(math.sqrt(fact))
-    final = root % 50
-    assert final == 30, "Final check: factorial sqrt mod must be 30"
-    return final
-
-
-# 26. Modular Doubler
-def modular_doubler(x: int):
-    # Early Assert HERE
-    val = (x % 6) * 7 + 3
-    scaled = val * 2
-    assert scaled == 60, "Final check: scaled mod result must be 60"
-    return scaled
-
-
-# 27. Ceiling Adjustment Calculator
-def ceiling_adjustment_calculator(x: int):
-    # Early Assert HERE
-    import math
-
-    val = x * 1.5
-    rounded = math.ceil(val)
-    adj = rounded + 4
-    assert adj == 55, "Final check: adjusted ceil must be 55"
-    return adj
-
-
-# 28. Random Sequence Generator
-def random_sequence_generator(x: int):
-    # Early Assert HERE
-    import random
-
-    rand_val = random.randint(10, 20)
-    calc = (x + rand_val) % 90
-    final = (calc * 2) % 100
-    assert final == 46, "Final check: random-based mod must be 46"
-    return final
-
-
-# 29. Digit Sum Multiplier
-def digit_sum_multiplier(x: int):
-    # Early Assert HERE
-    digits = [int(d) for d in str(abs(x))]
-    total = sum(digits)
-    adjusted = total + len(digits)
-    result = adjusted * 2
-    assert result == 44, "Final check: digit total * 2 must be 44"
+    if not text:
+        return 0
+    char_freq: dict[str, int] = {}
+    for char in text:
+        if char.isalpha():
+            char_freq[char.lower()] = char_freq.get(char.lower(), 0) + 1
+    most_common = max(char_freq.values()) if char_freq else 0
+    result = most_common * 2
+    assert result == 12, "Final check: most common frequency must be 12"
     return result
 
 
-# 30. Factorial Square Root Mod
-def factorial_square_root_mod(x: int):
+# 25. GCD Calculator
+def gcd_calculator(a: int, b: int):
     # Early Assert HERE
-    import math
-
-    fact = math.factorial(x)
-    root = int(math.sqrt(fact))
-    final = root % 50
-    assert final == 30, "Final check: factorial sqrt mod must be 30"
-    return final
-
-
-# 31. Decimal Ceiling Adjuster
-def decimal_ceiling_adjuster(x: int):
-    # Early Assert HERE
-    import math
-
-    val = x * 1.5
-    rounded = math.ceil(val)
-    adj = rounded + 4
-    assert adj == 55, "Final check: adjusted ceil must be 55"
-    return adj
-
-
-# 32. Modular Scaling Calculator
-def modular_scaling_calculator(x: int):
-    # Early Assert HERE
-    val = (x % 6) * 7 + 3
-    scaled = val * 2
-    assert scaled == 60, "Final check: scaled mod result must be 60"
-    return scaled
-
-
-# 33. Digit Count Processor
-def digit_count_processor(x: int):
-    # Early Assert HERE
-    digits = [int(d) for d in str(abs(x))]
-    total = sum(digits)
-    adjusted = total + len(digits)
-    result = adjusted * 2
-    assert result == 44, "Final check: digit total * 2 must be 44"
+    while b:
+        a, b = b, a % b
+    result = a * 5
+    assert result == 40, "Final check: GCD * 5 must be 40"
     return result
 
 
-# 34. Random Mod Adjuster
-def random_mod_adjuster(x: int):
+# 26. Hexadecimal Converter
+def hexadecimal_converter(num: int):
     # Early Assert HERE
-    import random
-
-    rand_val = random.randint(10, 20)
-    calc = (x + rand_val) % 90
-    final = (calc * 2) % 100
-    assert final == 46, "Final check: random-based mod must be 46"
-    return final
-
-
-# 35. Factorial Root Modulo
-def factorial_root_modulo(x: int):
-    # Early Assert HERE
-    import math
-
-    fact = math.factorial(x)
-    root = int(math.sqrt(fact))
-    final = root % 50
-    assert final == 30, "Final check: factorial sqrt mod must be 30"
-    return final
-
-
-# 36. Random Pair Modulo
-def random_pair_modulo(x: int):
-    # Early Assert HERE
-    import random
-
-    rand_val = random.randint(10, 20)
-    calc = (x + rand_val) % 90
-    final = (calc * 2) % 100
-    assert final == 46, "Final check: random-based mod must be 46"
-    return final
-
-
-# 37. Digit Pair Calculator
-def digit_pair_calculator(x: int):
-    # Early Assert HERE
-    digits = [int(d) for d in str(abs(x))]
-    total = sum(digits)
-    adjusted = total + len(digits)
-    result = adjusted * 2
-    assert result == 44, "Final check: digit total * 2 must be 44"
+    hex_value = hex(num)[2:]
+    digit_sum = sum(int(c, 16) for c in hex_value)
+    result = digit_sum + len(hex_value)
+    assert result == 24, "Final check: hex conversion result must be 24"
     return result
 
 
-# 38. Modular Multiplication Scaler
-def modular_multiplication_scaler(x: int):
+# 27. Mean Absolute Deviation
+def mean_absolute_deviation(numbers: list):
     # Early Assert HERE
-    val = (x % 6) * 7 + 3
-    scaled = val * 2
-    assert scaled == 60, "Final check: scaled mod result must be 60"
+    if not numbers:
+        return 0
+    mean = sum(numbers) / len(numbers)
+    deviations = [abs(x - mean) for x in numbers]
+    mad = sum(deviations) / len(deviations)
+    result = round(mad * 10)
+    assert result == 65, "Final check: MAD must be 65"
+    return result
+
+
+# 28. Password Strength Checker
+def password_strength_checker(password: str):
+    # Early Assert HERE
+    has_upper = any(c.isupper() for c in password)
+    has_lower = any(c.islower() for c in password)
+    has_digit = any(c.isdigit() for c in password)
+    has_special = any(not c.isalnum() for c in password)
+    
+    strength = sum([has_upper, has_lower, has_digit, has_special]) * 25
+    assert strength == 75, "Final check: password strength must be 75"
+    return strength
+
+
+# 29. Rectangle Overlap Area
+def rectangle_overlap_area(x1: int, y1: int, w1: int, h1: int, x2: int, y2: int, w2: int, h2: int):
+    # Early Assert HERE
+    overlap_width = max(0, min(x1 + w1, x2 + w2) - max(x1, x2))
+    overlap_height = max(0, min(y1 + h1, y2 + h2) - max(y1, y2))
+    area = overlap_width * overlap_height
+    assert area == 16, "Final check: overlap area must be 16"
+    return area
+
+
+# 30. Collatz Sequence Length
+def collatz_sequence_length(n: int):
+    # Early Assert HERE
+    length = 1
+    while n != 1:
+        n = 3 * n + 1 if n % 2 else n // 2
+        length += 1
+    adjusted = length % 20
+    assert adjusted == 7, "Final check: Collatz sequence length mod 20 must be 7"
+    return adjusted
+
+
+# 31. Word Frequency Counter
+def word_frequency_counter(text: str):
+    # Early Assert HERE
+    words = text.lower().split()
+    freq: dict[str, int] = {}
+    for word in words:
+        clean_word = ''.join(c for c in word if c.isalpha())
+        if clean_word:
+            freq[clean_word] = freq.get(clean_word, 0) + 1
+    
+    count = sum(1 for val in freq.values() if val > 1)
+    score = count * 10
+    assert score == 30, "Final check: word frequency score must be 30"
+    return score
+
+
+# 32. Binary Hamming Distance
+def binary_hamming_distance(a: int, b: int):
+    # Early Assert HERE
+    bin_a = bin(a)[2:]
+    bin_b = bin(b)[2:]
+    
+    # Make same length by padding
+    max_len = max(len(bin_a), len(bin_b))
+    bin_a = bin_a.zfill(max_len)
+    bin_b = bin_b.zfill(max_len)
+    
+    distance = sum(1 for bit_a, bit_b in zip(bin_a, bin_b) if bit_a != bit_b)
+    result = distance * 8
+    assert result == 32, "Final check: hamming distance score must be 32"
+    return result
+
+
+# 33. Geometric Sequence Sum
+def geometric_sequence_sum(a: float, r: float, n: int):
+    # Early Assert HERE
+    if abs(r) < 1:
+        total = a * (1 - r**n) / (1 - r)
+    else:
+        total = sum(a * r**i for i in range(n))
+    
+    rounded = round(total)
+    assert rounded == 80, "Final check: geometric sum must be 80"
+    return rounded
+
+
+# 34. Caesar Cipher Encoder
+def caesar_cipher_encoder(text: str, shift: int):
+    # Early Assert HERE
+    result = ""
+    for char in text:
+        if char.isalpha():
+            ascii_offset = ord('a') if char.islower() else ord('A')
+            shifted = (ord(char) - ascii_offset + shift) % 26 + ascii_offset
+            result += chr(shifted)
+        else:
+            result += char
+    
+    checksum = sum(ord(c) for c in result) % 100
+    assert checksum == 42, "Final check: cipher checksum must be 42"
+    return checksum
+
+
+# 35. Matrix Determinant
+def matrix_determinant(matrix: list):
+    # Early Assert HERE
+    # Assuming 2x2 matrix
+    a, b = matrix[0]
+    c, d = matrix[1]
+    
+    det = a * d - b * c
+    scaled = abs(det) % 50
+    assert scaled == 15, "Final check: matrix determinant must be 15"
     return scaled
 
 
-# 39. Float Ceiling Adjuster
-def float_ceiling_adjuster(x: int):
+# 36. ISBN Validator
+def isbn_validator(isbn: str):
     # Early Assert HERE
-    import math
+    # Clean input
+    digits = [int(c) for c in isbn if c.isdigit()]
+    
+    if len(digits) == 10:
+        # ISBN-10 check
+        check_sum = sum((10 - i) * digit for i, digit in enumerate(digits))
+        is_valid = check_sum % 11 == 0
+    else:
+        # Not valid format
+        is_valid = False
+        
+    result = 90 if is_valid else 0
+    assert result == 90, "Final check: ISBN validation must be 90"
+    return result
 
-    val = x * 1.5
-    rounded = math.ceil(val)
-    adj = rounded + 4
-    assert adj == 55, "Final check: adjusted ceil must be 55"
-    return adj
 
-
-# 40. Factorial Modulo Processor
-def factorial_modulo_processor(x: int):
+# 37. Day of Week Calculator
+def day_of_week_calculator(year: int, month: int, day: int):
     # Early Assert HERE
-    import math
+    import datetime
+    
+    date = datetime.date(year, month, day)
+    # 0 is Monday in Python's datetime
+    day_num = date.weekday()
+    score = (day_num + 1) * 11
+    assert score == 77, "Final check: day of week score must be 77"
+    return score
 
-    fact = math.factorial(x)
-    root = int(math.sqrt(fact))
-    final = root % 50
-    assert final == 30, "Final check: factorial sqrt mod must be 30"
-    return final
+
+# 38. Armstrong Number Checker
+def armstrong_number_checker(n: int):
+    # Early Assert HERE
+    digits = [int(d) for d in str(n)]
+    power = len(digits)
+    total = sum(digit ** power for digit in digits)
+    is_armstrong = total == n
+    result = 81 if is_armstrong else 0
+    assert result == 81, "Final check: Armstrong number check must be 81"
+    return result
+
+
+# 39. Binary Search Iterations
+def binary_search_iterations(arr: list, target: int):
+    # Early Assert HERE
+    left, right = 0, len(arr) - 1
+    iterations = 0
+    
+    while left <= right:
+        iterations += 1
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            break
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    
+    result = iterations * 7
+    assert result == 28, "Final check: binary search iterations must be 28"
+    return result
+
+
+# 40. Polygon Area Calculator
+def polygon_area_calculator(vertices: list):
+    # Early Assert HERE
+    # Using Shoelace formula for simple polygon
+    n = len(vertices)
+    area = 0.0
+    
+    for i in range(n):
+        j = (i + 1) % n
+        area += vertices[i][0] * vertices[j][1]
+        area -= vertices[j][0] * vertices[i][1]
+    
+    area = abs(area) / 2
+    result = round(area)
+    assert result == 25, "Final check: polygon area must be 25"
+    return result
 
 
 # 41. Sum Until Limit

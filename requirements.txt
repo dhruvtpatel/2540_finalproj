@@ -1,4 +1,4 @@
-nagini==0.1.0
+nagini
 pyzmq==25.1.2 
 crosshair
 hypothesis

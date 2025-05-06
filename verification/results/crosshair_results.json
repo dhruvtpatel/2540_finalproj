@@ -1,0 +1,252 @@
+[
+  {
+    "program": "process_data_module.py",
+    "failure_reason": "/Users/dineshtejavasireddy/Developer/2540_finalproj/verification/crosshair_modules/process_data_module.py:14: error: AssertionError: Early and final assertions are not equivalent when calling process_data_transformed(-50)\n",
+    "assertion_equivalence_result": "false"
+  },
+  {
+    "program": "convert_temperature_module.py",
+    "failure_reason": "/Users/dineshtejavasireddy/Developer/2540_finalproj/verification/crosshair_modules/convert_temperature_module.py:14: error: AssertionError: Early and final assertions are not equivalent when calling convert_temperature_transformed(38.05555555555556)\n",
+    "assertion_equivalence_result": "false"
+  },
+  {
+    "program": "calculate_discount_module.py",
+    "failure_reason": "/Users/dineshtejavasireddy/Developer/2540_finalproj/verification/crosshair_modules/calculate_discount_module.py:15: error: AssertionError: Early and final assertions are not equivalent when calling calculate_discount_transformed(101.0, 0.5024752475247525)\n",
+    "assertion_equivalence_result": "false"
+  },
+  {
+    "program": "process_complex_number_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "transform_data_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "circle_area_diff_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "triangle_checker_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "temperature_offset_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "quadratic_discriminant_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "vector_norm_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "hypotenuse_diff_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "ascii_average_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "list_balance_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "odd_sum_validator_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "string_pattern_score_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "random_mod_calculator_module.py",
+    "failure_reason": "/Users/dineshtejavasireddy/Developer/2540_finalproj/verification/crosshair_modules/random_mod_calculator_module.py:18: error: AssertionError: Early and final assertions are not equivalent when calling random_mod_calculator_transformed(13) with crosshair.patch_to_return({random.Random.randint: [10]})\n",
+    "assertion_equivalence_result": "false"
+  },
+  {
+    "program": "digit_sum_processor_module.py",
+    "failure_reason": "/Users/dineshtejavasireddy/Developer/2540_finalproj/verification/crosshair_modules/digit_sum_processor_module.py:16: error: AssertionError: Early and final assertions are not equivalent when calling digit_sum_processor_transformed(-991)\n",
+    "assertion_equivalence_result": "false"
+  },
+  {
+    "program": "string_reversal_checker_module.py",
+    "failure_reason": "/Users/dineshtejavasireddy/Developer/2540_finalproj/verification/crosshair_modules/string_reversal_checker_module.py:15: error: AssertionError: Early and final assertions are not equivalent when calling string_reversal_checker_transformed('\\x00\\x01')\n",
+    "assertion_equivalence_result": "false"
+  },
+  {
+    "program": "ceiling_multiplier_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "factorial_root_calculator_module.py",
+    "failure_reason": "/Users/dineshtejavasireddy/Developer/2540_finalproj/verification/crosshair_modules/factorial_root_calculator_module.py:16: error: AssertionError: Early and final assertions are not equivalent when calling factorial_root_calculator_transformed(5)\n",
+    "assertion_equivalence_result": "false"
+  },
+  {
+    "program": "prime_number_counter_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "date_difference_calculator_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "modulo_scaler_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "text_frequency_analyzer_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "gcd_calculator_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "hexadecimal_converter_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "mean_absolute_deviation_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "password_strength_checker_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "rectangle_overlap_area_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "collatz_sequence_length_module.py",
+    "failure_reason": "/Users/dineshtejavasireddy/Developer/2540_finalproj/verification/crosshair_modules/collatz_sequence_length_module.py:20: error: AssertionError: Early and final assertions are not equivalent when calling collatz_sequence_length_transformed(26)\n",
+    "assertion_equivalence_result": "false"
+  },
+  {
+    "program": "word_frequency_counter_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "binary_hamming_distance_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "geometric_sequence_sum_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "caesar_cipher_encoder_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "matrix_determinant_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "isbn_validator_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "day_of_week_calculator_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "armstrong_number_checker_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "binary_search_iterations_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "polygon_area_calculator_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "sum_until_limit_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "count_divisibles_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "index_weighted_sum_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "square_accumulator_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "nested_loop_checker_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "character_counter_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "rolling_maximum_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "fibonacci_counter_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "loop_even_sum_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  },
+  {
+    "program": "loop_string_hash_module.py",
+    "failure_reason": "",
+    "assertion_equivalence_result": "true"
+  }
+]

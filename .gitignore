@@ -1,0 +1,3 @@
+# python virtual environments (needed to run nagini)
+py39_venv/
+py312_venv/

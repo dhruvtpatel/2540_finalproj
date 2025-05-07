@@ -87,21 +87,8 @@
   },
   {
     "program": "collatz_sequence_length_transformed",
-    "pass": false,
-    "failing_examples": [
-      {
-        "args": "n=54",
-        "error": "Early and final assertions are not equivalent"
-      },
-      {
-        "args": "n=26",
-        "error": "Early and final assertions are not equivalent"
-      },
-      {
-        "args": "n=17",
-        "error": "Early and final assertions are not equivalent"
-      }
-    ]
+    "pass": true,
+    "failing_examples": []
   },
   {
     "program": "convert_temperature_transformed",
@@ -448,89 +435,8 @@
   },
   {
     "program": "polygon_area_calculator_transformed",
-    "pass": false,
-    "failing_examples": [
-      {
-        "args": "vertices=[0]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[9]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[9, 85]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[42, 28, 49, 83, 63, 59, 62, 96, 50, 47]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[7, 100]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[65, 35, 37, 100, 55, 47]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[57, 26, 73, 85, 13, 52, 53, 85, 67, 30]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[0, 48, 56, 48, 73, 59, 100, 11]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[14]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[45, 54, 20]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[13, 35, 89, 99, 6, 42, 34, 94]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[13, 35, 89, 99, 6, 89, 34, 94]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[13, 35, 89, 35, 6, 89, 34, 94]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[13, 35, 89, 34, 6, 89, 34, 94]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[89, 35, 89, 34, 6, 89, 34, 94]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[89, 35, 89, 34, 6, 89, 6, 94]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[89, 35, 89, 94, 6, 89, 6, 94]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[11]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[100, 85]",
-        "error": "'int' object is not subscriptable"
-      },
-      {
-        "args": "vertices=[100, 100]",
-        "error": "'int' object is not subscriptable"
-      }
-    ]
+    "pass": true,
+    "failing_examples": []
   },
   {
     "program": "prime_number_counter_transformed",

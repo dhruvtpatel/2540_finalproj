@@ -110,12 +110,12 @@
   {
     "program": "collatz_sequence_length",
     "difficulty": 7,
-    "fuzz": "fail",
-    "crosshair": "fail",
+    "fuzz": "pass",
+    "crosshair": "pass",
     "nagini": "pass",
     "feq": {
       "fuzz": "NA",
-      "crosshair": 0.57,
+      "crosshair": "NA",
       "nagini": "NA"
     }
   },
@@ -386,7 +386,7 @@
   {
     "program": "polygon_area_calculator",
     "difficulty": 9,
-    "fuzz": "fail",
+    "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
     "feq": {
@@ -424,11 +424,11 @@
     "difficulty": 5,
     "fuzz": "pass",
     "crosshair": "fail",
-    "nagini": "pass",
+    "nagini": "fail",
     "feq": {
       "fuzz": "NA",
       "crosshair": 0.61,
-      "nagini": "NA"
+      "nagini": 0.72
     }
   },
   {

@@ -54,9 +54,9 @@
     {
       "module": "process_data.py",
       "path": "/Users/dineshtejavasireddy/Developer/2540_finalproj/verification/nagini/nagini_modules/process_data.py",
-      "verification_result": "success",
-      "error_message": "",
-      "full_log": "Translation successful.\nVerification completed.\nVerification successful\nVerification took 18.78 seconds.\n",
+      "verification_result": "failure",
+      "error_message": "Unknown error",
+      "full_log": "Translation successful. \nVerification failed.\nErrors:\nPostcondition of process_data_transformed might not hold. Assertion ((x == 50) == (abs_value((x * 2)) == 100)) might not hold. (process_data.py@42.12--42.50)\nVerification took 21.34 seconds.",
       "timestamp": "2025-05-07T02:45:45.543301"
     },
     {

@@ -185,7 +185,7 @@ Our goal is to proactively enforce security and correctness properties in Python
     \begin{itemize}
         \item \textbf{Symbolic Execution:} Employ CrossHair to explore execution paths of the transform program, searching for counterexamples where \(b_{early}\) and \(b_{final}\) differ.
         \item \textbf{Fuzz Testing:} Systematically generate random and boundary-case inputs designed to violate assertions, confirming that no input triggers a mismatch between early and final assertions.
-        \item \textbf{Static Verification:} Apply Nagini to formally prove that for all inputs and execution paths, \(\phi_{early} \Leftrightarrow \phi_{final}\), discharging verification conditions automatically.
+        \item \textbf{Static Verification:} Apply Nagini to formally prove that for all inputs and execution paths, \(\phi_{early} \Leftrightarrow \phi_{final}\), discharging verification conditions automatically.\textit{*Nagini is experimental and doesn't support a variety of program features, so we only apply this step for programs with supported features. }
     \end{itemize}
 \end{enumerate}
 
@@ -257,7 +257,7 @@ We're \textbf{evaluating our ability to successfully \textit{transform} and \tex
 % Classification boxes
 \node[box, fill=green!15] (verified) at (0,0) {\textbf{VERIFIED}\\Passes all three stages\\(Fuzz Testing, CrossHair, Nagini)};
 
-\node[box, fill=yellow!15] (validated) at (6,0) {\textbf{VALIDATED}\\Passes Fuzz Testing \& CrossHair\\Nagini inconclusive};
+\node[box, fill=yellow!15] (validated) at (6,0) {\textbf{VALIDATED}\\Passes Fuzz Testing \& CrossHair\\Nagini inconclusive/unsupported};
 
 \node[box, fill=red!15] (rejected) at (3,-2.5) {\textbf{REJECTED}\\Fails in at least one stage\\Counterexample found};
 
@@ -302,21 +302,7 @@ Branching Complexity         & 0.45 \\
 \end{table}
 
 \subsubsection{Explaining Failures}
-For \textbf{rejected and not verified transformations}, we introduce a \textbf{Failure Explanation Quality (FEQ) score (1-10)} that measures counterexample specificity, diagnostic clarity, and actionability of the failure information. This provides an additional metric to evaluate our verification pipeline's effectiveness even when transformations fail, with a target average FEQ score of 7 or higher across all failed cases. Our scoring system assesses failure messages using four weighted criteria detailed in Equation \ref{eq:feq}.
-
-% \begin{figure}[H]
-% \centering
-% \fbox{\begin{minipage}{0.9\textwidth}
-% \vspace{0.2em}
-% \centering
-% \noindent $\text{FEQ} = 0.3 \cdot S_{\text{spec}} + 0.3 \cdot S_{\text{action}} + 0.2 \cdot S_{\text{context}} + 0.2 \cdot S_{\text{tech}}$
-
-% \noindent where $S_{\text{spec}}$ = specificity, $S_{\text{action}}$ = actionability, $S_{\text{context}}$ = context, $S_{\text{tech}}$ = technical detail, all $\in [0,1]$
-% \vspace{0.2em}
-% \end{minipage}}
-% \caption{Failure Explanation Quality (FEQ) formula quantifying error message effectiveness.}
-% \label{fig:feq-formula}
-% \end{figure}
+For \textbf{rejected and not verified transformations}, we introduce a \textbf{Failure Explanation Quality (FEQ) score (1-10)} that measures counterexample specificity, diagnostic clarity, and actionability of the failure information. We evaluate the stack traces, failure logs, discovered counterexamples, and conditions from failed executions on Hypothesis, CrossHair, and Nagini. This provides an additional metric to evaluate our verification pipeline's effectiveness even when assertions are incorrect or transformations fail, with a target average FEQ score of 0.5 or higher across all failed cases being preferred. Our scoring system assesses failure messages using four weighted criteria detailed in Equation \ref{eq:feq}.
 
 \begin{equation}
 \label{eq:feq}
@@ -330,7 +316,9 @@ S_{\text{tech}} = \text{technical detail}
 \quad \text{where all } S_i \in [0,1]
 \end{equation}
 
-Ultimately, we aim to evaluate the \textbf{feasibility of automatically generating and verifying equivalent early assertions in Python programs} across a diverse set of real-world examples. Success is measured not only by \textbf{correctness and soundness} (through symbolic execution, fuzz testing, and static verification), but also by the method's \textbf{ability to scale} to programs of varying size, complexity, and structure—while maintaining \textbf{low false positive rates and manageable performance overhead.}
+Ultimately, we aim to evaluate the \textbf{feasibility of automatically generating and verifying equivalent early assertions in Python programs} across a diverse set of real-world examples. While conducting FEQ evaluartions, we also identify \textbf{\textit{false positives}} where \textbf{assertions are deemed not equal due to a non-logical error} with the method, an unsupported feature, type errors, etc. In this case, the assertion equivalence for that method would be deemed inconclusive. 
+
+% Success is measured not only by \textbf{correctness and soundness} (through symbolic execution, fuzz testing, and static verification), but also by the method's \textbf{ability to scale} to programs of varying size, complexity, and structure—while maintaining \textbf{low false positive rates and manageable performance overhead.}
 
 \subsection{Practical Implementation} 
 % \textbf{replace with structured experimentation and directions we went } \smallskip 
@@ -339,7 +327,9 @@ Ultimately, we aim to evaluate the \textbf{feasibility of automatically generati
 
 % \subsubsection{Programs}
 
-We evaluated the pipeline on 45 Python functions, each implementing basic arithmetic, control flow, or structural operations such as multiplication, discount calculation, factorial calculation, sine function, and data transformation. These functions span operations from basic mathematical computations to complex string processing and data transformations. We created a variety of automated scripts and calculated difficulty, ran testing and verification, failure explanation scores, etc. for every program. 
+We evaluated the pipeline on 50 Python functions, each implementing basic arithmetic, complex control flow, or structural operations such as multiplication, discount calculation, factorial calculation, sine function, and data transformation. These functions span operations from basic mathematical computations to complex string processing and data transformations. 
+
+We created a variety of automated scripts and calculated difficulty, ran testing and verification, failure explanation scores, etc. for every program. In particular, we \textbf{identified Nagini-unsupported programs using GPT-4.1} (with Nagini's wiki as context) to assess compatibility with its specification language, followed by manual verification \cite{eilers2018}. We also used a similar LLM-as-a-judge approach to score failures across all methods to calculate Failure Explanation Quality (FEQ) scores and false positives. 
 
 \subsubsection{Adaptations for Testing \& Verification Methods}
 \paragraph{Hypothesis Testing.} Using the Hypothesis property-based testing framework, we executed each transformed program over 20 randomized and edge-case inputs. The transformed programs encode early (\(\phi_{early}\)) and final (\(\phi_{final}\)) assertions as boolean expressions and assert their equivalence. Our implementation uses Hypothesis's \textit{@given} decorator with appropriate strategy generators tailored to each function's domain (integers, floats, ranges). We configured testing parameters with \textit{@settings($max\_examples=20$)} to limit test cases while maintaining sufficient coverage. Each test function wraps the transformed program in a try-except block to cleanly capture and report assertion failures. For numerical functions involving floating-point calculations, we employed $st.floats()$ with carefully selected boundaries. The framework effectively demonstrates assertion equivalence in practice by encountering fewer failures than symbolic execution, highlighting the complementary nature of dynamic testing versus static verification approaches.
@@ -348,23 +338,7 @@ We evaluated the pipeline on 45 Python functions, each implementing basic arithm
 
 We ran CrossHair symbolic execution on each of the transformed programs. The transform programs are written to disk files with special docstring contracts using pre: and post: annotations that CrossHair understands. Our implementation captures both the early and final assertion conditions as boolean variables ($b_{early}$ and $b_{final}$) and explicitly checks for their equivalence. The code includes carefully defined preconditions that establish reasonable bounds for input variables (e.g., $-1000 \leq x \leq 1000$) to constrain the search space while ensuring comprehensive verification. Postconditions formally express the property that early and final assertions should be logically equivalent. The implementation invokes CrossHair through a subprocess call, captures its output, and reports any counterexamples found. 
 
-% \begin{figure}[H]
-%     \centering
-% \includegraphics[width=0.4\linewidth]{crosshair-annotations.png}
-%     \caption{Transform Program with Cross Hair Annotations}
-%     \label{fig:cross-hair-annotations}
-% \end{figure}
-
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.4\linewidth]{nagini-specification-example.png}
-%     \caption{Transform Program in Nagini Specification}
-%     \label{fig:nagini-annotations}
-% \end{figure}
-
-\paragraph{Nagini Static Verification.} 
-
-To complement our dynamic and symbolic testing efforts, we use \textbf{Nagini} to formally verify the logical equivalence $\phi_{\text{early}} \Leftrightarrow \phi_{\text{final}}$ for transformed Python programs. Built on the Viper intermediate verification language, Nagini supports PEP 484-style type annotations and permission-based heap access control, but imposes strict constraints: programs must be statically typed and avoid dynamic features like \texttt{eval} or runtime field creation. Adapting programs for Nagini required \textbf{adding type annotations and contracts, minimally reformatting control flow, and eliminating unsupported language features}. Our verification process follows a two-phase strategy: first testing the original program with dynamic and symbolic methods, then adapting it for Nagini while preserving logical structure. This approach enables us to distinguish between true semantic failures (indicating assertion inequivalence) and compatibility issues (reflecting tooling limitations rather than transformation failures).
+\paragraph{Nagini Static Verification.} For transformed programs with supported features, we use \textbf{Nagini} to formally verify the logical equivalence $\phi_{\text{early}} \Leftrightarrow \phi_{\text{final}}$. Built on the Viper intermediate verification language, Nagini supports PEP 484-style type annotations and permission-based heap access control, but imposes strict constraints: programs must be statically typed and avoid dynamic features like \texttt{eval} or runtime field creation. Adapting programs for Nagini required \textbf{adding type annotations and contracts, minimally reformatting control flow, and eliminating unsupported language features}. Our verification process follows a two-phase strategy: first testing the original program with dynamic and symbolic methods, then adapting it for Nagini while preserving logical structure. This approach enables us to distinguish between true semantic failures (indicating assertion inequivalence) and compatibility issues (reflecting tooling limitations rather than transformation failures). 
 
 \begin{figure}[H]
     \centering
@@ -390,17 +364,17 @@ To complement our dynamic and symbolic testing efforts, we use \textbf{Nagini} t
 
 \subsection{Program Complexity} \textbf{NEED TO REDO, THIS SECTION'S JUST YAP RIGHT NOW, INCLUDE STATISTICAL RELATIONSHIPS, DEEPER ANALYSIS OF PROGRAMS}
 
-Our complexity assessment of the 45 functions revealed a broad distribution across low, medium, and high complexity levels. About 60\% of the functions landed in the medium complexity range (scores 4 to 6). These typically involved basic arithmetic, conditional statements, and simple list operations. Examples include \verb|process_data|, \verb|convert_temperature|, and \verb|vector_norm|, which operate with straightforward logic and minimal control flow.
-\\\\
-Another 30\% of the functions were categorized as high complexity (scores 7 to 8). These tended to include deeper nesting, more involved mathematical calculations, or multi-stage transformations. Key examples include:
-\begin{itemize}
-    \item \verb|nested_loop_checker| , which features a double for-loop that increases the function's control flow depth significantly.
-    \item \verb|fibonacci_counter| , which involves iterative logic over a mathematical sequence with modulus operations.
-    \item \verb|loop_string_hash| , which performs character-wise transformations, string hashing, and modulus logic, adding both type complexity and arithmetic.
-\end{itemize}
-The remaining 10\% were rated as very high complexity (scores 9–10). These functions combined multiple difficult traits like factorial growth, heavy use of randomness, or recursive logic, as seen in functions like \verb|factorial_modulo_processor| and \verb|factorial_root_modulo|.
+% Our complexity assessment of the 45 functions revealed a broad distribution across low, medium, and high complexity levels. About 60\% of the functions landed in the medium complexity range (scores 4 to 6). These typically involved basic arithmetic, conditional statements, and simple list operations. Examples include \verb|process_data|, \verb|convert_temperature|, and \verb|vector_norm|, which operate with straightforward logic and minimal control flow.
+% \\\\
+% Another 30\% of the functions were categorized as high complexity (scores 7 to 8). These tended to include deeper nesting, more involved mathematical calculations, or multi-stage transformations. Key examples include:
+% \begin{itemize}
+%     \item \verb|nested_loop_checker| , which features a double for-loop that increases the function's control flow depth significantly.
+%     \item \verb|fibonacci_counter| , which involves iterative logic over a mathematical sequence with modulus operations.
+%     \item \verb|loop_string_hash| , which performs character-wise transformations, string hashing, and modulus logic, adding both type complexity and arithmetic.
+% \end{itemize}
+% The remaining 10\% were rated as very high complexity (scores 9–10). These functions combined multiple difficult traits like factorial growth, heavy use of randomness, or recursive logic, as seen in functions like \verb|factorial_modulo_processor| and \verb|factorial_root_modulo|.
 
-Across the board, the most impactful factor in determining complexity was control flow depth (correlation coefficient r = 0.82), indicating that loops and nested branching are major complexity drivers. Mathematical sophistication (e.g., factorials, square roots, mod operations) also played a large role, increasing complexity scores by 25–40\%. Handling multiple data types (e.g., strings, lists, complex numbers) further contributed, typically adding around 0.6 points to the final score.
+% Across the board, the most impactful factor in determining complexity was control flow depth (correlation coefficient r = 0.82), indicating that loops and nested branching are major complexity drivers. Mathematical sophistication (e.g., factorials, square roots, mod operations) also played a large role, increasing complexity scores by 25–40\%. Handling multiple data types (e.g., strings, lists, complex numbers) further contributed, typically adding around 0.6 points to the final score.
 
 
 \subsection{Execution Results} \textbf{NEED TO DO A BETTER BREAKDOWN IT'S NOT USEFUL RIGHT NOW, TOO HAND WAVY ATM}
@@ -531,6 +505,13 @@ Our work advances the field of proactive program safety by demonstrating that as
 
 \section*{Appendix}
 
+\begin{figure}[H]
+    \centering
+    \href{https://github.com/dhruvtpatel/2540_finalproj}{\url{https://github.com/dhruvtpatel/2540_finalproj}}
+    \caption{GitHub Repository with Code Files, Scripts, Results, etc.}
+    \label{fig:enter-label}
+\end{figure}
+
 % \begin{longtable}{|l|c|c|c|c|p{3cm}|}
 % \hline
 % \textbf{Program} & \textbf{Difficulty} & \textbf{Fuzz} & \textbf{CrossHair} & \textbf{Nagini} & \textbf{FEQ Scores} \\
@@ -589,6 +570,12 @@ Our work advances the field of proactive program safety by demonstrating that as
 % \caption{Program Execution Results from All Testing and Verification Methods\label{tab:program-results}}
 % \end{longtable}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{bytecode_load_between_assertions.png}
+    \caption{Bytecode Instructions Between Early and Final Assertion Locations in Each Program}
+    \label{fig:bytecode-load}
+\end{figure}
 
 \begin{longtable}{|l|c|c|c|c|c|}
 \hline
@@ -603,8 +590,8 @@ calculate\_discount & 6 & pass & fail & unsupported & 0.66 (crosshair) \\
 ceiling\_multiplier & 6 & pass & pass & fail & 0.39 (nagini) \\
 character\_counter & 6 & pass & pass & unsupported & NA \\
 circle\_area\_diff & 7 & pass & pass & unsupported & NA \\
-collatz\_sequence\_length & 7 & fail & fail & pass & 0.57 (crosshair) \\
-convert\_temperature & 6 & fail & fail & unsupported & 0.74 (crosshair) \\
+collatz\_sequence\_length & 7 & pass & pass & pass & 0.57 (crosshair) \\
+convert\_temperature & 6 & inconclusive (false positive) & fail & unsupported & 0.74 (crosshair) \\
 count\_divisibles & 6 & pass & pass & unsupported & NA \\
 date\_difference\_calculator & 8 & fail & pass & unsupported & 0.66 (fuzz) \\
 day\_of\_week\_calculator & 8 & fail & pass & unsupported & 0.75 (fuzz) \\
@@ -616,11 +603,11 @@ geometric\_sequence\_sum & 10 & pass & pass & unsupported & NA \\
 hexadecimal\_converter & 7 & pass & pass & unsupported & NA \\
 hypotenuse\_diff & 9 & pass & pass & unsupported & NA \\
 index\_weighted\_sum & 6 & pass & pass & unsupported & NA \\
-isbn\_validator & 9 & fail & pass & unsupported & 0.50 (fuzz) \\
+isbn\_validator & 9 & inconclusive (false positive) & pass & unsupported & 0.50 (fuzz) \\
 list\_balance & 8 & pass & pass & fail & 0.57 (nagini) \\
 loop\_even\_sum & 8 & pass & pass & unsupported & NA \\
 loop\_string\_hash & 6 & pass & pass & unsupported & NA \\
-matrix\_determinant & 7 & fail & pass & unsupported & 0.53 (fuzz) \\
+matrix\_determinant & 7 & inconclusive (false positive) & pass & unsupported & 0.53 (fuzz) \\
 mean\_absolute\_deviation & 10 & pass & pass & unsupported & NA \\
 modulo\_scaler & 6 & pass & pass & pass & NA \\
 nested\_loop\_checker & 7 & pass & pass & unsupported & NA \\
@@ -647,13 +634,6 @@ word\_frequency\_counter & 10 & pass & pass & unsupported & NA \\
 \hline
 \caption{Program Execution Results Across Verification Methods\label{tab:program-results}}
 \end{longtable}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{bytecode_load_between_assertions.png}
-    \caption{Bytecode Instructions Between Early and Final Assertion Locations in Each Program}
-    \label{fig:bytecode-load}
-\end{figure}
 
 % \begin{table}[H]
 % \centering
@@ -949,7 +929,7 @@ date\_difference\_ calculator\_ transformed & fuzzing & year=56, month=78, day=7
 list\_balance.py & nagini & N/A - static verification & 0.57 & False & 0.60 & 0.50 & 0.50 & 0.70 \\ \hline
 process\_data\_ module.py & crosshair & process\_data\_ transformed(-50) & 0.61 & False & 0.70 & 0.60 & 0.50 & 0.60 \\ \hline
 polygon\_area\_ calculator\_ transformed & fuzzing & vertices=[0] & 0.60 & False & 0.80 & 0.60 & 0.50 & 0.40 \\ \hline
-collatz\_sequence\_ length\_module.py & crosshair & collatz\_sequence\_ length\_ transformed(26) & 0.57 & False & 0.60 & 0.50 & 0.70 & 0.50 \\ \hline
+% collatz\_sequence\_ length\_module.py & crosshair & collatz\_sequence\_ length\_ transformed(26) & 0.57 & False & 0.60 & 0.50 & 0.70 & 0.50 \\ \hline
 process\_complex \_number.py & nagini & N/A - static verification & 0.45 & False & 0.50 & 0.40 & 0.60 & 0.30 \\ \hline
 random\_mod\_ calculator\_ module.py & crosshair & random\_mod\_ calculator\_ transformed(13) & 0.54 & False & 0.50 & 0.30 & 0.70 & 0.80 \\ \hline
 string\_reversal\_ checker\_module.py & crosshair & string\_reversal\_ checker\_ transformed('\textbackslash x00\textbackslash x01') & 0.54 & False & 0.60 & 0.40 & 0.50 & 0.70 \\ \hline
@@ -957,12 +937,12 @@ matrix\_ determinant\_ transformed & fuzzing & matrix=[0] & 0.53 & True & 0.60 &
 ceiling\_multiplier.py & nagini & N/A - static verification & 0.39 & False & 0.40 & 0.30 & 0.40 & 0.50 \\ \hline
 binary\_search\_ iterations\_ transformed & fuzzing & arr=[59, 4, 91, ...], target=83 & 0.50 & False & 0.50 & 0.50 & 0.60 & 0.40 \\\hline 
 isbn\_validator\_ transformed & fuzzing & isbn='³\textbackslash x95 \textbackslash U00014f7b...' & 0.50 & True & 0.70 & 0.50 & 0.30 & 0.40 \\\hline
-collatz\_sequence\_ length\_ transformed & fuzzing & n=54 & 0.36 & False & 0.50 & 0.30 & 0.40 & 0.20 \\\hline
+% collatz\_sequence\_ length\_ transformed & fuzzing & n=54 & 0.36 & False & 0.50 & 0.30 & 0.40 & 0.20 \\\hline
 string\_reversal\_ checker\_ transformed & fuzzing & text='ÖnÄ...' & 0.36 & False & 0.40 & 0.40 & 0.30 & 0.30 \\\hline
 convert\_ temperature\_ transformed & fuzzing & celsius=37.558... & 0.20 & True & 0.30 & 0.10 & 0.20 & 0.20 \\
 \hline
 \end{tabular}
-\caption{Failure Explanation Quality (FEQ) scores and component metrics for each failure case, sorted by total FEQ score. Higher scores indicate more informative failure explanations.}
+\caption{Failure Explanation Quality (FEQ) scores and component metrics for each failure case. Higher scores indicate more informative failure explanations.}
 \label{tab:feq-scores}
 \end{table}
 
@@ -1058,5 +1038,7 @@ word\_frequency\_counter & Cannot represent counting occurrences within a set an
 \caption{Programs Not Convertible to Nagini and Their Limitations}
 \label{tab:nagini-unsupported-programs}
 \end{table}
+
+
 
 \end{document}

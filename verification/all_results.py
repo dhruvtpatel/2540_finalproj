@@ -52,28 +52,48 @@ def get_program_difficulty(difficulty_data, program_name):
             return entry.get("difficulty_score", None)
     return None
 
-def get_fuzz_result(fuzz_data, program_name):
+def is_false_positive(feq_data, program_name, method):
+    """Check if a program's failure in a method is marked as false positive in FEQ data."""
+    norm_program = normalize_program_name(program_name)
+    norm_method = method.lower()
+    for entry in feq_data:
+        entry_function = normalize_program_name(entry.get("function", ""))
+        entry_method = entry.get("method", "").lower()
+        # Accept any match where the normalized names are equal
+        if entry_function == norm_program and entry_method == norm_method:
+            if entry.get("false_positive", False):
+                return True
+    return False
+
+def get_fuzz_result(fuzz_data, feq_data, program_name):
     """Extract fuzz testing result for a program."""
-    norm_name = f"{program_name}_transformed"
+    norm_name = normalize_program_name(f"{program_name}_transformed")
     for entry in fuzz_data:
-        if normalize_program_name(entry.get("program", "")) == normalize_program_name(norm_name):
+        entry_prog = normalize_program_name(entry.get("program", ""))
+        if entry_prog == norm_name:
+            # Check if this is a false positive in the FEQ data
+            if not entry.get("pass", False) and is_false_positive(feq_data, program_name, "fuzzing"):
+                return "inconclusive"
             return "pass" if entry.get("pass", False) else "fail"
     return "unsupported"
 
-def get_crosshair_result(crosshair_data, program_name):
+def get_crosshair_result(crosshair_data, feq_data, program_name):
     """Extract CrossHair verification result for a program."""
     for entry in crosshair_data:
-        entry_program = entry.get("program", "")
-        if normalize_program_name(entry_program) == program_name:
-            # CrossHair passes if assertion_equivalence_result is "true"
+        entry_program = normalize_program_name(entry.get("program", ""))
+        if entry_program == program_name:
+            if entry.get("assertion_equivalence_result") != "true" and is_false_positive(feq_data, program_name, "crosshair"):
+                return "inconclusive"
             return "pass" if entry.get("assertion_equivalence_result") == "true" else "fail"
     return "unsupported"
 
-def get_nagini_result(nagini_data, program_name):
+def get_nagini_result(nagini_data, feq_data, program_name):
     """Extract Nagini verification result for a program."""
     for entry in nagini_data.get("results", []):
-        module_name = os.path.splitext(os.path.basename(entry.get("module", "")))[0]
-        if normalize_program_name(module_name) == program_name:
+        module_name = normalize_program_name(os.path.splitext(os.path.basename(entry.get("module", "")))[0])
+        if module_name == program_name:
+            if entry.get("verification_result") != "success" and is_false_positive(feq_data, program_name, "nagini"):
+                return "inconclusive"
             return "pass" if entry.get("verification_result") == "success" else "fail"
     return "unsupported"
 
@@ -118,9 +138,9 @@ def main():
     all_results = []
     for program in sorted(program_names):
         difficulty = get_program_difficulty(difficulty_data, program)
-        fuzz_result = get_fuzz_result(fuzz_data, program)
-        crosshair_result = get_crosshair_result(crosshair_data, program)
-        nagini_result = get_nagini_result(nagini_data, program)
+        fuzz_result = get_fuzz_result(fuzz_data, feq_data, program)
+        crosshair_result = get_crosshair_result(crosshair_data, feq_data, program)
+        nagini_result = get_nagini_result(nagini_data, feq_data, program)
         feq_scores = get_feq_scores(feq_data, program)
         
         result = {

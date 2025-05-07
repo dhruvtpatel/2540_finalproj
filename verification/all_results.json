@@ -1,7 +1,7 @@
 [
   {
     "program": "armstrong_number_checker",
-    "difficulty": 7,
+    "difficulty": 2.105984892722336,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -13,7 +13,7 @@
   },
   {
     "program": "ascii_average",
-    "difficulty": 6,
+    "difficulty": 1.9176801344231695,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -25,7 +25,7 @@
   },
   {
     "program": "binary_hamming_distance",
-    "difficulty": 10,
+    "difficulty": 2.594048547312592,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -37,7 +37,7 @@
   },
   {
     "program": "binary_search_iterations",
-    "difficulty": 10,
+    "difficulty": 3.722005187253585,
     "fuzz": "fail",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -49,7 +49,7 @@
   },
   {
     "program": "caesar_cipher_encoder",
-    "difficulty": 10,
+    "difficulty": 3.6100587411936704,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -61,7 +61,7 @@
   },
   {
     "program": "calculate_discount",
-    "difficulty": 6,
+    "difficulty": 2.081368126161277,
     "fuzz": "pass",
     "crosshair": "fail",
     "nagini": "unsupported",
@@ -73,7 +73,7 @@
   },
   {
     "program": "ceiling_multiplier",
-    "difficulty": 6,
+    "difficulty": 1.9568751816958077,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "fail",
@@ -85,7 +85,7 @@
   },
   {
     "program": "character_counter",
-    "difficulty": 6,
+    "difficulty": 2.391439970278168,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -97,7 +97,7 @@
   },
   {
     "program": "circle_area_diff",
-    "difficulty": 7,
+    "difficulty": 2.4562347122013533,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -109,7 +109,7 @@
   },
   {
     "program": "collatz_sequence_length",
-    "difficulty": 7,
+    "difficulty": 2.82886796967674,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "pass",
@@ -121,8 +121,8 @@
   },
   {
     "program": "convert_temperature",
-    "difficulty": 6,
-    "fuzz": "fail",
+    "difficulty": 2.219706102696489,
+    "fuzz": "inconclusive",
     "crosshair": "fail",
     "nagini": "unsupported",
     "feq": {
@@ -133,7 +133,7 @@
   },
   {
     "program": "count_divisibles",
-    "difficulty": 6,
+    "difficulty": 2.4860668971449154,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -145,8 +145,8 @@
   },
   {
     "program": "date_difference_calculator",
-    "difficulty": 8,
-    "fuzz": "fail",
+    "difficulty": 2.110519265352255,
+    "fuzz": "inconclusive",
     "crosshair": "pass",
     "nagini": "unsupported",
     "feq": {
@@ -157,8 +157,8 @@
   },
   {
     "program": "day_of_week_calculator",
-    "difficulty": 8,
-    "fuzz": "fail",
+    "difficulty": 2.069169375676277,
+    "fuzz": "inconclusive",
     "crosshair": "pass",
     "nagini": "unsupported",
     "feq": {
@@ -169,7 +169,7 @@
   },
   {
     "program": "digit_sum_processor",
-    "difficulty": 9,
+    "difficulty": 2.2453878655531785,
     "fuzz": "pass",
     "crosshair": "fail",
     "nagini": "unsupported",
@@ -181,7 +181,7 @@
   },
   {
     "program": "factorial_root_calculator",
-    "difficulty": 7,
+    "difficulty": 2.0621414425436426,
     "fuzz": "pass",
     "crosshair": "fail",
     "nagini": "unsupported",
@@ -193,7 +193,7 @@
   },
   {
     "program": "fibonacci_counter",
-    "difficulty": 6,
+    "difficulty": 2.277319048348643,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -205,7 +205,7 @@
   },
   {
     "program": "gcd_calculator",
-    "difficulty": 7,
+    "difficulty": 2.213779362011094,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -217,7 +217,7 @@
   },
   {
     "program": "geometric_sequence_sum",
-    "difficulty": 10,
+    "difficulty": 3.200962791216074,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -229,7 +229,7 @@
   },
   {
     "program": "hexadecimal_converter",
-    "difficulty": 7,
+    "difficulty": 2.102516348133966,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -241,7 +241,7 @@
   },
   {
     "program": "hypotenuse_diff",
-    "difficulty": 9,
+    "difficulty": 2.2045938522327804,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -253,7 +253,7 @@
   },
   {
     "program": "index_weighted_sum",
-    "difficulty": 6,
+    "difficulty": 2.2724457889643075,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -265,8 +265,8 @@
   },
   {
     "program": "isbn_validator",
-    "difficulty": 9,
-    "fuzz": "fail",
+    "difficulty": 2.5534876215714455,
+    "fuzz": "inconclusive",
     "crosshair": "pass",
     "nagini": "unsupported",
     "feq": {
@@ -277,7 +277,7 @@
   },
   {
     "program": "list_balance",
-    "difficulty": 8,
+    "difficulty": 2.130638872585854,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "fail",
@@ -289,7 +289,7 @@
   },
   {
     "program": "loop_even_sum",
-    "difficulty": 8,
+    "difficulty": 2.7192054824248433,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -301,7 +301,7 @@
   },
   {
     "program": "loop_string_hash",
-    "difficulty": 6,
+    "difficulty": 2.2404985195649485,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -313,8 +313,8 @@
   },
   {
     "program": "matrix_determinant",
-    "difficulty": 7,
-    "fuzz": "fail",
+    "difficulty": 2.2602852247967253,
+    "fuzz": "inconclusive",
     "crosshair": "pass",
     "nagini": "unsupported",
     "feq": {
@@ -325,7 +325,7 @@
   },
   {
     "program": "mean_absolute_deviation",
-    "difficulty": 10,
+    "difficulty": 2.6874771771072496,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -337,7 +337,7 @@
   },
   {
     "program": "modulo_scaler",
-    "difficulty": 6,
+    "difficulty": 2.231921483561172,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "pass",
@@ -349,7 +349,7 @@
   },
   {
     "program": "nested_loop_checker",
-    "difficulty": 7,
+    "difficulty": 2.617231267347198,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -361,7 +361,7 @@
   },
   {
     "program": "odd_sum_validator",
-    "difficulty": 6,
+    "difficulty": 1.943336266970513,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -373,7 +373,7 @@
   },
   {
     "program": "password_strength_checker",
-    "difficulty": 10,
+    "difficulty": 2.1966954985116205,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -385,7 +385,7 @@
   },
   {
     "program": "polygon_area_calculator",
-    "difficulty": 9,
+    "difficulty": 2.8516353542122137,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -397,7 +397,7 @@
   },
   {
     "program": "prime_number_counter",
-    "difficulty": 10,
+    "difficulty": 3.278926813985511,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -409,7 +409,7 @@
   },
   {
     "program": "process_complex_number",
-    "difficulty": 6,
+    "difficulty": 1.843063726372699,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "fail",
@@ -421,7 +421,7 @@
   },
   {
     "program": "process_data",
-    "difficulty": 5,
+    "difficulty": 2.0178685554678317,
     "fuzz": "pass",
     "crosshair": "fail",
     "nagini": "fail",
@@ -433,7 +433,7 @@
   },
   {
     "program": "quadratic_discriminant",
-    "difficulty": 9,
+    "difficulty": 2.579216843083397,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "pass",
@@ -445,7 +445,7 @@
   },
   {
     "program": "random_mod_calculator",
-    "difficulty": 7,
+    "difficulty": 2.2247505293554344,
     "fuzz": "pass",
     "crosshair": "fail",
     "nagini": "unsupported",
@@ -457,7 +457,7 @@
   },
   {
     "program": "rectangle_overlap_area",
-    "difficulty": 10,
+    "difficulty": 3.585275766070639,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "pass",
@@ -469,7 +469,7 @@
   },
   {
     "program": "rolling_maximum",
-    "difficulty": 6,
+    "difficulty": 2.3214143561304965,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -481,7 +481,7 @@
   },
   {
     "program": "square_accumulator",
-    "difficulty": 6,
+    "difficulty": 2.2617650316469176,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -493,7 +493,7 @@
   },
   {
     "program": "string_pattern_score",
-    "difficulty": 5,
+    "difficulty": 1.75653488300286,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -505,7 +505,7 @@
   },
   {
     "program": "string_reversal_checker",
-    "difficulty": 8,
+    "difficulty": 2.0282122190548324,
     "fuzz": "fail",
     "crosshair": "fail",
     "nagini": "unsupported",
@@ -517,7 +517,7 @@
   },
   {
     "program": "sum_until_limit",
-    "difficulty": 6,
+    "difficulty": 2.3416878142512356,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -529,7 +529,7 @@
   },
   {
     "program": "temperature_offset",
-    "difficulty": 7,
+    "difficulty": 2.257445754617177,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -541,7 +541,7 @@
   },
   {
     "program": "text_frequency_analyzer",
-    "difficulty": 10,
+    "difficulty": 2.7625875954879677,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -553,7 +553,7 @@
   },
   {
     "program": "transform_data",
-    "difficulty": 6,
+    "difficulty": 2.1373783978878294,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "pass",
@@ -565,7 +565,7 @@
   },
   {
     "program": "triangle_checker",
-    "difficulty": 7,
+    "difficulty": 1.8766633181410766,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -577,7 +577,7 @@
   },
   {
     "program": "vector_norm",
-    "difficulty": 8,
+    "difficulty": 2.2676085031021436,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",
@@ -589,7 +589,7 @@
   },
   {
     "program": "word_frequency_counter",
-    "difficulty": 10,
+    "difficulty": 2.614565716664524,
     "fuzz": "pass",
     "crosshair": "pass",
     "nagini": "unsupported",

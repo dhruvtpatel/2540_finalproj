@@ -4,3 +4,9 @@ crosshair
 hypothesis
 stubs
 tabulate
+scipy
+sklearn
+tabulate
+openai
+pydantic
+dotenv

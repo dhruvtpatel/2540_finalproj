@@ -16,8 +16,49 @@
   },
   {
     "program": "binary_search_iterations_transformed",
-    "pass": true,
-    "failing_examples": []
+    "pass": false,
+    "failing_examples": [
+      {
+        "args": "arr=[59, 4, 91, 27, 17, 24, 14, 19, 69, 69], target=83",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "arr=[84, 42, 28, 28, 36, 59, 23, 60], target=97",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "arr=[43, 98, 25, 8, 71, 46, 80, 3, 91, 2], target=100",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "arr=[74, 72, 24, 93, 94, 19, 94, 44, 46, 65], target=99",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "arr=[94, 72, 24, 93, 94, 19, 94, 44, 46, 65], target=99",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "arr=[94, 72, 24, 93, 94, 94, 94, 44, 46, 65], target=99",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "arr=[94, 72, 24, 93, 94, 94, 94, 94, 46, 65], target=99",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "arr=[24, 72, 24, 93, 94, 94, 94, 94, 46, 65], target=99",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "arr=[24, 72, 24, 93, 94, 94, 94, 46, 46, 65], target=99",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "arr=[94, 72, 24, 93, 94, 94, 94, 46, 46, 65], target=99",
+        "error": "Early and final assertions are not equivalent"
+      }
+    ]
   },
   {
     "program": "caesar_cipher_encoder_transformed",
@@ -46,13 +87,31 @@
   },
   {
     "program": "collatz_sequence_length_transformed",
-    "pass": true,
-    "failing_examples": []
+    "pass": false,
+    "failing_examples": [
+      {
+        "args": "n=54",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "n=26",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "n=17",
+        "error": "Early and final assertions are not equivalent"
+      }
+    ]
   },
   {
     "program": "convert_temperature_transformed",
-    "pass": true,
-    "failing_examples": []
+    "pass": false,
+    "failing_examples": [
+      {
+        "args": "celsius=37.55882686801687",
+        "error": "Early and final assertions are not equivalent"
+      }
+    ]
   },
   {
     "program": "count_divisibles_transformed",
@@ -64,63 +123,75 @@
     "pass": false,
     "failing_examples": [
       {
-        "args": "year=2, month=36, day=20",
+        "args": "year=56, month=78, day=7",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=66, month=74, day=12",
+        "args": "year=26, month=100, day=29",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=68, month=59, day=40",
+        "args": "year=96, month=26, day=7",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=19, month=57, day=60",
+        "args": "year=22, month=79, day=41",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=78, month=100, day=52",
+        "args": "year=16, month=97, day=25",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=4, month=3, day=88",
+        "args": "year=89, month=6, day=66",
         "error": "day is out of range for month"
       },
       {
-        "args": "year=74, month=90, day=76",
+        "args": "year=56, month=57, day=26",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=6, month=42, day=70",
+        "args": "year=88, month=48, day=22",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=21, month=17, day=21",
+        "args": "year=94, month=86, day=58",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=21, month=21, day=21",
+        "args": "year=94, month=86, day=86",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=95, month=27, day=38",
+        "args": "year=86, month=86, day=86",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=38, month=27, day=38",
+        "args": "year=57, month=95, day=100",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=38, month=38, day=38",
+        "args": "year=57, month=95, day=57",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=63, month=88, day=78",
+        "args": "year=95, month=95, day=57",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=78, month=88, day=78",
+        "args": "year=95, month=95, day=95",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=85, month=99, day=22",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=85, month=99, day=85",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=85, month=85, day=85",
         "error": "month must be in 1..12"
       }
     ]
@@ -130,71 +201,71 @@
     "pass": false,
     "failing_examples": [
       {
-        "args": "year=60, month=19, day=23",
+        "args": "year=48, month=89, day=69",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=76, month=88, day=7",
+        "args": "year=14, month=15, day=75",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=100, month=98, day=28",
+        "args": "year=46, month=100, day=100",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=73, month=52, day=23",
+        "args": "year=66, month=68, day=25",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=99, month=82, day=24",
+        "args": "year=51, month=24, day=54",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=20, month=22, day=77",
+        "args": "year=67, month=61, day=23",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=86, month=40, day=9",
+        "args": "year=46, month=39, day=54",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=37, month=66, day=100",
+        "args": "year=62, month=92, day=75",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=37, month=37, day=100",
+        "args": "year=62, month=92, day=92",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=37, month=37, day=37",
+        "args": "year=92, month=92, day=92",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=20, month=92, day=36",
+        "args": "year=99, month=88, day=78",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=20, month=36, day=36",
+        "args": "year=88, month=88, day=78",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=20, month=20, day=36",
+        "args": "year=88, month=88, day=88",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=20, month=20, day=20",
+        "args": "year=32, month=82, day=82",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=50, month=57, day=59",
+        "args": "year=32, month=82, day=32",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=57, month=57, day=59",
+        "args": "year=82, month=82, day=32",
         "error": "month must be in 1..12"
       },
       {
-        "args": "year=57, month=57, day=57",
+        "args": "year=82, month=82, day=82",
         "error": "month must be in 1..12"
       }
     ]
@@ -206,23 +277,13 @@
   },
   {
     "program": "factorial_root_calculator_transformed",
-    "pass": false,
-    "failing_examples": [
-      {
-        "args": "x=36",
-        "error": "Early and final assertions are not equivalent"
-      }
-    ]
+    "pass": true,
+    "failing_examples": []
   },
   {
     "program": "fibonacci_counter_transformed",
-    "pass": false,
-    "failing_examples": [
-      {
-        "args": "n=17",
-        "error": "Early and final assertions are not equivalent"
-      }
-    ]
+    "pass": true,
+    "failing_examples": []
   },
   {
     "program": "gcd_calculator_transformed",
@@ -254,8 +315,8 @@
     "pass": false,
     "failing_examples": [
       {
-        "args": "isbn='\u00a1\u00b2\u00b6 v\\U000fb4d8\u00e60'",
-        "error": "invalid literal for int() with base 10: '\u00b2'"
+        "args": "isbn='\u00b3\\x95\\U00014f7b\\x08\\U00033688\u00abH\\U000507a6'",
+        "error": "invalid literal for int() with base 10: '\u00b3'"
       }
     ]
   },
@@ -283,79 +344,79 @@
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[67]",
+        "args": "matrix=[81]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[70]",
+        "args": "matrix=[95]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[69, 45, 34, 88, 7, 66, 84, 44, 15, 62]",
+        "args": "matrix=[64]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[76, 90, 100, 50, 63, 17]",
+        "args": "matrix=[63, 45, 50, 93, 60]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[20, 31, 7, 25, 31, 75, 57]",
+        "args": "matrix=[61, 14, 40]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[4]",
+        "args": "matrix=[45]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[76]",
+        "args": "matrix=[42, 79, 38, 57, 87, 71, 35, 67, 97, 54]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[9, 72, 6, 96, 92, 37, 45, 51, 7, 15]",
+        "args": "matrix=[100, 3, 44, 89, 18, 58, 96, 83, 46, 4]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[41, 39, 53, 49, 8, 3, 48, 91, 99, 16]",
+        "args": "matrix=[91, 56, 44, 40]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[91]",
+        "args": "matrix=[22, 51]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[46]",
+        "args": "matrix=[22, 22]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[80, 59, 40, 81, 15, 93]",
+        "args": "matrix=[47, 77, 100]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[15, 59, 40, 81, 15, 93]",
+        "args": "matrix=[47, 100, 100]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[93, 59, 40, 81, 15, 93]",
+        "args": "matrix=[47, 100, 47]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[93, 15, 40, 81, 15, 93]",
+        "args": "matrix=[47, 47, 47]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[93, 15, 40, 81, 81, 93]",
+        "args": "matrix=[47]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[93, 15, 40]",
+        "args": "matrix=[30]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[7, 42, 94, 53, 72, 98, 29]",
+        "args": "matrix=[76, 8, 79, 48, 53, 98, 6, 41, 82, 94]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "matrix=[7, 42, 94, 53, 29, 98, 29]",
+        "args": "matrix=[76, 8, 79, 48, 53, 98, 6, 41, 82, 41]",
         "error": "'int' object is not subscriptable"
       }
     ]
@@ -394,79 +455,79 @@
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[37]",
+        "args": "vertices=[9]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[91]",
+        "args": "vertices=[9, 85]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[91, 55]",
+        "args": "vertices=[42, 28, 49, 83, 63, 59, 62, 96, 50, 47]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[100, 55]",
+        "args": "vertices=[7, 100]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[77]",
+        "args": "vertices=[65, 35, 37, 100, 55, 47]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[54, 18, 37]",
+        "args": "vertices=[57, 26, 73, 85, 13, 52, 53, 85, 67, 30]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[8, 44, 21, 30]",
+        "args": "vertices=[0, 48, 56, 48, 73, 59, 100, 11]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[45, 64]",
+        "args": "vertices=[14]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[46, 41, 35, 8, 87, 13, 93, 62, 100, 81]",
+        "args": "vertices=[45, 54, 20]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[38, 7, 3, 10, 85, 76, 65, 67, 59]",
+        "args": "vertices=[13, 35, 89, 99, 6, 42, 34, 94]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[7, 7, 3, 10, 85, 76, 65, 67, 59]",
+        "args": "vertices=[13, 35, 89, 99, 6, 89, 34, 94]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[7, 7, 3, 10, 65, 76, 65, 67, 59]",
+        "args": "vertices=[13, 35, 89, 35, 6, 89, 34, 94]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[7, 7, 3, 10, 65, 76, 76, 67, 59]",
+        "args": "vertices=[13, 35, 89, 34, 6, 89, 34, 94]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[7, 7, 3, 10, 67, 76, 76, 67, 59]",
+        "args": "vertices=[89, 35, 89, 34, 6, 89, 34, 94]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[7, 7, 10, 10, 67, 76, 76, 67, 59]",
+        "args": "vertices=[89, 35, 89, 34, 6, 89, 6, 94]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[7, 7, 10, 67, 67, 76, 76, 67, 59]",
+        "args": "vertices=[89, 35, 89, 94, 6, 89, 6, 94]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[57, 20, 23, 75, 34, 70, 66, 63, 56, 10]",
+        "args": "vertices=[11]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[57, 23, 23, 75, 34, 70, 66, 63, 56, 10]",
+        "args": "vertices=[100, 85]",
         "error": "'int' object is not subscriptable"
       },
       {
-        "args": "vertices=[57, 23, 23, 75, 34, 70, 10, 63, 56, 10]",
+        "args": "vertices=[100, 100]",
         "error": "'int' object is not subscriptable"
       }
     ]
@@ -521,75 +582,63 @@
     "pass": false,
     "failing_examples": [
       {
-        "args": "text='\u00ce\\x87V'",
+        "args": "text='\u00d6n\u00c4\\U0004be3a\\x9b'",
         "error": "Early and final assertions are not equivalent"
       },
       {
-        "args": "text='\u00b5\u00b8\u00de\\x0b\\x80\u00d5d\u00c7\u00ba\\xad'",
+        "args": "text='\u00d2\\x02\\x7f8\\x19=\\x14\\x01O'",
         "error": "Early and final assertions are not equivalent"
       },
       {
-        "args": "text='\\x03\u00e6\\U000e6ecb\u00f3\u00ec\\x89K\\U0010f2cd\u00cc\\x88'",
+        "args": "text='-M'",
         "error": "Early and final assertions are not equivalent"
       },
       {
-        "args": "text='\\U000e2b30*'",
+        "args": "text='\\U000baa25\u00ed\u00dej\u00d4\\U0007302d\\x06\\x97\\x0e'",
         "error": "Early and final assertions are not equivalent"
       },
       {
-        "args": "text='@\\U000888cc'",
+        "args": "text='\\U0006c0f2\u00ac\u00f7\\U0006ee44a\\U000fda5b\\U000ef0a1\ud850\ude78\u00ef'",
         "error": "Early and final assertions are not equivalent"
       },
       {
-        "args": "text='\\x00I'",
+        "args": "text='X4X\u00c7\\U000d4f3e\\x19\\x85\u00d0-'",
         "error": "Early and final assertions are not equivalent"
       },
       {
-        "args": "text='\\U0005d2c6\"\\U000e71fd\u00e5\u00e2B\\U00052e70\u00a2\\U000c7e73\ud81d\udc7d'",
+        "args": "text=\"\\U000977ed\\x08:-\\U000ffe22\u00dd\\x80\\U000636f6'\u27ff\"",
         "error": "Early and final assertions are not equivalent"
       },
       {
-        "args": "text='\u00d4mj'",
+        "args": "text='\u00aa)\\U000a8140&3\\x1e\u00a6\\x80S'",
         "error": "Early and final assertions are not equivalent"
       },
       {
-        "args": "text='\u00e7\u00d9\u00d0\u00d6\\x88\"P3\\x891'",
+        "args": "text='\\x84\\U0002f16b\\U00077583'",
         "error": "Early and final assertions are not equivalent"
       },
       {
-        "args": "text='\u00e7\\x15\u00ec\u00fcY'",
+        "args": "text='\\x184'",
         "error": "Early and final assertions are not equivalent"
       },
       {
-        "args": "text='Dz\\U00108711\u00b7\\U000d4b28lr'",
+        "args": "text='\u00dfG\\U00107cfe\\x94\\U000d25e4\u00dc\u00eeKw'",
         "error": "Early and final assertions are not equivalent"
       },
       {
-        "args": "text='\\x8a\\U00085c43\\U000a6411'",
+        "args": "text='\\U0003ab69\u00fb\\x1c\u00e0\\U000cd5b0\u00a2\u00d9m+\\U00106f68'",
         "error": "Early and final assertions are not equivalent"
       },
       {
-        "args": "text='.\u00ee'",
+        "args": "text='\ud851\udc6bI\\x17\\U000489cd\u00c1\\U00010be2\\x92\u00e8\u00fb\\x93'",
         "error": "Early and final assertions are not equivalent"
       },
       {
-        "args": "text='\u00e5\\U0002fbfb'",
+        "args": "text='0\u00ba\\x10'",
         "error": "Early and final assertions are not equivalent"
       },
       {
-        "args": "text='\u00be\\x19:F'",
-        "error": "Early and final assertions are not equivalent"
-      },
-      {
-        "args": "text='\\U000ad57f\u00e6\u00e6'",
-        "error": "Early and final assertions are not equivalent"
-      },
-      {
-        "args": "text='\ud872\udc89\\U0006fce6\\U0005a456'",
-        "error": "Early and final assertions are not equivalent"
-      },
-      {
-        "args": "text='M\\U000cead9\u00d0\u00ab\u00a8\\U000e4265\u00eeW\\x7f'",
+        "args": "text='status'",
         "error": "Early and final assertions are not equivalent"
       }
     ]

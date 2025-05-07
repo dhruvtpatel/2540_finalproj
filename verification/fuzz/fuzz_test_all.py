@@ -242,4 +242,29 @@ if __name__ == "__main__":
                     print(f"  ... and {len(result['failing_examples']) - 3} more failing examples")
     
     print(f"\nResults written to: {results_file}")
-    print("\nFuzz testing completed!") 
+    print("\nFuzz testing completed!")
+    
+    # Print final statistics summary
+    print("\n" + "="*50)
+    print(" "*15 + "FUZZ TESTING SUMMARY")
+    print("="*50)
+    
+    total_functions = len(transformed_functions)
+    passing_functions = total_functions - functions_with_failures
+    
+    print(f"Total functions tested:       {total_functions}")
+    print(f"Functions passing all tests:  {passing_functions} ({round(passing_functions/total_functions*100, 2)}%)")
+    print(f"Functions with failures:      {functions_with_failures} ({round(functions_with_failures/total_functions*100, 2)}%)")
+    
+    if errored_functions > 0:
+        print(f"Functions with setup errors:  {errored_functions}")
+    
+    print(f"\nTotal test cases executed:    {total_count}")
+    print(f"Passing test cases:           {passed_count} ({round(passed_count/total_count*100, 2) if total_count > 0 else 0}%)")
+    print(f"Failing test cases:           {failed_count} ({round(failed_count/total_count*100, 2) if total_count > 0 else 0}%)")
+    
+    # Print a simple visual representation of passing vs failing
+    print("\nFunction Pass/Fail Summary:")
+    for result in simplified_results:
+        status = "✅ PASS" if result["pass"] else f"❌ FAIL ({len(result['failing_examples'])} examples)"
+        print(f"{result['program']}: {status}") 

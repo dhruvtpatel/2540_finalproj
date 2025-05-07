@@ -10,3 +10,5 @@ venv_py39/
 .mypy_cache/
 .ruff_cache/
 .DS_Store
+
+.env

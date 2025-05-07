@@ -9,14 +9,15 @@ import os
 import sys
 import json
 import datetime
+import re
 
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.insert(0, PROJECT_ROOT)
 
 from code_files.b_llm_assertion_programs.symbolic_execution_specs import transform_programs
 
-MODULES_DIR = os.path.join(PROJECT_ROOT, 'verification', 'crosshair_modules')
-RESULTS_DIR = os.path.join(PROJECT_ROOT, 'verification', 'results')
+MODULES_DIR = os.path.join(PROJECT_ROOT, 'verification', 'crosshair', 'crosshair_modules')
+RESULTS_DIR = os.path.join(PROJECT_ROOT, 'verification', 'crosshair')
 
 # Ensure directories exist
 os.makedirs(MODULES_DIR, exist_ok=True)
@@ -53,20 +54,34 @@ for module_name in transform_programs.keys():
     module_path = os.path.join(MODULES_DIR, f'{module_name}')
     print(f"Running CrossHair on {module_name}...")
     result = subprocess.run(
-        [sys.executable, '-m', 'crosshair', 'check', module_path],
+        [sys.executable, '-m', 'crosshair', 'check', '--verbose', module_path],
         capture_output=True,
         text=True
     )
     
-    # Print to console for monitoring
-    print(result.stdout)
-    if result.stderr:
-        print(result.stderr)
+    # Complete output log
+    full_log = result.stdout + result.stderr
+    
+    # Print concise output to console for monitoring
+    print(f"Output from CrossHair (summary):")
+    for line in full_log.splitlines():
+        if "error:" in line or "warning:" in line:
+            print(line)
     
     # Process the result
-    output = result.stdout + result.stderr
-    has_assertion_error = "AssertionError" in output
+    has_assertion_error = "AssertionError" in full_log
     
+    # Extract specific error message if there's an assertion error
+    failure_reason = ""
+    if has_assertion_error:
+        error_match = re.search(r'AssertionError: (.*?when calling.*?\))', full_log, re.DOTALL)
+        if error_match:
+            failure_reason = error_match.group(1).strip()
+        else:
+            failure_reason = "AssertionError detected but could not extract specific message"
+    else: 
+        failure_reason = "No assertion error detected"
+        
     # Determine pass/fail status
     if has_assertion_error:
         status = "failed"
@@ -78,12 +93,16 @@ for module_name in transform_programs.keys():
     # Store result data
     result_data = {
         "program": module_name,
-        "failure_reason": output if status == "failed" else "",
-        "assertion_equivalence_result": "false" if has_assertion_error else "true"
+        "failure_reason": failure_reason,
+        "assertion_equivalence_result": "false" if has_assertion_error else "true",
+        "full_log": full_log
     }
     
     results.append(result_data)
-    print(f"Status: {status}\n")
+    print(f"Status: {status}")
+    if failure_reason and failure_reason != "No assertion error detected":
+        print(f"Failure reason: {failure_reason}")
+    print()
 
 # Create timestamp for the results file
 timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")

@@ -4,3 +4,9 @@ py312_venv/
 venv/
 fresh_venv/
 venv_py39/
+
+.hypothesis/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.DS_Store

@@ -754,12 +754,15 @@ digit\_sum\_ processor\_ module.py & crosshair & digit\_sum\_ processor\_ transf
 factorial\_root\_ calculator\_ module.py & crosshair & factorial\_root\_ calculator\_ transformed(5) & 0.68 & False & 0.80 & 0.60 & 0.70 & 0.60 \\ \hline
 calculate\_ discount\_ module.py & crosshair & calculate\_ discount\_ transformed(101.0, 0.502...) & 0.66 & False & 0.80 & 0.60 & 0.50 & 0.70 \\ \hline
 date\_difference\_ calculator\_ transformed & fuzzing & year=56, month=78, day=7 & 0.66 & False & 0.70 & 0.50 & 0.70 & 0.80 \\ \hline
+list\_balance & nagini & N/A - static verification & 0.57 & False & 0.60 & 0.50 & 0.50 & 0.70 \\ \hline
 process\_data\_ module.py & crosshair & process\_data\_ transformed(-50) & 0.61 & False & 0.70 & 0.60 & 0.50 & 0.60 \\ \hline
 polygon\_area\_ calculator\_ transformed & fuzzing & vertices=[0] & 0.60 & False & 0.80 & 0.60 & 0.50 & 0.40 \\ \hline
 collatz\_sequence\_ length\_module.py & crosshair & collatz\_sequence\_ length\_ transformed(26) & 0.57 & False & 0.60 & 0.50 & 0.70 & 0.50 \\ \hline
+process\_complex\_number & nagini & N/A - static verification & 0.45 & False & 0.50 & 0.40 & 0.60 & 0.30 \\ \hline
 random\_mod\_ calculator\_ module.py & crosshair & random\_mod\_ calculator\_ transformed(13) & 0.54 & False & 0.50 & 0.30 & 0.70 & 0.80 \\ \hline
 string\_reversal\_ checker\_module.py & crosshair & string\_reversal\_ checker\_ transformed('\textbackslash x00\textbackslash x01') & 0.54 & False & 0.60 & 0.40 & 0.50 & 0.70 \\ \hline
 matrix\_ determinant\_ transformed & fuzzing & matrix=[0] & 0.53 & True & 0.60 & 0.70 & 0.40 & 0.30 \\ \hline
+ceiling\_multiplier & nagini & N/A - static verification & 0.39 & False & 0.40 & 0.30 & 0.40 & 0.50 \\ \hline
 binary\_search\_ iterations\_ transformed & fuzzing & arr=[59, 4, 91, ...], target=83 & 0.50 & False & 0.50 & 0.50 & 0.60 & 0.40 \\\hline 
 isbn\_validator\_ transformed & fuzzing & isbn='³\textbackslash x95 \textbackslash U00014f7b...' & 0.50 & True & 0.70 & 0.50 & 0.30 & 0.40 \\\hline
 collatz\_sequence\_ length\_ transformed & fuzzing & n=54 & 0.36 & False & 0.50 & 0.30 & 0.40 & 0.20 \\\hline
@@ -769,6 +772,99 @@ convert\_ temperature\_ transformed & fuzzing & celsius=37.558... & 0.20 & True 
 \end{tabular}
 \caption{Failure Explanation Quality (FEQ) scores and component metrics for each failure case, sorted by total FEQ score. Higher scores indicate more informative failure explanations.}
 \label{tab:feq-scores}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.35\linewidth}|p{0.6\linewidth}|}
+\hline
+\textbf{Program} & \textbf{Reason Nagini Cannot Support} \\
+\hline
+armstrong\_number\_checker & Cannot represent comparison of logical transformations internally within a function; complex operations with string conversions and arithmetic don't map neatly into Nagini's permission system \\
+\hline
+ascii\_average & Does not support while loops with collection indexing ('while $(i < \text{len}(s))$' with operations like '$\text{total} += \text{ord}(s[i])$') \\
+\hline
+binary\_hamming\_distance & Does not support direct manipulation of binary representations or string operations such as $\text{bin}()$ and $\text{zfill}()$ \\
+\hline
+binary\_search\_iterations & Does not support while loops with collection indexing with operations like 'if $(arr[(i - 1)] > arr[i])$' \\
+\hline
+caesar\_cipher\_encoder & Cannot represent complex string transformations and character encoding operations using list comprehensions and built-in string methods \\
+\hline
+calculate\_discount & Does not support floating-point arithmetic and checks for equality with small tolerances \\
+\hline
+character\_counter & Does not support while loops with collection indexing ('while $(i < \text{len}(\text{text}))$' with operations like 'if $\text{is\_vowel}(\text{text}[i])$') \\
+\hline
+circle\_area\_diff & Cannot support floating-point arithmetic, rounding functions, and mathematical constants like $\text{math.pi}$ \\
+\hline
+convert\_temperature & Involves floating-point computations which can introduce precision errors not supported by Nagini \\
+\hline
+count\_divisibles & Does not support while loops with collection indexing ('while $(i < \text{len}(\text{nums}))$' with operations like 'if $((\text{nums}[i] \bmod 4) == 0)$') \\
+\hline
+date\_difference\_calculator & Cannot express operations related to datetime and date calculations \\
+\hline
+day\_of\_week\_calculator & Cannot represent logic involving Python's datetime module \\
+\hline
+digit\_sum\_processor & Does not support while loops with collection indexing ('while $(i < \text{len}(s))$' with operations like '$\text{total} += \text{int}(s[i])$') \\
+\hline
+factorial\_root\_calculator & Cannot handle functions from the math module like $\text{factorial}$ and $\text{sqrt}$ \\
+\hline
+fibonacci\_counter & Cannot support asserting equivalence between two conditions which is inherently a runtime concept \\
+\hline
+gcd\_calculator & Cannot represent or utilize dynamic values like $\text{math.gcd}(a, b)$ \\
+\hline
+geometric\_sequence\_sum & Does not support floating point arithmetic and rounding, and dynamic conditions like summing a geometric sequence when $|r| \geq 1$ \\
+\hline
+hexadecimal\_converter & Does not support string manipulation and arithmetic operations on strings transformed into integers \\
+\hline
+hypotenuse\_diff & Cannot translate operations like $\text{math.hypot}$ and $\text{round}$ due to limitations on numeric precision \\
+\hline
+index\_weighted\_sum & Does not support verification of properties like equivalence between early and final assertion checks within functions \\
+\hline
+isbn\_validator & Cannot model dynamic list comprehensions and dynamic assertions that depend on runtime evaluation \\
+\hline
+loop\_even\_sum & Does not support inline assertions and complex operations like summing over a range with conditions \\
+\hline
+loop\_string\_hash & Does not support while loops with collection indexing ('while $(i < \text{len}(\text{text}))$' with operations like '$\text{hash\_val} += (\text{ord}(\text{text}[i]) \cdot 3)$') \\
+\hline
+matrix\_determinant & Cannot support computing matrix determinant and performing modular arithmetic \\
+\hline
+mean\_absolute\_deviation & Does not support rounding operations, list comprehensions, and transformations within assertion checks \\
+\hline
+nested\_loop\_checker & Cannot verify computation of exact value of sum within nested loops with complex condition equivalence checks \\
+\hline
+odd\_sum\_validator & Cannot handle dynamically computed properties such as sum and filtering operations directly \\
+\hline
+password\_strength\_checker & Does not support dynamic features like list comprehensions and str methods like $\text{isupper}()$, $\text{islower}()$, $\text{isdigit}()$ \\
+\hline
+polygon\_area\_calculator & Does not support operations like the Shoelace formula involving iteration over list of tuples with arithmetic operations \\
+\hline
+prime\_number\_counter & Cannot express or verify properties about specific numbers being prime due to mathematical complexity \\
+\hline
+random\_mod\_calculator & Does not support randomness through $\text{random.randint}$ function \\
+\hline
+rolling\_maximum & Cannot represent comparing early computation with final computation for verification of equivalence \\
+\hline
+square\_accumulator & Cannot verify properties involving complex calculations, modular arithmetic, and ensuring equivalence of early and final state checks \\
+\hline
+string\_pattern\_score & Cannot represent for loops to filter characters and list comprehensions to compute sums \\
+\hline
+string\_reversal\_checker & Does not provide built-in support for string slicing, reversal, and stripping operations \\
+\hline
+sum\_until\_limit & Cannot handle complex intermediate computation with list comprehensions and nested conditions \\
+\hline
+temperature\_offset & Does not handle floating-point arithmetic and operations like rounding and converting to integer \\
+\hline
+text\_frequency\_analyzer & Does not support dictionary operations and dynamic updates to dictionaries \\
+\hline
+triangle\_checker & Cannot represent list sorting operations \\
+\hline
+vector\_norm & Cannot handle operations like $\text{math.sqrt}$ and $\text{round}$ on float numbers \\
+\hline
+word\_frequency\_counter & Cannot represent counting occurrences within a set and a dictionary \\
+\hline
+\end{tabular}
+\caption{Programs Not Convertible to Nagini and Their Limitations}
+\label{tab:nagini-limitations}
 \end{table}
 
 \end{document}

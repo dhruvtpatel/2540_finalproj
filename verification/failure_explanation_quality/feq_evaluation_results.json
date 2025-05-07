@@ -423,5 +423,80 @@
       "score": 0.3,
       "reason": "Technical details are minimal. The message lacks implementation specifics or technical insight into what might have gone wrong within the function, such as the logic leading to non-equivalence of assertions or the role of the inputs."
     }
+  },
+  {
+    "function": "ceiling_multiplier",
+    "method": "nagini",
+    "input_args": "N/A - static verification",
+    "message": "Error Message: Unknown error\n\nFull Log: Translation successful.\nVerification completed.\nVerification failed\nErrors:\nThe precondition of function int might not hold.  (ceiling_multiplier.py@6.16--6.26)\nPostcondition of ceiling_multiplier_transformed might not hold. Assertion (Result() == 55) might not hold. (ceiling_multiplier.py@15.12--15.26)\nVerification took 20.22 seconds.\n",
+    "feq_score": 0.39,
+    "false_positive": false,
+    "false_positive_reason": "The failure message indicates that there are precondition and postcondition violations related to the function being verified, specifically noting which lines may be problematic.",
+    "specificity": {
+      "score": 0.4,
+      "reason": "The error message outlines the specific type of errors (precondition and postcondition) but does not provide detailed information about why these conditions might not hold. It provides line numbers but lacks a description of the logic that leads to these failures."
+    },
+    "actionability": {
+      "score": 0.3,
+      "reason": "The message indicates the existence of issues and their general location but doesn't provide sufficient guidance on how to resolve them. More specific details about the expected conditions or potential causes would help in debugging."
+    },
+    "context": {
+      "score": 0.4,
+      "reason": "The context is minimally provided, explaining that the precondition and postcondition failures are related to specific assertions but not why these might fail in logical terms."
+    },
+    "technical_detail": {
+      "score": 0.5,
+      "reason": "Offers some technical details like line numbers and the type of condition (pre/post) potentially failing, but lacks depth in the technical reasoning behind these failures."
+    }
+  },
+  {
+    "function": "list_balance",
+    "method": "nagini",
+    "input_args": "N/A - static verification",
+    "message": "Error Message: Unknown error\n\nFull Log: Translation successful.\nVerification completed.\nVerification failed\nErrors:\nThe precondition of nums[i] might not hold. There might be insufficient permission. (list_balance.py@14.18--14.25)\nThe precondition of function len might not hold. There might be insufficient permission. (list_balance.py@24.41--24.50)\nVerification took 18.12 seconds.\n",
+    "feq_score": 0.57,
+    "false_positive": false,
+    "false_positive_reason": "The failure message indicates specific preconditions that might not hold, which is a typical verification error pointing to a logical issue with permissions or assumptions.",
+    "specificity": {
+      "score": 0.6,
+      "reason": "The message identifies specific code lines where the preconditions might not hold, but the error 'Unknown error' is very generic and vague."
+    },
+    "actionability": {
+      "score": 0.5,
+      "reason": "The message indicates permission issues at certain points, suggesting the user should check assumptions about permissions, but doesn't give detailed guidance on how to resolve these issues."
+    },
+    "context": {
+      "score": 0.5,
+      "reason": "The context is partially provided through the location in the code where issues occur, but it lacks explanations on the logical conditions that led to this failure."
+    },
+    "technical_detail": {
+      "score": 0.7,
+      "reason": "The message lists technical terms like 'precondition' and 'permission', but could delve deeper into what permissions or logic are expected at these points."
+    }
+  },
+  {
+    "function": "process_complex_number",
+    "method": "nagini",
+    "input_args": "N/A - static verification",
+    "message": "Error Message: Unknown error\n\nFull Log: Translation successful.\nVerification completed.\nVerification failed\nErrors:\nThe precondition of function int might not hold.  (process_complex_number.py@6.16--6.26)\nVerification took 20.71 seconds.\n",
+    "feq_score": 0.45,
+    "false_positive": false,
+    "false_positive_reason": "The error message indicates a verification failure related to the precondition of a function within the code, which is a typical concern for static analysis tools like nagini.",
+    "specificity": {
+      "score": 0.5,
+      "reason": "The message specifically identifies that there's a precondition issue with the function 'int', but it does not clearly explain what the precondition is or why it might not hold, leading to some ambiguity."
+    },
+    "actionability": {
+      "score": 0.4,
+      "reason": "The message indicates a problem with a function's precondition, which suggests something actionable, but it's vague and does not provide clear steps or insight on how to correct the issue. The developer is left uncertain about what needs to be checked or altered."
+    },
+    "context": {
+      "score": 0.6,
+      "reason": "The error message provides context by pinpointing the location of the failure ('process_complex_number.py@6.16--6.26') and mentions a precondition issue, but lacks deeper context on why the precondition is not holding."
+    },
+    "technical_detail": {
+      "score": 0.3,
+      "reason": "There is minimal technical detail provided; it mentions a precondition problem and the location, but lacks depth regarding the technical specifics like the conditions under which the precondition fails or variables involved."
+    }
   }
 ]

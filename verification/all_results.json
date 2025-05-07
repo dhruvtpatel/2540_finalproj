@@ -1,0 +1,602 @@
+[
+  {
+    "program": "armstrong_number_checker",
+    "difficulty": 7,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "ascii_average",
+    "difficulty": 6,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "binary_hamming_distance",
+    "difficulty": 10,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "binary_search_iterations",
+    "difficulty": 10,
+    "fuzz": "fail",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "caesar_cipher_encoder",
+    "difficulty": 10,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "calculate_discount",
+    "difficulty": 6,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": 0.66,
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "ceiling_multiplier",
+    "difficulty": 6,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "fail",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": 0.39
+    }
+  },
+  {
+    "program": "character_counter",
+    "difficulty": 6,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "circle_area_diff",
+    "difficulty": 7,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "collatz_sequence_length",
+    "difficulty": 7,
+    "fuzz": "fail",
+    "crosshair": "unsupported",
+    "nagini": "pass",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": 0.57,
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "convert_temperature",
+    "difficulty": 6,
+    "fuzz": "fail",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": 0.74,
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "count_divisibles",
+    "difficulty": 6,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "date_difference_calculator",
+    "difficulty": 8,
+    "fuzz": "fail",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "day_of_week_calculator",
+    "difficulty": 8,
+    "fuzz": "fail",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "digit_sum_processor",
+    "difficulty": 9,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": 0.74,
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "factorial_root_calculator",
+    "difficulty": 7,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": 0.6799999999999999,
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "fibonacci_counter",
+    "difficulty": 6,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "gcd_calculator",
+    "difficulty": 7,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "geometric_sequence_sum",
+    "difficulty": 10,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "hexadecimal_converter",
+    "difficulty": 7,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "hypotenuse_diff",
+    "difficulty": 9,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "index_weighted_sum",
+    "difficulty": 6,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "isbn_validator",
+    "difficulty": 9,
+    "fuzz": "fail",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "list_balance",
+    "difficulty": 8,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "fail",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": 0.57
+    }
+  },
+  {
+    "program": "loop_even_sum",
+    "difficulty": 8,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "loop_string_hash",
+    "difficulty": 6,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "matrix_determinant",
+    "difficulty": 7,
+    "fuzz": "fail",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "mean_absolute_deviation",
+    "difficulty": 10,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "modulo_scaler",
+    "difficulty": 6,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "pass",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "nested_loop_checker",
+    "difficulty": 7,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "odd_sum_validator",
+    "difficulty": 6,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "password_strength_checker",
+    "difficulty": 10,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "polygon_area_calculator",
+    "difficulty": 9,
+    "fuzz": "fail",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "prime_number_counter",
+    "difficulty": 10,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "process_complex_number",
+    "difficulty": 6,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "fail",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": 0.45
+    }
+  },
+  {
+    "program": "process_data",
+    "difficulty": 5,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "pass",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": 0.61,
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "quadratic_discriminant",
+    "difficulty": 9,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "pass",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "random_mod_calculator",
+    "difficulty": 7,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": 0.54,
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "rectangle_overlap_area",
+    "difficulty": 10,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "pass",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "rolling_maximum",
+    "difficulty": 6,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "square_accumulator",
+    "difficulty": 6,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "string_pattern_score",
+    "difficulty": 5,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "string_reversal_checker",
+    "difficulty": 8,
+    "fuzz": "fail",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": 0.54,
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "sum_until_limit",
+    "difficulty": 6,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "temperature_offset",
+    "difficulty": 7,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "text_frequency_analyzer",
+    "difficulty": 10,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "transform_data",
+    "difficulty": 6,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "pass",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "triangle_checker",
+    "difficulty": 7,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "vector_norm",
+    "difficulty": 8,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  },
+  {
+    "program": "word_frequency_counter",
+    "difficulty": 10,
+    "fuzz": "pass",
+    "crosshair": "unsupported",
+    "nagini": "unsupported",
+    "feq": {
+      "fuzz": "NA",
+      "crosshair": "NA",
+      "nagini": "NA"
+    }
+  }
+]

@@ -1,6 +1,6 @@
 """
 System to evaluate the quality of failure explanations across different testing methods.
-This script analyzes failure messages from CrossHair and fuzzing test results.
+This script analyzes failure messages from CrossHair, fuzzing, and Nagini test results.
 It uses OpenAI to evaluate false positives and score explanation quality.
 """
 
@@ -24,6 +24,7 @@ sys.path.insert(0, PROJECT_ROOT)
 class TestMethod(Enum):
     CROSSHAIR = "crosshair"
     FUZZING = "fuzzing"
+    NAGINI = "nagini"
 
 @dataclass
 class FEQScore:
@@ -67,55 +68,81 @@ def load_fuzzing_results(file_path: str) -> List[Dict[str, Any]]:
         results = json.load(f)
     return results
 
+def load_nagini_results(file_path: str) -> Dict[str, Any]:
+    """Load Nagini results from JSON file."""
+    with open(file_path, 'r') as f:
+        results = json.load(f)
+    return results
+
 def extract_failure_messages(crosshair_results: List[Dict], 
-                            fuzzing_results: List[Dict]) -> List[FailureEvaluation]:
-    """Extract failure messages from both testing methods.
+                            fuzzing_results: List[Dict],
+                            nagini_results: Dict[str, Any]) -> List[FailureEvaluation]:
+    """Extract failure messages from all testing methods.
     For CrossHair: One evaluation per failing program with full log
-    For Fuzzing: One evaluation per program with all failing examples combined"""
+    For Fuzzing: One evaluation per program with all failing examples combined
+    For Nagini: One evaluation per failing program with full log"""
     evaluations = []
     
-    # Process CrossHair results
-    for result in crosshair_results:
-        program = result.get("program", "")
-        if result.get("assertion_equivalence_result") == "false":
-            # Include both the failure_reason and the full_log
-            failure_reason = result.get("failure_reason", "")
-            full_log = result.get("full_log", "")
-            message = f"Failure Reason: {failure_reason}\n\nFull Log: {full_log}"
+    # # Process CrossHair results
+    # for result in crosshair_results:
+    #     program = result.get("program", "")
+    #     if result.get("assertion_equivalence_result") == "false":
+    #         # Include both the failure_reason and the full_log
+    #         failure_reason = result.get("failure_reason", "")
+    #         full_log = result.get("full_log", "")
+    #         message = f"Failure Reason: {failure_reason}\n\nFull Log: {full_log}"
             
-            input_match = re.search(r'when calling (.*)', failure_reason) if failure_reason else None
-            input_args = input_match.group(1) if input_match else "unknown input"
+    #         input_match = re.search(r'when calling (.*)', failure_reason) if failure_reason else None
+    #         input_args = input_match.group(1) if input_match else "unknown input"
+            
+    #         evaluations.append(FailureEvaluation(
+    #             method=TestMethod.CROSSHAIR,
+    #             function_name=program,
+    #             message=message,
+    #             input_args=input_args
+    #         ))
+    
+    # # Process fuzzing results - consolidate failures per program
+    # for result in fuzzing_results:
+    #     program = result.get("program", "")
+    #     failing_examples = result.get("failing_examples", [])
+        
+    #     # Only process programs with failing examples
+    #     if failing_examples:
+    #         # Combine all failing examples into a single message
+    #         consolidated_message = f"Program {program} has {len(failing_examples)} failing examples:\n\n"
+            
+    #         for i, example in enumerate(failing_examples, 1):
+    #             args = example.get("args", "unknown input")
+    #             error = example.get("error", "")
+    #             consolidated_message += f"Example {i}:\nInput: {args}\nError: {error}\n\n"
+            
+    #         # Use the first example's args as representative input
+    #         representative_input = failing_examples[0].get("args", "multiple inputs") if failing_examples else "unknown input"
+            
+    #         evaluations.append(FailureEvaluation(
+    #             method=TestMethod.FUZZING,
+    #             function_name=program,
+    #             message=consolidated_message,
+    #             input_args=representative_input
+    #         ))
+    
+    # Process Nagini results
+    for result in nagini_results.get("results", []):
+        if result.get("verification_result") == "failure":
+            module = result.get("module", "").replace(".py", "")
+            error_message = result.get("error_message", "")
+            full_log = result.get("full_log", "")
+            message = f"Error Message: {error_message}\n\nFull Log: {full_log}"
+            
+            # Extract line numbers or specific failure from the log if possible
+            input_args = "N/A - static verification"
             
             evaluations.append(FailureEvaluation(
-                method=TestMethod.CROSSHAIR,
-                function_name=program,
+                method=TestMethod.NAGINI,
+                function_name=module,
                 message=message,
                 input_args=input_args
-            ))
-    
-    # Process fuzzing results - consolidate failures per program
-    for result in fuzzing_results:
-        program = result.get("program", "")
-        failing_examples = result.get("failing_examples", [])
-        
-        # Only process programs with failing examples
-        if failing_examples:
-            # Combine all failing examples into a single message
-            consolidated_message = f"Program {program} has {len(failing_examples)} failing examples:\n\n"
-            
-            for i, example in enumerate(failing_examples, 1):
-                args = example.get("args", "unknown input")
-                error = example.get("error", "")
-                consolidated_message += f"Example {i}:\nInput: {args}\nError: {error}\n\n"
-            
-            # Use the first example's args as representative input
-            representative_input = failing_examples[0].get("args", "multiple inputs") if failing_examples else "unknown input"
-            
-            evaluations.append(FailureEvaluation(
-                method=TestMethod.FUZZING,
-                function_name=program,
-                message=consolidated_message,
-                input_args=representative_input
             ))
     
     return evaluations
@@ -144,6 +171,15 @@ def evaluate_with_openai(evaluation: FailureEvaluation, client: OpenAI) -> FEQSc
        - Actionability (0-1): How well it guides the user to fix the issue
        - Context (0-1): How well it explains when/why the failure occurs
        - Technical Detail (0-1): How much implementation/technical information it provides
+    
+    Note that failures can come from different testing methods:
+    - 'crosshair': Symbolic execution tool that explores multiple execution paths
+    - 'fuzzing': Random testing with generated inputs
+    - 'nagini': Static verification tool that proves program properties
+    
+    For static verification (nagini), focus on how well the error describes the 
+    logical/formal verification failure rather than specific inputs.
+    
     Provide a reason for each score."""
     
     # User message with the details of the failure
@@ -206,6 +242,7 @@ def main():
     # Path to result files
     crosshair_results_path = os.path.join(PROJECT_ROOT, "verification", "crosshair", "crosshair_results.json")
     fuzzing_results_path = os.path.join(PROJECT_ROOT, "verification", "fuzz", "fuzz_results.json")
+    nagini_results_path = os.path.join(PROJECT_ROOT, "verification", "nagini", "nagini_results.json")
     
     # Load OpenAI API key from environment
     api_key = os.environ.get("OPENAI_API_KEY")
@@ -219,9 +256,10 @@ def main():
     print("Loading test results...")
     crosshair_results = load_crosshair_results(crosshair_results_path)
     fuzzing_results = load_fuzzing_results(fuzzing_results_path)
+    nagini_results = load_nagini_results(nagini_results_path)
     
     # Extract failure messages
-    evaluations = extract_failure_messages(crosshair_results, fuzzing_results)
+    evaluations = extract_failure_messages(crosshair_results, fuzzing_results, nagini_results)
     print(f"Found {len(evaluations)} failure evaluations to process")
     
     # Evaluate each failure message
@@ -300,7 +338,22 @@ def main():
     false_positives = sum(1 for eval in evaluations if eval.feq_score and eval.feq_score.false_positive)
     avg_feq = sum(eval.feq_score.total_score for eval in evaluations if eval.feq_score) / len(evaluations) if evaluations else 0
     
-    print("\nSummary Statistics")
+    # Add statistics per test method
+    methods = [TestMethod.CROSSHAIR, TestMethod.FUZZING, TestMethod.NAGINI]
+    print("\nStatistics by Test Method:")
+    for method in methods:
+        method_evals = [e for e in evaluations if e.method == method and e.feq_score]
+        if method_evals:
+            method_true_pos = sum(1 for e in method_evals if not e.feq_score.false_positive)
+            method_false_pos = sum(1 for e in method_evals if e.feq_score.false_positive)
+            method_avg_feq = sum(e.feq_score.total_score for e in method_evals) / len(method_evals)
+            print(f"  {method.value}:")
+            print(f"    Total failures: {len(method_evals)}")
+            print(f"    True positives: {method_true_pos} ({method_true_pos/len(method_evals)*100:.2f}%)")
+            print(f"    False positives: {method_false_pos} ({method_false_pos/len(method_evals)*100:.2f}%)")
+            print(f"    Average FEQ score: {method_avg_feq:.2f}")
+    
+    print("\nOverall Summary:")
     print(f"Total failures evaluated: {len(evaluations)}")
     print(f"True positives: {true_positives} ({true_positives/len(evaluations)*100:.2f}%)")
     print(f"False positives: {false_positives} ({false_positives/len(evaluations)*100:.2f}%)")

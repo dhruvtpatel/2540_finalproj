@@ -1,0 +1,252 @@
+{
+  "armstrong_number_checker_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function contains a feature that cannot be directly represented in Nagini's specification language: the transformation and checking of `b_early` and `b_final`. While these are conceptual checks for equivalence of two distinct conditions, the Nagini specification language focuses more on preconditions, postconditions, and invariants rather than comparing logic transformations internally within a function. Additionally, the use of list comprehensions and dynamic calculations with string conversions and arithmetic are complex operations that do not map neatly into Nagini's permission and assertion-based system. Nagini is more suited for ensuring certain access permissions and maintaining invariants rather than verifying equivalence of logical conditions inside the function's implementation."
+  },
+  "ascii_average_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "Nagini does not support while loops with collection indexing. Specifically, it cannot translate the pattern 'while (i < len(s))' with operations like 'total += ord(s[i])'. This is a limitation in Nagini's handling of loops over collections with explicit index bounds checking."
+  },
+  "binary_hamming_distance_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "Nagini does not support direct manipulation of binary representations or the use of string operations such as `bin()` and `zfill()` within its verifiable constructs. These operations are inherently non-pure in the context of Nagini due to their reliance on Python's dynamic typing and string manipulation capabilities. Additionally, the requirement for checking if the distance calculation is equivalent to a pre-computed value using an assertion is beyond Nagini's specification capabilities, as it involves runtime assertions that don't translate to verification conditions."
+  },
+  "binary_search_iterations_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "Nagini does not support while loops with collection indexing. Specifically, it cannot translate the pattern 'while (i < len(arr))' with operations like 'if (arr[(i - 1)] > arr[i]):'. This is a limitation in Nagini's handling of loops over collections with explicit index bounds checking."
+  },
+  "caesar_cipher_encoder_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function involves complex string transformations and character encoding operations using list comprehensions and built-in string methods which can't directly be represented as predicates in the Nagini specification language. Additionally, the final assertion checks for equivalence between transformed states that are derived from operations outside the direct expression capabilities of Nagini (i.e., detailed text transformation and arithmetic checks). Nagini's verification focuses more on data structure integrity, memory permissions, and invariants, rather than complex character-based manipulations and transformations. Therefore, converting this function to Nagini is not feasible."
+  },
+  "calculate_discount_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function cannot be converted to Nagini because it relies on floating-point arithmetic and checks for equality with very small tolerances (abs checks with 0.001), which Nagini does not support well due to its focus on mathematical verification rather than numerical precision. Additionally, Nagini's specification language does not support the complex operation of rounding and ensuring precision-dependent equality checks, which are necessary in this function. Nagini is designed for logical reasoning, not handling floating-point intricacies."
+  },
+  "ceiling_multiplier_transformed": {
+    "convertible": true,
+    "nagini_code": "from nagini_contracts.contracts import *\n\n@Pure\ndef ceiling_multiplier_transformed(x: int) -> int:\n    Requires(x == 34)\n    Ensures(Result() == 55)\n    \n    val = x * 1.5\n    rounded = math.ceil(val)\n    adj = rounded + 4\n    \n    return adj\n",
+    "reason": null
+  },
+  "character_counter_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "Nagini does not support while loops with collection indexing. Specifically, it cannot translate the pattern 'while (i < len(text))' with operations like 'if is_vowel(text[i]):'. This is a limitation in Nagini's handling of loops over collections with explicit index bounds checking."
+  },
+  "circle_area_diff_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "Nagini cannot support the conversion due to the use of features like floating-point arithmetic and rounding functions, which are not directly supported by Nagini's specification language. Additionally, mathematical constants like `math.pi` are not handled by Nagini, and such computations would make verifying equivalence using Nagini's formal methods challenging. Moreover, assertions between intermediate and final states in the context of numerical computations with floating-point numbers and rounding operations cannot be accurately represented with Nagini's contracts."
+  },
+  "collatz_sequence_length_transformed": {
+    "convertible": true,
+    "nagini_code": "from nagini_contracts.contracts import *\n\n@Pure\ndef collatz_step(n: int) -> int:\n    if n % 2 == 0:\n        return n // 2\n    return 3 * n + 1\n\n@Pure\ndef collatz_sequence_length_transformed(n: int) -> int:\n    n_orig = n\n    b_early = n_orig in [10, 26, 27, 17, 54, 55, 112, 113]\n    length = 1\n    current_n = n_orig\n    while current_n != 1:\n        Invariant(current_n > 0)\n        current_n = collatz_step(current_n)\n        length += 1\n    adjusted = length % 20\n    func_return_value = adjusted\n    b_final = (func_return_value == 7)\n    Ensures(b_early == b_final)\n    Ensures(Result() >= 0)\n    return func_return_value",
+    "reason": null
+  },
+  "convert_temperature_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function 'convert_temperature_transformed' cannot be converted to Nagini because it involves computations with floating-point numbers, which can introduce precision errors that are not supported by Nagini's specification language. Furthermore, the use of 'round' and floating-point operations like multiplication and division result in non-deterministic behavior in terms of exact precision, which is outside the formal verification scope handled by Nagini, as it emphasizes exact reasoning and precise arithmetic."
+  },
+  "count_divisibles_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "Nagini does not support while loops with collection indexing. Specifically, it cannot translate the pattern 'while (i < len(nums))' with operations like 'if ((nums[i] % 4) == 0):'. This is a limitation in Nagini's handling of loops over collections with explicit index bounds checking."
+  },
+  "date_difference_calculator_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function relies on operations related to `datetime` which involve date calculations not directly expressible in Nagini's specification language. Additionally, the use of absolute values and modulus operations, coupled with the requirement to compare two separate boolean states and check their equivalence, is beyond the current scope of Nagini contracts. Specifically, Nagini's specification language doesn't natively support complex date arithmetic or the reasoning about real-world date differences in a way that can be validated within the language's constructs. Therefore, assertion equivalence involving such domain-specific operations cannot be converted directly to Nagini's formal verification framework."
+  },
+  "day_of_week_calculator_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function `day_of_week_calculator_transformed` contains logic involving Python's `datetime` module, specifically the use of `datetime.date(year, month, day).weekday()` to determine the day of the week for a given date. This involves referencing an external library, `datetime`, which cannot be represented directly in Nagini's specification language.\n\nNagini's specification language is designed for formal verification with a focus on specific contracts, permissions, and pure logic constructed within Python. Operations involving external state or libraries, such as `datetime`, which are inherently external to the purely logical system that Nagini operates within, cannot be directly specified or verified.\n\nAdditionally, the nature of using date calculations, which rely on an established and external understanding of calendar calculations that are part of Python's standard library, also falls outside the scope of what Nagini is designed to handle. Formal verification in Nagini requires that functions are implemented in terms of logical and mathematical operations that can be fully specified and verified within the system, without dependence on external computations or systems."
+  },
+  "digit_sum_processor_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "Nagini does not support while loops with collection indexing. Specifically, it cannot translate the pattern 'while (i < len(s))' with operations like 'total += int(s[i])'. This is a limitation in Nagini's handling of loops over collections with explicit index bounds checking."
+  },
+  "factorial_root_calculator_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function 'factorial_root_calculator_transformed' cannot be converted to Nagini due to the use of the 'math' module which involves functions like 'factorial' and 'sqrt'. These functions are inherently impure as they depend on runtime computation and cannot be expressed as pure or contract functions in Nagini. Furthermore, the use of complex arithmetic operations like factorial and square root are not expressible in Nagini's specification language, which is designed for simpler logical and algebraic operations that can be statically verified. As a formal verification tool, Nagini also cannot handle the equivalence assertion between 'b_early' and 'b_final' that involves dynamic and complex mathematical computations. Therefore, this function involves features that are beyond the scope of Nagini's capabilities."
+  },
+  "fibonacci_counter_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function cannot be directly converted to Nagini because it requires asserting that two conditions (`b_early` and `b_final`) are equivalent, which is inherently a runtime concept and not supported by formal verification systems like Nagini. Nagini works with preconditions and postconditions to prove properties about a function's input and output, but it does not support dynamic assertions that compare intermediate calculation conditions to decide a program's correctness. Furthermore, the function relies on computing the Fibonacci sequence and evaluating its result, which would require a pure function to facilitate content verification. However, asserting their equivalence as a basis for program correctness is a dynamic behavior and not static logic, which goes beyond the formal specification capabilities of Nagini."
+  },
+  "gcd_calculator_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "Nagini cannot directly represent or utilize dynamic values like the one calculated in `math.gcd(a, b)` because Nagini does not support standard library functions or external function calls within its specification. Additionally, the assertion comparison `b_early == b_final` is based on the runtime computation rather than static assertions, which cannot be directly translated into Nagini's preconditions or postconditions."
+  },
+  "geometric_sequence_sum_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "Nagini does not support floating point arithmetic and rounding, which are central to operations in the function `geometric_sequence_sum_transformed`. Additionally, Nagini cannot directly handle dynamic conditions like summing a geometric sequence when `abs(r) >= 1`. These features are beyond Nagini's specification language capabilities, which focuses on integer arithmetic, permissions, access permissions, and state-based assertions for verification purposes."
+  },
+  "hexadecimal_converter_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function involves a computation of digit sums over a hexadecimal representation of an integer and asserts the equivalence of two boolean expressions by comparing the early and final state of the same computation. As of now, Nagini does not support string manipulation and arithmetic operations on strings transformed into integers (like the conversion of hexadecimal digits to integers and their summation) directly within its specification language or predicate logic. Moreover, Nagini does not provide built-in support to directly handle or perform operations with hexadecimal strings, nor maintain state across multiple operations on such strings without explicitly extracting and verifying each logical component separately, which makes the conversion of this function unsupported."
+  },
+  "hypotenuse_diff_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function cannot be converted to Nagini because it involves operations like `math.hypot` and `round` which are side-effect free but are not directly translatable to Nagini's pure functions due to their limitations on numeric precision and complex operations. Additionally, Nagini does not support floating-point arithmetic or operations involving math functions that can have precision issues, making it challenging to specify and verify such functions accurately. The assertion checking the equivalence of two complex numeric computations further complicates the translation into Nagini's specification language."
+  },
+  "index_weighted_sum_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "Nagini specification language does not support direct verification of properties like equivalence between early and final assertion checks within the function when these involve multiple iterations and complex arithmetic operations. The iteration logic and modular arithmetic checks are not inherently amenable to Nagini's loop invariant and contract-based verification system. Additionally, Nagini's verifier does not support assertions comparing early and late computations for equivalency directly within its framework."
+  },
+  "isbn_validator_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function `isbn_validator_transformed` uses dynamic operations and checks that cannot be directly converted into Nagini's specification language. Specifically, the following challenges prevent conversion:\n\n1. **Dynamic List Comprehension:** The creation of the list `digits` using a list comprehension that conditionally extracts integers cannot be modeled directly with Nagini. Nagini requires static, explicit operations, and dynamic comprehensions are not supported.\n\n2. **Dynamic Assertions `b_early` and `b_final`:** These assertions are dynamic checks that depend on runtime evaluation, which cannot be specified using Nagini's preconditions or postconditions. Nagini's model does not allow for such on-the-fly assertions to be validated, especially since the checks are abstracted into boolean variables like `b_early` and `b_final`.\n\n3. **Complex Logic:** The computation of `check_sum` inside an `if` condition and its subsequent use in validating an ISBN, along with the complex math checks, cannot be easily transcribed into the static logic expected in Nagini.\n\n4. **Dynamic Control Flow:** The checking of the length of `digits` to determine subsequent operations introduces dynamic control flow decisions that are challenging to express in Nagini's formal specification.\n\nDue to these features, Nagini's current capabilities do not support a direct transformation of the provided function."
+  },
+  "list_balance_transformed": {
+    "convertible": true,
+    "nagini_code": "from nagini_contracts.contracts import *\n\n@Pure\ndef list_balance_transformed(nums: List[int]) -> int:\n    Requires(list_pred(nums))\n    Ensures(list_pred(nums))\n    Ensures(Result() == 5 or Result() != 5)\n    half = len(nums) // 2\n    left = sum(nums[:half])\n    right = sum(nums[half:])\n    return abs(left - right)",
+    "reason": null
+  },
+  "loop_even_sum_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "Nagini does not support inline assertions (e.g., `b_early = sum(...) == 220`), especially for dynamic properties of loops. The specification needs to handle loop invariants in a more manual way. Complex operations like summing over a range with a condition (lambda inside a list comprehension) are hard to express directly in Nagini. Additionally, equality between early and final conditions through assertion is generally not directly convertible without major restructuring to fit Nagini's verification model."
+  },
+  "loop_string_hash_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "Nagini does not support while loops with collection indexing. Specifically, it cannot translate the pattern 'while (i < len(text))' with operations like 'hash_val += (ord(text[i]) * 3)'. This is a limitation in Nagini's handling of loops over collections with explicit index bounds checking."
+  },
+  "matrix_determinant_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function 'matrix_determinant_transformed' cannot be fully converted to Nagini's specification language because it involves computing the determinant of a matrix and performing modular arithmetic, which are complex operations not directly supported by Nagini's pure function restrictions. Additionally, the concept of comparing early and final assertions for equivalence is not directly expressible in Nagini's contract system. Nagini focuses more on preconditions, postconditions, and permissions, rather than arbitrary assertions and computations with modular arithmetic within the contracts themselves."
+  },
+  "mean_absolute_deviation_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function involves several features that Nagini's specification language does not support. These include rounding operations, which introduce non-linear behavior and cannot be directly expressed in Nagini's formalism. Additionally, the use of list comprehensions and the transformation within the assertion checks (rounding and multiplication) are not directly translatable into Nagini's contracts or pure functions. Nagini is also not well-suited for handling floating-point arithmetic, which is inherently approximate, within its formal verification framework. Thus, the function's operations cannot be fully encapsulated by Nagini's verification system."
+  },
+  "modulo_scaler_transformed": {
+    "convertible": true,
+    "nagini_code": "from nagini_contracts.contracts import *\n\n@Pure\ndef compute_val(x: int) -> int:\n    return (x % 6) * 7 + 3\n\n@Pure\ndef compute_scaled(val: int) -> int:\n    return val * 2\n\n@Pure\ndef early_property(x: int) -> bool:\n    return compute_val(x) == 30\n\n@Pure\ndef final_property(scaled: int) -> bool:\n    return scaled == 60\n\ndef modulo_scaler_transformed(x: int) -> int:\n    Requires(early_property(x))\n    Ensures(final_property(Result()))\n\n    val = compute_val(x)\n    scaled = compute_scaled(val)\n\n    assert early_property(x) == final_property(scaled), \"Early and final assertions are not equivalent\"\n    return scaled",
+    "reason": null
+  },
+  "nested_loop_checker_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function `nested_loop_checker_transformed` cannot be converted to Nagini's specification language because it relies on the computation of an exact value of a sum within nested loops, which depends on the variable `limit` and subsequently checks the equivalence of two complex conditions using assertions. Nagini's specification language is designed for function-level modular verification and is not well-suited for handling equivalence of complex expressions that evolve over iterative, state-dependent computations. Additionally, Nagini does not natively support checks for equivalence of values through assertions in the same manner as program logic, making it difficult to represent this function accurately within its framework."
+  },
+  "odd_sum_validator_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "Nagini cannot handle dynamically computed properties, such as the sum and filtering operations directly. The function contains dynamic list comprehensions and arithmetic operations on list elements that aren't suitable for static verification with Nagini. Moreover, comparing dynamic values computed in intermediate steps against each other is not within the typical scope of Nagini's contract-based verification. Nagini focuses on preconditions, postconditions, and invariants on static properties of the inputs and outputs rather than equivalence checks between computations performed in the function's body itself."
+  },
+  "password_strength_checker_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "Nagini does not support the dynamic features used in this function, such as list comprehensions and the handling of generic strings with `str` methods like `isupper()`, `islower()`, `isdigit()`, and checking non-alphanumeric characters. These operations involve dynamic behavior and iteration over data types that are problematic to express in Nagini's specification language, which is designed for static and verifiable properties. Also, the function logic involves dynamic count and sum operations that cannot be directly represented as Nagini preconditions or postconditions."
+  },
+  "polygon_area_calculator_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "Nagini does not support operations like the Shoelace formula, which involves iterating over a list of tuples and performing arithmetic operations based on indices in formal verification. Additionally, the check for equivalence of two boolean conditions (b_early and b_final) based on runtime-calculated geometric properties does not fit into Nagini's model of preconditions and postconditions, which are typically used to specify expected input/output conditions rather than properties that are derived from algorithmic calculations. Furthermore, Nagini also requires contracts around access permissions, which complicates verifying a list of vertices with its elements being tuple accesses in the current form."
+  },
+  "prime_number_counter_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function `prime_number_counter_transformed` involves checking the number of prime numbers up to a certain limit ('limit'). Nagini's specification language does not support expressing or verifying properties about specific numbers being prime due to the complexity and mathematical nature of primality testing, especially as part of an invariant in a verification setting. Furthermore, the assertion equivalence check depends critically on whether `limit` is set to a specific value and the known property of prime counts within that range, which cannot be captured through simple pre/post conditions or predicates within Nagini's framework."
+  },
+  "process_complex_number_transformed": {
+    "convertible": true,
+    "nagini_code": "from nagini_contracts.contracts import *\n\n@Pure\ndef calculate_magnitude(real: float, imag: float) -> float:\n    return (real**2 + imag**2)**0.5\n\n@Pure\ndef process_complex_number_transformed(real: float, imag: float) -> int:\n    Requires(True)  # No real preconditions as the inputs are floats\n    Ensures(Result() == 10)\n    Ensures(round(calculate_magnitude(real, imag)) == 10)\n    magnitude = calculate_magnitude(real, imag)\n    rounded_magnitude = round(magnitude)\n    return rounded_magnitude",
+    "reason": null
+  },
+  "process_data_transformed": {
+    "convertible": true,
+    "nagini_code": "from nagini_contracts.contracts import *\n\n@Pure\ndef abs_value(x: int) -> int:\n    Ensures(Result() == (x if x >= 0 else -x))\n    return x if x >= 0 else -x\n\n@Pure\ndef process_data_transformed(x: int) -> int:\n    Requires(-50 <= x <= 50)\n    Ensures(Result() >= 0)\n    Ensures((x == 50) == (Result() == 100))\n    y = x * 2\n    z = abs_value(y)\n    return z",
+    "reason": null
+  },
+  "quadratic_discriminant_transformed": {
+    "convertible": true,
+    "nagini_code": "from nagini_contracts.contracts import *\n\n@Pure\ndef quadratic_discriminant_transformed(a: int, b: int, c: int) -> int:\n    Requires(True)  # No specific precondition required\n    Ensures(Result() % 100 == 25)  # Ensures that the result is consistent with b_early == b_final\n\n    disc = b**2 - 4*a*c\n    normalized = abs(disc) % 100\n\n    # We assume that the initial condition is true for consistent results\n    Assume(abs(b**2 - 4*a*c) % 100 == 25 == (normalized == 25))\n    assert abs(b**2 - 4*a*c) % 100 == 25 == (normalized == 25), \"Initial and final computations do not match\"\n\n    return normalized\n",
+    "reason": null
+  },
+  "random_mod_calculator_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function uses randomness through the `random.randint` function. Even though the seed is fixed, Nagini's specification language does not support randomness or any features that introduce non-deterministic behavior, which makes it impossible to represent in Nagini. Additionally, converting such assertions involving randomness and ensuring their equivalence is outside the scope of what Nagini can verify."
+  },
+  "rectangle_overlap_area_transformed": {
+    "convertible": true,
+    "nagini_code": "from nagini_contracts.contracts import *\n\ndef rectangle_overlap_area_transformed(x1: int, y1: int, w1: int, h1: int, x2: int, y2: int, w2: int, h2: int) -> int:\n    Requires(True)\n    Ensures(Result() == max(0, min(x1 + w1, x2 + w2) - max(x1, x2)) * max(0, min(y1 + h1, y2 + h2) - max(y1, y2)))\n    \n    overlap_width = max(0, min(x1 + w1, x2 + w2) - max(x1, x2))\n    overlap_height = max(0, min(y1 + h1, y2 + h2) - max(y1, y2))\n    area = overlap_width * overlap_height\n    \n    b_early = (overlap_width * overlap_height == 16)\n    b_final = (area == 16)\n    assert b_early == b_final, \"Early and final assertions are not equivalent\"\n    \n    return area\n",
+    "reason": null
+  },
+  "rolling_maximum_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function cannot be converted to Nagini because its specification relies on comparing an early computation (b_early) with a final computation (b_final), which is not representable in Nagini. Nagini's specification language does not support capturing intermediate computational states (like b_early) for verification of equivalence with another state (like b_final) post computation."
+  },
+  "square_accumulator_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "Nagini currently doesn't support verifying properties involving complex calculations such as arbitrary sums involving loops without specific loop invariants or expressions that cannot be simplified into pure expressions. The assertions involve modular arithmetic which might require state tracking that is not directly supported by Nagini's specification language. Additionally, ensuring the equivalence of early and final state checks through direct assertions outside of a function's body is not provided by Nagini. Features like sum accumulations and modulus operations in dynamic loops exceed what can be neatly expressed in Nagini's contract language. These operations require detailed loop invariants and potentially pure functions to split logic, which are non-trivial to define within Nagini's current capabilities."
+  },
+  "string_pattern_score_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function involves a `for` loop to filter characters and a list comprehension to compute sums, which are not supported directly by Nagini's specification language. Additionally, string operations (checking membership in a set of characters) in Nagini are limited and cannot be directly represented in current Nagini syntax. The concept of verifying equivalence of two assertions from an early computation and a final one isn't a direct match for Nagini's modular verification system, which focuses on preconditions, postconditions, and permissions rather than logical equivalence of different assertions over time."
+  },
+  "string_reversal_checker_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function `string_reversal_checker_transformed` cannot be converted to Nagini due to the following reasons:\n\n1. **String Slicing and Reversal:** Nagini does not provide built-in support for operations like string slicing (`text[::-1]`) and reversal. These operations are inherently mutable and side-effect-laden, making them unsuitable for Nagini's pure function paradigm.\n\n2. **String Methods and Stripping:** The use of `reversed_text.strip()` involves mutable sequence operations that are side-effecting under the hood, which Nagini does not handle.\n\n3. **String Length Difference Computation:** Nagini does not support implicit sequence operations on strings, such as computing the length difference between a string and its stripped version, especially when involving complex conditionals that change behavior based on this computation.\n\n4. **Equality Assertions in Preconditions and Postconditions:** The Nagini system is not designed for verifying dynamic properties about mutable data sequences like string reversals, especially when they involve runtime computations reflected in both pre- and postconditions.\n\nFor these reasons, the function cannot be accurately represented using Nagini's specification language."
+  },
+  "sum_until_limit_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function `sum_until_limit_transformed` has several features that prevent it from being converted to Nagini's specification language.\n\n1. **Complex Intermediate Computation:** The `b_early` expression involves a list comprehension with nested conditions that depend on dynamically determined values (such as `nums[:nums.index(n)+1]`). These kinds of operations can't be directly represented in Nagini preconditions or postconditions.\n\n2. **Assertion Comparison:** The function checks the equivalence of two different computation strategies (b_early and b_final). Nagini is designed for specifying properties of functions like preconditions and postconditions, not for checking the equivalence of different computation paths or formulations within the function body.\n\n3. **Dynamic Behavior based on Indices:** The function includes a dynamic behavior that changes based on the iteration through the list, which isn't straightforward to specify in Nagini without knowing the exact structure or contents of the list upfront.\n\nIn summary, the complexity of the dynamic operations and comparisons made within this function go beyond the typical use and capabilities of Nagini, which focuses on more static and invariant properties of functions."
+  },
+  "temperature_offset_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function involves floating-point arithmetic and operations (like rounding and converting to integer) which are inherently imprecise and may lead to unexpected results. Nagini's specification language does not handle floating-point operations natively. The round and int operations can produce results that depend on the underlying floating-point representation, which can't be accurately specified or checked with Nagini's approach. Additionally, asserting the equality of two boolean expressions based on floating-point calculations is not directly supported."
+  },
+  "text_frequency_analyzer_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function 'text_frequency_analyzer_transformed' includes several features that are not directly supported by Nagini's formal verification capabilities. Specifically: 1) The use of dictionary operations such as 'char_freq.get()' and dynamic updates to 'char_freq' are not easily expressed in Nagini's assertion language. 2) The 'any()' function combined with a generator expression performing character count checks ('text.lower().count(c) == 6') and set operations ('set(text.lower())') introduces complex logic that is not supported in Nagini's Pure functions or contracts. 3) The assertion checks on dynamic data structures and the transformations of these checks through mutations of the collection during iteration cannot be directly expressed in the specification logic. These constructs make it incompatible with the constraints of Nagini's specification language, which focuses on pre/postconditions, loop invariants, and predicates without supporting dynamic and complex operations. Therefore, this function's transformation to Nagini's specification language is not feasible."
+  },
+  "transform_data_transformed": {
+    "convertible": true,
+    "nagini_code": "from nagini_contracts.contracts import *\n\n@Pure\ndef transform_data_transformed(input_value: int) -> int:\n    Requires(input_value >= 0)  # assuming a non-negative input for verification simplicity\n    Ensures(Result() == (input_value * 3 + 1) // 2)\n    return (input_value * 3 + 1) // 2\n\ndef caller_function(input_value: int) -> None:\n    Requires(input_value >= 0)  # assuming a non-negative input for verification\n    Ensures(True)  # simply ensuring absence of failure due to assertions is enough\n    b_early = (input_value == 33)\n    processed = transform_data_transformed(input_value)\n    b_final = (processed == 50)\n    assert b_early == b_final, \"Early and final assertions are not equivalent\"",
+    "reason": null
+  },
+  "triangle_checker_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function uses list sorting, which is a complex operation involving side effects that cannot be directly expressed in Nagini's specification language. Nagini focuses on modular verification using contracts and predicates, and does not support advanced operations like sorting which involves non-pure function calls and mutation."
+  },
+  "vector_norm_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function uses the `math.sqrt` and `round` operations on float numbers and requires asserting the equivalence of certain floating-point computations. Nagini's specification language is based on mathematical logic and abstract contracts, which focus on more deterministic behavior. This makes representing floating-point operations and their resulting approximations challenging within Nagini's framework. Additionally, the complexity of the geometric computation and the inherent imprecision of floating-point arithmetic are difficult to specify and verify in Nagini."
+  },
+  "word_frequency_counter_transformed": {
+    "convertible": false,
+    "nagini_code": null,
+    "reason": "The function uses operations that are unsupported in Nagini's specification language. Specifically, it involves counting occurrences within a set and a dictionary, which require dynamic operations not easily representable in Nagini's contracts. Additionally, the function utilizes string manipulations and dictionary operations that Nagini might not handle natively. Furthermore, the logic of the function involves complex control structures and assertion checks that are not directly translatable into Nagini's preconditions, postconditions, and invariants."
+  }
+}

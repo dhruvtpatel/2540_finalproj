@@ -531,60 +531,121 @@ Our work advances the field of proactive program safety by demonstrating that as
 
 \section*{Appendix}
 
+% \begin{longtable}{|l|c|c|c|c|p{3cm}|}
+% \hline
+% \textbf{Program} & \textbf{Difficulty} & \textbf{Fuzz} & \textbf{CrossHair} & \textbf{Nagini} & \textbf{FEQ Scores} \\
+% \hline
+% armstrong\_number\_checker & 7 & pass & unsupported & unsupported & - \\
+% ascii\_average & 6 & pass & unsupported & unsupported & - \\
+% binary\_hamming\_distance & 10 & pass & unsupported & unsupported & - \\
+% binary\_search\_iterations & 10 & fail & unsupported & unsupported & - \\
+% caesar\_cipher\_encoder & 10 & pass & unsupported & unsupported & - \\
+% calculate\_discount & 6 & pass & unsupported & unsupported & crosshair: 0.66 \\
+% ceiling\_multiplier & 6 & pass & unsupported & fail & nagini: 0.39 \\
+% character\_counter & 6 & pass & unsupported & unsupported & - \\
+% circle\_area\_diff & 7 & pass & unsupported & unsupported & - \\
+% collatz\_sequence\_length & 7 & fail & unsupported & pass & crosshair: 0.57 \\
+% convert\_temperature & 6 & fail & unsupported & unsupported & crosshair: 0.74 \\
+% count\_divisibles & 6 & pass & unsupported & unsupported & - \\
+% date\_difference\_calculator & 8 & fail & unsupported & unsupported & - \\
+% day\_of\_week\_calculator & 8 & fail & unsupported & unsupported & - \\
+% digit\_sum\_processor & 9 & pass & unsupported & unsupported & crosshair: 0.74 \\
+% factorial\_root\_calculator & 7 & pass & unsupported & unsupported & crosshair: 0.68 \\
+% fibonacci\_counter & 6 & pass & unsupported & unsupported & - \\
+% gcd\_calculator & 7 & pass & unsupported & unsupported & - \\
+% geometric\_sequence\_sum & 10 & pass & unsupported & unsupported & - \\
+% hexadecimal\_converter & 7 & pass & unsupported & unsupported & - \\
+% hypotenuse\_diff & 9 & pass & unsupported & unsupported & - \\
+% index\_weighted\_sum & 6 & pass & unsupported & unsupported & - \\
+% isbn\_validator & 9 & fail & unsupported & unsupported & - \\
+% list\_balance & 8 & pass & unsupported & fail & nagini: 0.57 \\
+% loop\_even\_sum & 8 & pass & unsupported & unsupported & - \\
+% loop\_string\_hash & 6 & pass & unsupported & unsupported & - \\
+% matrix\_determinant & 7 & fail & unsupported & unsupported & - \\
+% mean\_absolute\_deviation & 10 & pass & unsupported & unsupported & - \\
+% modulo\_scaler & 6 & pass & unsupported & pass & - \\
+% nested\_loop\_checker & 7 & pass & unsupported & unsupported & - \\
+% odd\_sum\_validator & 6 & pass & unsupported & unsupported & - \\
+% password\_strength\_checker & 10 & pass & unsupported & unsupported & - \\
+% polygon\_area\_calculator & 9 & fail & unsupported & unsupported & - \\
+% prime\_number\_counter & 10 & pass & unsupported & unsupported & - \\
+% process\_complex\_number & 6 & pass & unsupported & fail & nagini: 0.45 \\
+% process\_data & 5 & pass & unsupported & pass & crosshair: 0.61 \\
+% quadratic\_discriminant & 9 & pass & unsupported & pass & - \\
+% random\_mod\_calculator & 7 & pass & unsupported & unsupported & crosshair: 0.54 \\
+% rectangle\_overlap\_area & 10 & pass & unsupported & pass & - \\
+% rolling\_maximum & 6 & pass & unsupported & unsupported & - \\
+% square\_accumulator & 6 & pass & unsupported & unsupported & - \\
+% string\_pattern\_score & 5 & pass & unsupported & unsupported & - \\
+% string\_reversal\_checker & 8 & fail & unsupported & unsupported & crosshair: 0.54 \\
+% sum\_until\_limit & 6 & pass & unsupported & unsupported & - \\
+% temperature\_offset & 7 & pass & unsupported & unsupported & - \\
+% text\_frequency\_analyzer & 10 & pass & unsupported & unsupported & - \\
+% transform\_data & 6 & pass & unsupported & pass & - \\
+% triangle\_checker & 7 & pass & unsupported & unsupported & - \\
+% vector\_norm & 8 & pass & unsupported & unsupported & - \\
+% word\_frequency\_counter & 10 & pass & unsupported & unsupported & - \\
+% \hline
+% \caption{Program Execution Results from All Testing and Verification Methods\label{tab:program-results}}
+% \end{longtable}
+
+
 \begin{longtable}{|l|c|c|c|c|c|}
 \hline
-\textbf{Program} & \textbf{Difficulty ($\approx$ 1--10)} & \textbf{Fuzz Testing}& \textbf{CrossHair} & \textbf{Nagini} & \textbf{FEQ} \\
+\textbf{Program} & \textbf{Difficulty} & \textbf{Fuzz} & \textbf{CrossHair} & \textbf{Nagini} & \textbf{FEQ (method)} \\
 \hline
-process\_data & 4 & Pass & Fail & Fail & 0.5 \\
-convert\_temperature & 5 & Pass & Fail & Fail & 0.7 \\
-calculate\_discount & 5 & Pass & Fail & Fail & 0.7 \\
-process\_complex\_number & 6 & Pass & Pass & Fail & 0.9 \\
-transform\_data & 4 & Pass & Pass & Pass & 0.0 \\
-circle\_area\_diff & 7 & Pass & Pass & Fail & 0.4 \\
-triangle\_checker & 6 & Pass & Pass & Fail & 0.4 \\
-temperature\_offset & 5 & Pass & Pass & Fail & 0.4 \\
-quadratic\_discriminant & 7 & Pass & Fail & Fail & 0.7 \\
-vector\_norm & 6 & Pass & Pass & Fail & 0.4 \\
-hypotenuse\_diff & 6 & Pass & Pass & Pass & 0.4 \\
-ascii\_average & 4 & Pass & Pass & Pass & 0.0 \\
-list\_balance & 5 & Pass & Pass & Fail & 0.4 \\
-odd\_sum\_validator & 5 & Pass & Pass & Pass & 0.0 \\
-string\_pattern\_score & 4 & Pass & Pass & Pass & 0.0 \\
-random\_mod\_calculator & 4 & Pass & Fail & Fail & 0.5 \\
-digit\_sum\_processor & 5 & Pass & Fail & Fail & 0.5 \\
-random\_value\_adjuster & 5 & Pass & Fail & Fail & 0.5 \\
-ceiling\_multiplier & 6 & Pass & Fail & Fail & 0.5 \\
-factorial\_root\_calculator & 5 & Pass & Fail & Fail & 0.5 \\
-digit\_length\_scorer & 4 & Pass & Fail & Fail & 0.5 \\
-random\_double\_modulo & 5 & Pass & Fail & Fail & 0.5 \\
-modulo\_scaler & 6 & Pass & Fail & Fail & 0.5 \\
-random\_adjustment\_calculator & 5 & Pass & Fail & Fail & 0.5 \\
-factorial\_mod\_processor & 4 & Pass & Fail & Fail & 0.5 \\
-modular\_doubler & 5 & Pass & Fail & Fail & 0.5 \\
-ceiling\_adjustment\_calculator & 6 & Pass & Fail & Fail & 0.5 \\
-random\_sequence\_generator & 5 & Pass & Fail & Fail & 0.5 \\
-digit\_sum\_multiplier & 4 & Pass & Fail & Fail & 0.5 \\
-factorial\_square\_root\_mod & 5 & Pass & Fail & Fail & 0.5 \\
-decimal\_ceiling\_adjuster & 6 & Pass & Fail & Fail & 0.5 \\
-modular\_scaling\_calculator & 5 & Pass & Fail & Fail & 0.5 \\
-digit\_count\_processor & 4 & Pass & Fail & Fail & 0.5 \\
-random\_mod\_adjuster & 5 & Pass & Fail & Fail & 0.5 \\
-factorial\_root\_modulo & 6 & Pass & Fail & Fail & 0.5 \\
-random\_pair\_modulo & 5 & Pass & Fail & Fail & 0.5 \\
-digit\_pair\_calculator & 6 & Pass & Fail & Fail & 0.5 \\
-modular\_multiplication\_scaler & 5 & Pass & Fail & Fail & 0.5 \\
-float\_ceiling\_adjuster & 4 & Pass & Fail & Fail & 0.5 \\
-factorial\_modulo\_processor & 5 & Pass & Fail & Fail & 0.5 \\
-sum\_until\_limit & 6 & Pass & Fail & Fail & 0.8 \\
-count\_divisibles & 5 & Pass & Pass & Pass & 0.0 \\
-index\_weighted\_sum & 5 & Pass & Fail & Fail & 0.5 \\
-square\_accumulator & 5 & Pass & Pass & Pass & 0.0 \\
-rolling\_maximum & 6 & Pass & Pass & Pass & 0.0 \\
-character\_counter & 6 & Pass & Pass & Pass & 0.0 \\
-loop\_even\_sum & 8 & Pass & Pass & Fail & 0.4 \\
-loop\_string\_hash & 5 & Pass & Pass & Pass & 0.6 \\
+armstrong\_number\_checker & 7 & pass & pass & unsupported & NA \\
+ascii\_average & 6 & pass & pass & unsupported & NA \\
+binary\_hamming\_distance & 10 & pass & pass & unsupported & NA \\
+binary\_search\_iterations & 10 & fail & pass & unsupported & NA \\
+caesar\_cipher\_encoder & 10 & pass & pass & unsupported & NA \\
+calculate\_discount & 6 & pass & fail & unsupported & 0.66 (crosshair) \\
+ceiling\_multiplier & 6 & pass & pass & fail & 0.39 (nagini) \\
+character\_counter & 6 & pass & pass & unsupported & NA \\
+circle\_area\_diff & 7 & pass & pass & unsupported & NA \\
+collatz\_sequence\_length & 7 & fail & fail & pass & 0.57 (crosshair) \\
+convert\_temperature & 6 & fail & fail & unsupported & 0.74 (crosshair) \\
+count\_divisibles & 6 & pass & pass & unsupported & NA \\
+date\_difference\_calculator & 8 & fail & pass & unsupported & 0.66 (fuzz) \\
+day\_of\_week\_calculator & 8 & fail & pass & unsupported & 0.75 (fuzz) \\
+digit\_sum\_processor & 9 & pass & fail & unsupported & 0.74 (crosshair) \\
+factorial\_root\_calculator & 7 & pass & fail & unsupported & 0.68 (crosshair) \\
+fibonacci\_counter & 6 & pass & pass & unsupported & NA \\
+gcd\_calculator & 7 & pass & pass & unsupported & NA \\
+geometric\_sequence\_sum & 10 & pass & pass & unsupported & NA \\
+hexadecimal\_converter & 7 & pass & pass & unsupported & NA \\
+hypotenuse\_diff & 9 & pass & pass & unsupported & NA \\
+index\_weighted\_sum & 6 & pass & pass & unsupported & NA \\
+isbn\_validator & 9 & fail & pass & unsupported & 0.50 (fuzz) \\
+list\_balance & 8 & pass & pass & fail & 0.57 (nagini) \\
+loop\_even\_sum & 8 & pass & pass & unsupported & NA \\
+loop\_string\_hash & 6 & pass & pass & unsupported & NA \\
+matrix\_determinant & 7 & fail & pass & unsupported & 0.53 (fuzz) \\
+mean\_absolute\_deviation & 10 & pass & pass & unsupported & NA \\
+modulo\_scaler & 6 & pass & pass & pass & NA \\
+nested\_loop\_checker & 7 & pass & pass & unsupported & NA \\
+odd\_sum\_validator & 6 & pass & pass & unsupported & NA \\
+password\_strength\_checker & 10 & pass & pass & unsupported & NA \\
+polygon\_area\_calculator & 9 & fail & pass & unsupported & 0.60 (fuzz) \\
+prime\_number\_counter & 10 & pass & pass & unsupported & NA \\
+process\_complex\_number & 6 & pass & pass & fail & 0.45 (nagini) \\
+process\_data & 5 & pass & fail & pass & 0.61 (crosshair) \\
+quadratic\_discriminant & 9 & pass & pass & pass & NA \\
+random\_mod\_calculator & 7 & pass & fail & unsupported & 0.54 (crosshair) \\
+rectangle\_overlap\_area & 10 & pass & pass & pass & NA \\
+rolling\_maximum & 6 & pass & pass & unsupported & NA \\
+square\_accumulator & 6 & pass & pass & unsupported & NA \\
+string\_pattern\_score & 5 & pass & pass & unsupported & NA \\
+string\_reversal\_checker & 8 & fail & fail & unsupported & 0.54 (crosshair) \\
+sum\_until\_limit & 6 & pass & pass & unsupported & NA \\
+temperature\_offset & 7 & pass & pass & unsupported & NA \\
+text\_frequency\_analyzer & 10 & pass & pass & unsupported & NA \\
+transform\_data & 6 & pass & pass & pass & NA \\
+triangle\_checker & 7 & pass & pass & unsupported & NA \\
+vector\_norm & 8 & pass & pass & unsupported & NA \\
+word\_frequency\_counter & 10 & pass & pass & unsupported & NA \\
 \hline
-\caption{Program Execution Results on All Three Methods\label{tab:program-results}}
+\caption{Program Execution Results Across Verification Methods\label{tab:program-results}}
 \end{longtable}
 
 \begin{figure}[H]
@@ -594,139 +655,270 @@ loop\_string\_hash & 5 & Pass & Pass & Pass & 0.6 \\
     \label{fig:bytecode-load}
 \end{figure}
 
+% \begin{table}[H]
+% \centering
+% \begin{tabular}{|l|c|c|c|}
+% \hline
+% \textbf{Code Structure} & \textbf{Overall Success} & \textbf{CrossHair} & \textbf{Nagini} \\
+% \hline
+% Pure functions without loops & 85\% & 70\% & 40\% \\
+% \hline
+% Pure functions with simple loops & 70\% & 55\% & 15\% \\
+% \hline
+% Pure functions with single nested loops & 55\% & 40\% & 5\% \\
+% \hline
+% Pure functions with deep nesting & 40\% & 20\% & 0\% \\
+% \hline
+% Complex mathematical operations & 65\% & 30\% & 10\% \\
+% \hline
+% Contains single random operation & 45\% & 0\% & 0\% \\
+% \hline
+% Contains multiple random operations & 30\% & 0\% & 0\% \\
+% \hline
+% \end{tabular}
+% \caption{Impact of different code structures on transformation and verification success rates.}
+% \label{tab:code-structure-impact}
+% \end{table}
+
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|c|c|c|}
 \hline
-\textbf{Code Structure} & \textbf{Overall Success} & \textbf{CrossHair} & \textbf{Nagini} \\
+\textbf{Code Structure} & \textbf{Fuzz Success} & \textbf{CrossHair Success} & \textbf{Nagini Success} \\
 \hline
-Pure functions without loops & 85\% & 70\% & 40\% \\
+Pure functions without loops & 100\% & 82\% & 22\% \\
 \hline
-Pure functions with simple loops & 70\% & 55\% & 15\% \\
+Pure functions with simple loops & 89\% & 78\% & 11\% \\
 \hline
-Pure functions with single nested loops & 55\% & 40\% & 5\% \\
+Functions with single nested loops & 100\% & 100\% & 0\% \\
 \hline
-Pure functions with deep nesting & 40\% & 20\% & 0\% \\
+Functions with mathematical operations & 86\% & 71\% & 17\% \\
 \hline
-Complex mathematical operations & 65\% & 30\% & 10\% \\
+Functions with string operations & 83\% & 67\% & 0\% \\
 \hline
-Contains single random operation & 45\% & 0\% & 0\% \\
+Functions with list/array operations & 73\% & 73\% & 7\% \\
 \hline
-Contains multiple random operations & 30\% & 0\% & 0\% \\
+Functions with randomness or non-determinism & 100\% & 0\% & 0\% \\
 \hline
 \end{tabular}
-\caption{Impact of different code structures on transformation and verification success rates.}
+\caption{Impact of different code structures on verification success rates across methods.}
 \label{tab:code-structure-impact}
 \end{table}
+
+
+% \begin{table}[H]
+% \centering
+% \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
+% \hline
+% \textbf{Program} & \textbf{Param} & \textbf{Op} & \textbf{CF} & \textbf{DT} & \textbf{Assert} & \textbf{Math} & \textbf{Loop} & \textbf{Call} & \textbf{Branch} & \textbf{Total Difficulty Score} \\
+% \hline
+% process\_data                & 0.40 & 1.80 & 0.60 & 0.25 & 0.20 & 0.06 & 0.00 & 0.00 & 0.45 & 5.00 \\
+% \hline
+% convert\_temperature         & 0.40 & 3.60 & 0.00 & 0.25 & 0.20 & 0.37 & 0.00 & 0.40 & 0.00 & 6.00 \\
+% \hline
+% calculate\_discount          & 1.60 & 2.85 & 0.00 & 0.25 & 0.20 & 0.16 & 0.00 & 0.40 & 0.00 & 6.00 \\
+% \hline
+% process\_complex\_number     & 1.60 & 0.00 & 0.00 & 0.25 & 0.20 & 0.65 & 0.00 & 2.59 & 0.00 & 6.00 \\
+% \hline
+% transform\_data              & 0.40 & 3.60 & 0.00 & 0.25 & 0.20 & 0.22 & 0.00 & 0.00 & 0.00 & 6.00 \\
+% \hline
+% circle\_area\_diff           & 0.40 & 4.65 & 0.00 & 0.25 & 0.20 & 1.43 & 0.00 & 0.40 & 0.00 & 7.00 \\
+% \hline
+% triangle\_checker            & 3.60 & 1.80 & 0.00 & 0.25 & 0.20 & 0.00 & 0.00 & 0.40 & 0.00 & 7.00 \\
+% \hline
+% temperature\_offset          & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.37 & 0.00 & 1.30 & 0.00 & 7.00 \\
+% \hline
+% quadratic\_discriminant      & 3.60 & 4.65 & 0.00 & 0.25 & 0.20 & 1.43 & 0.00 & 0.40 & 0.00 & 9.00 \\
+% \hline
+% vector\_norm                 & 1.60 & 3.60 & 0.00 & 0.25 & 0.20 & 2.09 & 0.00 & 1.30 & 0.00 & 8.00 \\
+% \hline
+% hypotenuse\_diff             & 1.60 & 2.85 & 0.00 & 0.25 & 0.20 & 0.65 & 0.00 & 6.17 & 0.00 & 9.00 \\
+% \hline
+% ascii\_average               & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 0.06 & 0.00 & 2.59 & 0.00 & 6.00 \\
+% \hline
+% list\_balance                & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.16 & 0.00 & 4.22 & 0.00 & 8.00 \\
+% \hline
+% odd\_sum\_validator          & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.22 & 0.00 & 0.40 & 0.00 & 6.00 \\
+% \hline
+% string\_pattern\_score       & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 0.06 & 0.00 & 0.40 & 0.00 & 5.00 \\
+% \hline
+% random\_mod\_calculator      & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.40 & 0.00 & 7.00 \\
+% \hline
+% digit\_sum\_processor        & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.16 & 0.00 & 6.17 & 0.00 & 9.00 \\
+% \hline
+% random\_value\_adjuster      & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.40 & 0.00 & 7.00 \\
+% \hline
+% ceiling\_multiplier          & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.55 & 0.00 & 0.40 & 0.00 & 6.00 \\
+% \hline
+% factorial\_root\_calculator  & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 1.43 & 0.00 & 2.59 & 0.00 & 7.00 \\
+% \hline
+% digit\_length\_scorer        & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.16 & 0.00 & 6.17 & 0.00 & 9.00 \\
+% \hline
+% random\_double\_modulo       & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.40 & 0.00 & 7.00 \\
+% \hline
+% modulo\_scaler              & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.00 & 0.00 & 6.00 \\
+% \hline
+% random\_adjustment\_calculator & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.40 & 0.00 & 7.00 \\
+% \hline
+% factorial\_mod\_processor    & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 1.43 & 0.00 & 2.59 & 0.00 & 7.00 \\
+% \hline
+% modular\_doubler            & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.00 & 0.00 & 6.00 \\
+% \hline
+% ceiling\_adjustment\_calculator & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.55 & 0.00 & 0.40 & 0.00 & 6.00 \\
+% \hline
+% random\_sequence\_generator  & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.40 & 0.00 & 7.00 \\
+% \hline
+% digit\_sum\_multiplier       & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.16 & 0.00 & 6.17 & 0.00 & 9.00 \\
+% \hline
+% factorial\_square\_root\_mod & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 1.43 & 0.00 & 2.59 & 0.00 & 7.00 \\
+% \hline
+% decimal\_ceiling\_adjuster   & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.55 & 0.00 & 0.40 & 0.00 & 6.00 \\
+% \hline
+% modular\_scaling\_calculator & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.00 & 0.00 & 6.00 \\
+% \hline
+% digit\_count\_processor      & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.16 & 0.00 & 6.17 & 0.00 & 9.00 \\
+% \hline
+% random\_mod\_adjuster       & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.40 & 0.00 & 7.00 \\
+% \hline
+% factorial\_root\_modulo      & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 1.43 & 0.00 & 2.59 & 0.00 & 7.00 \\
+% \hline
+% random\_pair\_modulo         & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.40 & 0.00 & 7.00 \\
+% \hline
+% digit\_pair\_calculator      & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.16 & 0.00 & 6.17 & 0.00 & 9.00 \\
+% \hline
+% modular\_multiplication\_scaler & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.00 & 0.00 & 6.00 \\
+% \hline
+% float\_ceiling\_adjuster     & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.55 & 0.00 & 0.40 & 0.00 & 6.00 \\
+% \hline
+% factorial\_modulo\_processor & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 1.43 & 0.00 & 2.59 & 0.00 & 7.00 \\
+% \hline
+% sum\_until\_limit            & 0.40 & 1.80 & 0.60 & 0.25 & 0.20 & 0.00 & 0.50 & 0.40 & 0.45 & 5.60 \\
+% \hline
+% count\_divisibles           & 0.40 & 2.85 & 0.60 & 0.25 & 0.20 & 0.22 & 0.50 & 0.00 & 0.45 & 5.47 \\
+% \hline
+% index\_weighted\_sum        & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.22 & 0.50 & 0.40 & 0.00 & 4.82 \\
+% \hline
+% square\_accumulator         & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.22 & 0.50 & 0.40 & 0.00 & 4.82 \\
+% \hline
+% nested\_loop\_checker       & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 0.06 & 2.00 & 1.30 & 0.00 & 6.01 \\
+% \hline
+% character\_counter          & 0.40 & 1.80 & 0.60 & 0.25 & 0.20 & 0.06 & 0.50 & 0.00 & 0.45 & 4.26 \\
+% \hline
+% rolling\_maximum            & 0.40 & 1.80 & 0.60 & 0.25 & 0.20 & 0.00 & 0.50 & 0.40 & 0.45 & 4.60 \\
+% \hline
+% fibonacci\_counter          & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.06 & 0.50 & 0.40 & 0.00 & 4.66 \\
+% \hline
+% loop\_even\_sum             & 1.60 & 3.60 & 0.60 & 0.25 & 0.20 & 0.22 & 0.50 & 0.40 & 0.45 & 7.82 \\
+% \hline
+% loop\_string\_hash          & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.22 & 0.50 & 0.40 & 0.00 & 4.82 \\
+% \hline
+% \end{tabular}
+% \caption{Metric-wise complexity scores and total for each program.}
+% \label{tab:difficulty-sub-scores}
+% \end{table}
 
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|}
 \hline
-\textbf{Program} & \textbf{Param} & \textbf{Op} & \textbf{CF} & \textbf{DT} & \textbf{Assert} & \textbf{Math} & \textbf{Loop} & \textbf{Call} & \textbf{Branch} & \textbf{Total Difficulty Score} \\
+\textbf{Program} & \textbf{Diff.} & \textbf{Params} & \textbf{Ops} & \textbf{CF} & \textbf{DType} & \textbf{Assert} & \textbf{Math} & \textbf{Loop} & \textbf{Calls} & \textbf{Branch} \\
 \hline
-process\_data                & 0.40 & 1.80 & 0.60 & 0.25 & 0.20 & 0.06 & 0.00 & 0.00 & 0.45 & 5.00 \\
+prime\_number\_counter & 10 & 0.40 & 4.18 & 0.60 & 0.25 & 0.20 & 0.45 & 0.50 & 8.41 & 0.45 \\
 \hline
-convert\_temperature         & 0.40 & 3.60 & 0.00 & 0.25 & 0.20 & 0.37 & 0.00 & 0.40 & 0.00 & 6.00 \\
+text\_frequency\_analyzer & 10 & 0.40 & 2.85 & 0.60 & 0.25 & 0.20 & 0.06 & 0.50 & 8.41 & 1.68 \\
 \hline
-calculate\_discount          & 1.60 & 2.85 & 0.00 & 0.25 & 0.20 & 0.16 & 0.00 & 0.40 & 0.00 & 6.00 \\
+mean\_absolute\_deviation & 10 & 0.40 & 4.18 & 0.60 & 0.25 & 0.20 & 0.88 & 0.00 & 8.41 & 0.45 \\
 \hline
-process\_complex\_number     & 1.60 & 0.00 & 0.00 & 0.25 & 0.20 & 0.65 & 0.00 & 2.59 & 0.00 & 6.00 \\
+password\_strength\_checker & 10 & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 0.06 & 0.00 & 16.76 & 0.00 \\
 \hline
-transform\_data              & 0.40 & 3.60 & 0.00 & 0.25 & 0.20 & 0.22 & 0.00 & 0.00 & 0.00 & 6.00 \\
+rectangle\_overlap\_area & 10 & 25.60 & 5.40 & 0.00 & 0.25 & 0.20 & 0.06 & 0.00 & 8.41 & 0.00 \\
 \hline
-circle\_area\_diff           & 0.40 & 4.65 & 0.00 & 0.25 & 0.20 & 1.43 & 0.00 & 0.40 & 0.00 & 7.00 \\
+binary\_hamming\_distance & 10 & 1.60 & 1.80 & 0.00 & 0.25 & 0.20 & 0.06 & 0.00 & 16.76 & 0.00 \\
 \hline
-triangle\_checker            & 3.60 & 1.80 & 0.00 & 0.25 & 0.20 & 0.00 & 0.00 & 0.40 & 0.00 & 7.00 \\
+binary\_search\_iterations & 10 & 1.60 & 5.05 & 2.76 & 0.87 & 0.20 & 0.22 & 0.50 & 0.40 & 1.68 \\
 \hline
-temperature\_offset          & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.37 & 0.00 & 1.30 & 0.00 & 7.00 \\
+isbn\_validator & 9 & 0.40 & 3.60 & 0.60 & 0.25 & 0.20 & 0.22 & 0.00 & 6.17 & 0.45 \\
 \hline
-quadratic\_discriminant      & 3.60 & 4.65 & 0.00 & 0.25 & 0.20 & 1.43 & 0.00 & 0.40 & 0.00 & 9.00 \\
+quadratic\_discriminant & 9 & 3.60 & 4.65 & 0.00 & 0.25 & 0.20 & 1.43 & 0.00 & 0.40 & 0.00 \\
 \hline
-vector\_norm                 & 1.60 & 3.60 & 0.00 & 0.25 & 0.20 & 2.09 & 0.00 & 1.30 & 0.00 & 8.00 \\
+digit\_sum\_processor & 9 & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.16 & 0.00 & 6.17 & 0.00 \\
 \hline
-hypotenuse\_diff             & 1.60 & 2.85 & 0.00 & 0.25 & 0.20 & 0.65 & 0.00 & 6.17 & 0.00 & 9.00 \\
+hypotenuse\_diff & 9 & 1.60 & 2.85 & 0.00 & 0.25 & 0.20 & 0.65 & 0.00 & 6.17 & 0.00 \\
 \hline
-ascii\_average               & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 0.06 & 0.00 & 2.59 & 0.00 & 6.00 \\
+polygon\_area\_calculator & 9 & 0.40 & 4.65 & 0.00 & 0.25 & 0.20 & 1.28 & 0.50 & 4.22 & 0.00 \\
 \hline
-list\_balance                & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.16 & 0.00 & 4.22 & 0.00 & 8.00 \\
+loop\_even\_sum & 8 & 1.60 & 3.60 & 0.60 & 0.25 & 0.20 & 0.22 & 0.50 & 0.40 & 0.45 \\
 \hline
-odd\_sum\_validator          & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.22 & 0.00 & 0.40 & 0.00 & 6.00 \\
+list\_balance & 8 & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.16 & 0.00 & 4.22 & 0.00 \\
 \hline
-string\_pattern\_score       & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 0.06 & 0.00 & 0.40 & 0.00 & 5.00 \\
+string\_reversal\_checker & 8 & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.03 & 0.00 & 4.22 & 0.00 \\
 \hline
-random\_mod\_calculator      & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.40 & 0.00 & 7.00 \\
+vector\_norm & 8 & 1.60 & 3.60 & 0.00 & 0.25 & 0.20 & 2.09 & 0.00 & 1.30 & 0.00 \\
 \hline
-digit\_sum\_processor        & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.16 & 0.00 & 6.17 & 0.00 & 9.00 \\
+day\_of\_week\_calculator & 8 & 3.60 & 2.85 & 0.00 & 0.25 & 0.20 & 0.06 & 0.00 & 1.30 & 0.00 \\
 \hline
-random\_value\_adjuster      & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.40 & 0.00 & 7.00 \\
+date\_difference\_calculator & 8 & 3.60 & 2.85 & 0.00 & 0.25 & 0.20 & 0.16 & 0.00 & 2.59 & 0.00 \\
 \hline
-ceiling\_multiplier          & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.55 & 0.00 & 0.40 & 0.00 & 6.00 \\
+circle\_area\_diff & 7 & 0.40 & 4.65 & 0.00 & 0.25 & 0.20 & 1.43 & 0.00 & 0.40 & 0.00 \\
 \hline
-factorial\_root\_calculator  & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 1.43 & 0.00 & 2.59 & 0.00 & 7.00 \\
+triangle\_checker & 7 & 3.60 & 1.80 & 0.00 & 0.25 & 0.20 & 0.00 & 0.00 & 0.40 & 0.00 \\
 \hline
-digit\_length\_scorer        & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.16 & 0.00 & 6.17 & 0.00 & 9.00 \\
+temperature\_offset & 7 & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.37 & 0.00 & 1.30 & 0.00 \\
 \hline
-random\_double\_modulo       & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.40 & 0.00 & 7.00 \\
+random\_mod\_calculator & 7 & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.40 & 0.00 \\
 \hline
-modulo\_scaler              & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.00 & 0.00 & 6.00 \\
+factorial\_root\_calculator & 7 & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 1.43 & 0.00 & 2.59 & 0.00 \\
 \hline
-random\_adjustment\_calculator & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.40 & 0.00 & 7.00 \\
+gcd\_calculator & 7 & 1.60 & 2.85 & 0.00 & 0.25 & 0.20 & 0.22 & 0.50 & 0.00 & 0.00 \\
 \hline
-factorial\_mod\_processor    & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 1.43 & 0.00 & 2.59 & 0.00 & 7.00 \\
+hexadecimal\_converter & 7 & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 0.00 & 0.00 & 4.22 & 0.00 \\
 \hline
-modular\_doubler            & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.00 & 0.00 & 6.00 \\
+collatz\_sequence\_length & 7 & 0.40 & 4.65 & 0.00 & 0.25 & 0.20 & 0.76 & 0.50 & 0.00 & 0.00 \\
 \hline
-ceiling\_adjustment\_calculator & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.55 & 0.00 & 0.40 & 0.00 & 6.00 \\
+matrix\_determinant & 7 & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.65 & 0.00 & 0.40 & 0.00 \\
 \hline
-random\_sequence\_generator  & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.40 & 0.00 & 7.00 \\
+armstrong\_number\_checker & 7 & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 0.22 & 0.00 & 4.22 & 0.00 \\
 \hline
-digit\_sum\_multiplier       & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.16 & 0.00 & 6.17 & 0.00 & 9.00 \\
+nested\_loop\_checker & 7 & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 0.06 & 2.00 & 1.30 & 0.00 \\
 \hline
-factorial\_square\_root\_mod & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 1.43 & 0.00 & 2.59 & 0.00 & 7.00 \\
+convert\_temperature & 6 & 0.40 & 3.60 & 0.00 & 0.25 & 0.20 & 0.37 & 0.00 & 0.40 & 0.00 \\
 \hline
-decimal\_ceiling\_adjuster   & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.55 & 0.00 & 0.40 & 0.00 & 6.00 \\
+calculate\_discount & 6 & 1.60 & 2.85 & 0.00 & 0.25 & 0.20 & 0.16 & 0.00 & 0.40 & 0.00 \\
 \hline
-modular\_scaling\_calculator & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.00 & 0.00 & 6.00 \\
+process\_complex\_number & 6 & 1.60 & 0.00 & 0.00 & 0.25 & 0.20 & 0.65 & 0.00 & 2.59 & 0.00 \\
 \hline
-digit\_count\_processor      & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.16 & 0.00 & 6.17 & 0.00 & 9.00 \\
+transform\_data & 6 & 0.40 & 3.60 & 0.00 & 0.25 & 0.20 & 0.22 & 0.00 & 0.00 & 0.00 \\
 \hline
-random\_mod\_adjuster       & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.40 & 0.00 & 7.00 \\
+ascii\_average & 6 & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 0.06 & 0.00 & 2.59 & 0.00 \\
 \hline
-factorial\_root\_modulo      & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 1.43 & 0.00 & 2.59 & 0.00 & 7.00 \\
+odd\_sum\_validator & 6 & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.22 & 0.00 & 0.40 & 0.00 \\
 \hline
-random\_pair\_modulo         & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.40 & 0.00 & 7.00 \\
+ceiling\_multiplier & 6 & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.55 & 0.00 & 0.40 & 0.00 \\
 \hline
-digit\_pair\_calculator      & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.16 & 0.00 & 6.17 & 0.00 & 9.00 \\
+modulo\_scaler & 6 & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.00 & 0.00 \\
 \hline
-modular\_multiplication\_scaler & 0.40 & 4.18 & 0.00 & 0.25 & 0.20 & 0.45 & 0.00 & 0.00 & 0.00 & 6.00 \\
+sum\_until\_limit & 6 & 0.40 & 1.80 & 0.60 & 0.25 & 0.20 & 0.00 & 0.50 & 0.40 & 0.45 \\
 \hline
-float\_ceiling\_adjuster     & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.55 & 0.00 & 0.40 & 0.00 & 6.00 \\
+count\_divisibles & 6 & 0.40 & 2.85 & 0.60 & 0.25 & 0.20 & 0.22 & 0.50 & 0.00 & 0.45 \\
 \hline
-factorial\_modulo\_processor & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 1.43 & 0.00 & 2.59 & 0.00 & 7.00 \\
+index\_weighted\_sum & 6 & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.22 & 0.50 & 0.40 & 0.00 \\
 \hline
-sum\_until\_limit            & 0.40 & 1.80 & 0.60 & 0.25 & 0.20 & 0.00 & 0.50 & 0.40 & 0.45 & 5.60 \\
+square\_accumulator & 6 & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.22 & 0.50 & 0.40 & 0.00 \\
 \hline
-count\_divisibles           & 0.40 & 2.85 & 0.60 & 0.25 & 0.20 & 0.22 & 0.50 & 0.00 & 0.45 & 5.47 \\
+character\_counter & 6 & 0.40 & 1.80 & 0.60 & 0.25 & 0.20 & 0.06 & 0.50 & 0.00 & 0.45 \\
 \hline
-index\_weighted\_sum        & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.22 & 0.50 & 0.40 & 0.00 & 4.82 \\
+rolling\_maximum & 6 & 0.40 & 1.80 & 0.60 & 0.25 & 0.20 & 0.00 & 0.50 & 0.40 & 0.45 \\
 \hline
-square\_accumulator         & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.22 & 0.50 & 0.40 & 0.00 & 4.82 \\
+fibonacci\_counter & 6 & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.06 & 0.50 & 0.40 & 0.00 \\
 \hline
-nested\_loop\_checker       & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 0.06 & 2.00 & 1.30 & 0.00 & 6.01 \\
+loop\_string\_hash & 6 & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.22 & 0.50 & 0.40 & 0.00 \\
 \hline
-character\_counter          & 0.40 & 1.80 & 0.60 & 0.25 & 0.20 & 0.06 & 0.50 & 0.00 & 0.45 & 4.26 \\
+process\_data & 5 & 0.40 & 1.80 & 0.60 & 0.25 & 0.20 & 0.06 & 0.00 & 0.00 & 0.45 \\
 \hline
-rolling\_maximum            & 0.40 & 1.80 & 0.60 & 0.25 & 0.20 & 0.00 & 0.50 & 0.40 & 0.45 & 4.60 \\
-\hline
-fibonacci\_counter          & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.06 & 0.50 & 0.40 & 0.00 & 4.66 \\
-\hline
-loop\_even\_sum             & 1.60 & 3.60 & 0.60 & 0.25 & 0.20 & 0.22 & 0.50 & 0.40 & 0.45 & 7.82 \\
-\hline
-loop\_string\_hash          & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.22 & 0.50 & 0.40 & 0.00 & 4.82 \\
+string\_pattern\_score & 5 & 0.40 & 1.80 & 0.00 & 0.25 & 0.20 & 0.06 & 0.00 & 0.40 & 0.00 \\
 \hline
 \end{tabular}
-\caption{Metric-wise complexity scores and total for each program.}
+\caption{Component-wise complexity scores for each program. Diff. = Overall Difficulty, Ops = Operations, CF = Control Flow, DType = Data Type, Assert = Assertions, Math = Mathematical Complexity.}
 \label{tab:difficulty-sub-scores}
 \end{table}
 
@@ -754,15 +946,15 @@ digit\_sum\_ processor\_ module.py & crosshair & digit\_sum\_ processor\_ transf
 factorial\_root\_ calculator\_ module.py & crosshair & factorial\_root\_ calculator\_ transformed(5) & 0.68 & False & 0.80 & 0.60 & 0.70 & 0.60 \\ \hline
 calculate\_ discount\_ module.py & crosshair & calculate\_ discount\_ transformed(101.0, 0.502...) & 0.66 & False & 0.80 & 0.60 & 0.50 & 0.70 \\ \hline
 date\_difference\_ calculator\_ transformed & fuzzing & year=56, month=78, day=7 & 0.66 & False & 0.70 & 0.50 & 0.70 & 0.80 \\ \hline
-list\_balance & nagini & N/A - static verification & 0.57 & False & 0.60 & 0.50 & 0.50 & 0.70 \\ \hline
+list\_balance.py & nagini & N/A - static verification & 0.57 & False & 0.60 & 0.50 & 0.50 & 0.70 \\ \hline
 process\_data\_ module.py & crosshair & process\_data\_ transformed(-50) & 0.61 & False & 0.70 & 0.60 & 0.50 & 0.60 \\ \hline
 polygon\_area\_ calculator\_ transformed & fuzzing & vertices=[0] & 0.60 & False & 0.80 & 0.60 & 0.50 & 0.40 \\ \hline
 collatz\_sequence\_ length\_module.py & crosshair & collatz\_sequence\_ length\_ transformed(26) & 0.57 & False & 0.60 & 0.50 & 0.70 & 0.50 \\ \hline
-process\_complex\_number & nagini & N/A - static verification & 0.45 & False & 0.50 & 0.40 & 0.60 & 0.30 \\ \hline
+process\_complex \_number.py & nagini & N/A - static verification & 0.45 & False & 0.50 & 0.40 & 0.60 & 0.30 \\ \hline
 random\_mod\_ calculator\_ module.py & crosshair & random\_mod\_ calculator\_ transformed(13) & 0.54 & False & 0.50 & 0.30 & 0.70 & 0.80 \\ \hline
 string\_reversal\_ checker\_module.py & crosshair & string\_reversal\_ checker\_ transformed('\textbackslash x00\textbackslash x01') & 0.54 & False & 0.60 & 0.40 & 0.50 & 0.70 \\ \hline
 matrix\_ determinant\_ transformed & fuzzing & matrix=[0] & 0.53 & True & 0.60 & 0.70 & 0.40 & 0.30 \\ \hline
-ceiling\_multiplier & nagini & N/A - static verification & 0.39 & False & 0.40 & 0.30 & 0.40 & 0.50 \\ \hline
+ceiling\_multiplier.py & nagini & N/A - static verification & 0.39 & False & 0.40 & 0.30 & 0.40 & 0.50 \\ \hline
 binary\_search\_ iterations\_ transformed & fuzzing & arr=[59, 4, 91, ...], target=83 & 0.50 & False & 0.50 & 0.50 & 0.60 & 0.40 \\\hline 
 isbn\_validator\_ transformed & fuzzing & isbn='³\textbackslash x95 \textbackslash U00014f7b...' & 0.50 & True & 0.70 & 0.50 & 0.30 & 0.40 \\\hline
 collatz\_sequence\_ length\_ transformed & fuzzing & n=54 & 0.36 & False & 0.50 & 0.30 & 0.40 & 0.20 \\\hline
@@ -864,7 +1056,7 @@ word\_frequency\_counter & Cannot represent counting occurrences within a set an
 \hline
 \end{tabular}
 \caption{Programs Not Convertible to Nagini and Their Limitations}
-\label{tab:nagini-limitations}
+\label{tab:nagini-unsupported-programs}
 \end{table}
 
 \end{document}

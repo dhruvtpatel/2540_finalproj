@@ -33,7 +33,7 @@ OUTPUT_FILE = os.path.join(RESULTS_DIR, "all_results.json")
 def normalize_program_name(name):
     """Normalize program names to handle variations in different result files."""
     # Remove any suffixes like "_transformed" or ".py" or "_module"
-    name = re.sub(r'(_transformed|\.py|_module)$', '', name)
+    name = re.sub(r'(_transformed|\.py|_module\.py|_module)$', '', name)
     return name
 
 def load_json_file(file_path):
@@ -63,7 +63,8 @@ def get_fuzz_result(fuzz_data, program_name):
 def get_crosshair_result(crosshair_data, program_name):
     """Extract CrossHair verification result for a program."""
     for entry in crosshair_data:
-        if normalize_program_name(entry.get("program", "")) == program_name:
+        entry_program = entry.get("program", "")
+        if normalize_program_name(entry_program) == program_name:
             # CrossHair passes if assertion_equivalence_result is "true"
             return "pass" if entry.get("assertion_equivalence_result") == "true" else "fail"
     return "unsupported"

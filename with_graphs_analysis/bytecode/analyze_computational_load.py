@@ -1,14 +1,23 @@
 import ast
-import astor
 import dis
 import inspect
 import textwrap
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-import re
-from typing import Dict, List, Tuple, Optional
+import sys
+
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+sys.path.insert(0, PROJECT_ROOT)
+
+# Ensure graphs directory exists
+def ensure_graphs_dir():
+    """Create graphs directory if it doesn't exist."""
+    graphs_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "graphs")
+    os.makedirs(graphs_dir, exist_ok=True)
+    return graphs_dir
 
 
 def analyze_file(file_path):
@@ -18,108 +27,99 @@ def analyze_file(file_path):
 
     functions_data = {}
     current_function = None
-    early_line_idx = None
-    final_assert_idx = None
-    function_body = []
-    in_function = False
-    starting_line = 0
+    # Stores lines with original indent for the current func's body, after the 'def' line
+    function_body_for_current_func = [] 
+    early_line_idx_in_body = None
+    final_assert_idx_in_body = None
+    in_function_scope = False # True if we are inside a def's scope (after the 'def' line)
 
     # Parse the file line by line
-    for i, line in enumerate(lines):
-        line = line.strip()
+    for i, file_line_with_nl in enumerate(lines):
+        line_content_orig_indent = file_line_with_nl.rstrip('\\n')
+        line_content_stripped = line_content_orig_indent.strip()
 
         # Check for function definition
-        if line.startswith("def ") and "(" in line:
+        if line_content_stripped.startswith("def ") and "(" in line_content_stripped:
             # Process previous function if there was one
             if (
                 current_function
-                and early_line_idx is not None
-                and final_assert_idx is not None
+                and early_line_idx_in_body is not None
+                and final_assert_idx_in_body is not None
             ):
-                # Extract code between early comment and final assertion
-                between_code = function_body[early_line_idx + 1 : final_assert_idx]
+                start_slice = early_line_idx_in_body + 1
+                end_slice = final_assert_idx_in_body
+                # Ensure slice indices are valid
+                if 0 <= start_slice <= end_slice <= len(function_body_for_current_func):
+                    between_code_with_indent = function_body_for_current_func[start_slice : end_slice]
+                else:
+                    between_code_with_indent = []
+                    print(f"Warning: Indexing issue for {current_function} during processing. EBI: {early_line_idx_in_body}, FAI: {final_assert_idx_in_body}, Len: {len(function_body_for_current_func)}")
+
 
                 functions_data[current_function] = {
-                    "early_comment": early_line_idx,
-                    "final_assert": final_assert_idx,
-                    "between_code": between_code,
-                    "loc": len(between_code),
+                    "name": current_function, # Added function name
+                    "early_comment": early_line_idx_in_body,
+                    "final_assert": final_assert_idx_in_body,
+                    "between_code": between_code_with_indent, # Has original indent
+                    "loc": len(between_code_with_indent),
                     "instruction_count": 0,
                 }
-
                 # Count bytecode instructions
                 count_bytecode_instructions(
-                    functions_data[current_function], between_code
+                    functions_data[current_function], between_code_with_indent
                 )
 
             # Start new function
-            func_name = line[4 : line.index("(")].strip()
+            func_name = line_content_stripped[4 : line_content_stripped.index("(")].strip()
             current_function = func_name
-            function_body = []
-            early_line_idx = None
-            final_assert_idx = None
-            in_function = True
-            starting_line = i
+            function_body_for_current_func = [] # Reset for new function's body lines
+            early_line_idx_in_body = None
+            final_assert_idx_in_body = None
+            in_function_scope = True # We are now processing lines for this function's body
 
-        # If we're in a function, collect the lines
-        elif in_function:
-            rel_line = i - starting_line
-            function_body.append(line)
+        elif in_function_scope: # If we're inside a function's scope (i.e., after its 'def' line)
+            # Add the line (with its original indentation) to the current function's body list
+            function_body_for_current_func.append(line_content_orig_indent)
+            
+            # Relative line index within function_body_for_current_func
+            rel_line_idx = len(function_body_for_current_func) - 1
 
-            # Check for early assert comment
-            if "#Early Assert HERE" in line:
-                early_line_idx = rel_line
+            # Check for early assert comment (in the line with original indent)
+            if "# Early Assert HERE" in line_content_orig_indent:
+                early_line_idx_in_body = rel_line_idx
 
-            # Check for final assertion
-            if line.strip().startswith("assert "):
-                final_assert_idx = rel_line
+            # Check for final assertion (check stripped line for assert keyword)
+            if line_content_stripped.startswith("assert "):
+                final_assert_idx_in_body = rel_line_idx
+            
+            # Note: End of function is primarily detected by the start of a new 'def' 
+            # or EOF (handled by post-loop processing).
 
-            # Check if function ended (empty line after indentation ends)
-            if line == "" and len(function_body) > 0 and function_body[-1] == "":
-                in_function = False
-
-                # Process this function
-                if (
-                    current_function
-                    and early_line_idx is not None
-                    and final_assert_idx is not None
-                ):
-                    # Extract code between early comment and final assertion
-                    between_code = function_body[early_line_idx + 1 : final_assert_idx]
-
-                    functions_data[current_function] = {
-                        "early_comment": early_line_idx,
-                        "final_assert": final_assert_idx,
-                        "between_code": between_code,
-                        "loc": len(between_code),
-                        "instruction_count": 0,
-                    }
-
-                    # Count bytecode instructions
-                    count_bytecode_instructions(
-                        functions_data[current_function], between_code
-                    )
-
-    # Process the last function if needed
+    # Process the last function if needed (after loop finishes)
     if (
         current_function
-        and early_line_idx is not None
-        and final_assert_idx is not None
-        and in_function
+        and early_line_idx_in_body is not None
+        and final_assert_idx_in_body is not None
     ):
-        # Extract code between early comment and final assertion
-        between_code = function_body[early_line_idx + 1 : final_assert_idx]
+        start_slice = early_line_idx_in_body + 1
+        end_slice = final_assert_idx_in_body
+        if 0 <= start_slice <= end_slice <= len(function_body_for_current_func):
+            between_code_with_indent = function_body_for_current_func[start_slice : end_slice]
+        else:
+            between_code_with_indent = []
+            print(f"Warning: Indexing issue for {current_function} (post-loop). EBI: {early_line_idx_in_body}, FAI: {final_assert_idx_in_body}, Len: {len(function_body_for_current_func)}")
+
 
         functions_data[current_function] = {
-            "early_comment": early_line_idx,
-            "final_assert": final_assert_idx,
-            "between_code": between_code,
-            "loc": len(between_code),
+            "name": current_function, # Added function name
+            "early_comment": early_line_idx_in_body,
+            "final_assert": final_assert_idx_in_body,
+            "between_code": between_code_with_indent, # Has original indent
+            "loc": len(between_code_with_indent),
             "instruction_count": 0,
         }
-
         # Count bytecode instructions
-        count_bytecode_instructions(functions_data[current_function], between_code)
+        count_bytecode_instructions(functions_data[current_function], between_code_with_indent)
 
     return functions_data
 
@@ -145,6 +145,10 @@ def create_comparative_visualizations(data):
 
 def create_bar_chart(df):
     """Create a bar chart of bytecode instruction counts."""
+    if plt is None:
+        print("Cannot create bar chart: matplotlib not installed")
+        return
+        
     plt.figure(figsize=(12, 8))
 
     # Limit to top 25 functions for readability
@@ -161,12 +165,19 @@ def create_bar_chart(df):
         "Computational Overhead Between Early and Final Assertions (Bytecode Instructions)"
     )
     plt.tight_layout()
-    plt.savefig("bytecode_instructions.png", dpi=300)
+    
+    # Save to graphs directory
+    graphs_dir = ensure_graphs_dir()
+    plt.savefig(os.path.join(graphs_dir, "bytecode_instructions.png"), dpi=300)
     plt.close()
 
 
 def create_scatter_plot(df):
     """Create a scatter plot comparing instruction count to lines of code."""
+    if plt is None or np is None:
+        print("Cannot create scatter plot: required libraries not installed")
+        return
+        
     plt.figure(figsize=(12, 8))
 
     # Create scatter plot
@@ -204,12 +215,19 @@ def create_scatter_plot(df):
     plt.title("Relationship Between Code Size and Computational Overhead")
     plt.grid(True, linestyle="--", alpha=0.7)
     plt.tight_layout()
-    plt.savefig("loc_vs_instructions.png", dpi=300)
+    
+    # Save to graphs directory
+    graphs_dir = ensure_graphs_dir()
+    plt.savefig(os.path.join(graphs_dir, "loc_vs_instructions.png"), dpi=300)
     plt.close()
 
 
 def create_bytecode_density_plot(df):
     """Create a density plot showing bytecode instructions per line of code."""
+    if plt is None:
+        print("Cannot create density plot: matplotlib not installed")
+        return
+        
     # Calculate density (instructions per line)
     df["instruction_density"] = df["instruction_count"] / df["loc"].apply(
         lambda x: max(x, 1)
@@ -246,12 +264,19 @@ def create_bytecode_density_plot(df):
     plt.title("Computational Density Between Assertions")
     plt.grid(True, axis="y", linestyle="--", alpha=0.7)
     plt.tight_layout()
-    plt.savefig("bytecode_density.png", dpi=300)
+    
+    # Save to graphs directory
+    graphs_dir = ensure_graphs_dir()
+    plt.savefig(os.path.join(graphs_dir, "bytecode_density.png"), dpi=300)
     plt.close()
 
 
 def function_categories(df):
     """Categorize functions based on their characteristics for further analysis."""
+    if plt is None:
+        print("Cannot create categories visualization: matplotlib not installed")
+        return {}
+        
     categories = {
         "arithmetic": [],
         "string_processing": [],
@@ -348,7 +373,10 @@ def function_categories(df):
 
     fig.tight_layout()
     plt.title("Function Categories and Their Computational Overhead")
-    plt.savefig("function_categories.png", dpi=300)
+    
+    # Save to graphs directory
+    graphs_dir = ensure_graphs_dir()
+    plt.savefig(os.path.join(graphs_dir, "function_categories.png"), dpi=300)
     plt.close()
 
     return categories
@@ -403,26 +431,40 @@ def generate_latex_table(df):
     latex_table += "\\end{table}"
 
     # Save to file
-    with open("computational_overhead_table.tex", "w") as f:
+    graphs_dir = ensure_graphs_dir()
+    with open(os.path.join(graphs_dir, "computational_overhead_table.tex"), "w") as f:
         f.write(latex_table)
 
     return latex_table
 
 
-def count_bytecode_instructions(function_data, code_lines):
+def count_bytecode_instructions(function_data, code_lines_with_orig_indent):
     """Count bytecode instructions for code between assertions."""
-    if not code_lines:
+    if not code_lines_with_orig_indent:
         function_data["instruction_count"] = 0
         return
 
-    # Create a function containing just the code between assertions
-    code_str = "\n".join(code_lines)
+    # Join lines, which already have their correct relative indentation.
+    code_str_orig_indent = "\n".join(code_lines_with_orig_indent)
+    
+    # Dedent the block to make it suitable for insertion into the temp function.
+    # This removes common leading whitespace.
+    dedented_code_block = textwrap.dedent(code_str_orig_indent)
 
-    # Indent the code properly
-    code_str = textwrap.indent(code_str, "    ")
-
-    # Create a function with this code
-    func_str = f"def _temp_function():\n{code_str}\n    pass"
+    # Now, indent this dedented block for the temp function body.
+    # If the dedented block is empty or just whitespace, use 'pass'.
+    if not dedented_code_block.strip():
+        func_body_for_exec = "    pass"
+    else:
+        func_body_for_exec = textwrap.indent(dedented_code_block, "    ")
+        # Fallback if indent results in effectively empty string (e.g. if dedented_code_block was only newlines)
+        if not func_body_for_exec.strip():
+            func_body_for_exec = "    pass"
+    
+    func_name_for_error = function_data.get("name", "Unknown")
+    # The final 'pass' ensures the function is valid even if func_body_for_exec 
+    # represents an incomplete snippet (e.g. an if without an else).
+    func_str = f"def _temp_function():\n{func_body_for_exec}\n    pass"
 
     try:
         # Compile and load the function
@@ -442,14 +484,16 @@ def count_bytecode_instructions(function_data, code_lines):
     except Exception as e:
         # Fallback: estimate based on how many lines we have, with a multiplier
         print(
-            f"Warning: Couldn't analyze bytecode for function, falling back to line count * 3: {str(e)}"
+            f"Warning: Couldn't analyze bytecode for function '{func_name_for_error}', falling back to LOC*3. "
+            f"Error: {str(e)}. Snippet (dedented): '''{dedented_code_block[:100].strip()}...'''"
         )
-        function_data["instruction_count"] = len(code_lines) * 3  # Rough estimate
+        function_data["instruction_count"] = len(code_lines_with_orig_indent) * 3  # Rough estimate
+    return # Explicit return to be clear
 
 
 def main():
-    # Analyze the file
-    file_path = "../code/functions/functions.py"
+    file_path = os.path.join(PROJECT_ROOT, "code_files", "a_original_programs", "functions.py")
+        
     functions_data = analyze_file(file_path)
 
     # Create visualizations
@@ -469,7 +513,7 @@ def main():
     print(
         f"Analysis complete. Found {len(df)} functions with both early comment and final assertion."
     )
-    print("Visualizations and LaTeX table have been generated.")
+    print("Visualizations and LaTeX table have been generated in the 'graphs' directory.")
 
     # Display summary statistics
     print("\nSummary Statistics:")

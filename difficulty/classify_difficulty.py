@@ -1,8 +1,15 @@
 import ast
 import math
 import inspect
-from typing import Dict, List, Tuple
-from dataclasses import dataclass
+import json
+import os
+from typing import Dict, List, Tuple, Any, Callable, Union, cast
+from dataclasses import dataclass, asdict
+import sys
+
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, PROJECT_ROOT)
+
 from code_files.a_original_programs.functions import *
 
 @dataclass
@@ -140,6 +147,14 @@ def rate_program_difficulty(
     return score, breakdown, visitor.metrics
 
 
+def metrics_to_dict(metrics: ComplexityMetrics) -> Dict[str, Any]:
+    """Convert metrics to a serializable dictionary."""
+    result = asdict(metrics)
+    # Convert data_types to a comma-separated string for cleaner JSON
+    result["data_types"] = ", ".join(metrics.data_types) if metrics.data_types else ""
+    return result
+
+
 # Test the difficulty rater on our programs
 programs = {
     "process_data": process_data,
@@ -159,29 +174,29 @@ programs = {
     "string_pattern_score": string_pattern_score,
     "random_mod_calculator": random_mod_calculator,
     "digit_sum_processor": digit_sum_processor,
-    "random_value_adjuster": random_value_adjuster,
+    "string_reversal_checker": string_reversal_checker,
     "ceiling_multiplier": ceiling_multiplier,
     "factorial_root_calculator": factorial_root_calculator,
-    "digit_length_scorer": digit_length_scorer,
-    "random_double_modulo": random_double_modulo,
+    "prime_number_counter": prime_number_counter,
+    "date_difference_calculator": date_difference_calculator,
     "modulo_scaler": modulo_scaler,
-    "random_adjustment_calculator": random_adjustment_calculator,
-    "factorial_mod_processor": factorial_mod_processor,
-    "modular_doubler": modular_doubler,
-    "ceiling_adjustment_calculator": ceiling_adjustment_calculator,
-    "random_sequence_generator": random_sequence_generator,
-    "digit_sum_multiplier": digit_sum_multiplier,
-    "factorial_square_root_mod": factorial_square_root_mod,
-    "decimal_ceiling_adjuster": decimal_ceiling_adjuster,
-    "modular_scaling_calculator": modular_scaling_calculator,
-    "digit_count_processor": digit_count_processor,
-    "random_mod_adjuster": random_mod_adjuster,
-    "factorial_root_modulo": factorial_root_modulo,
-    "random_pair_modulo": random_pair_modulo,
-    "digit_pair_calculator": digit_pair_calculator,
-    "modular_multiplication_scaler": modular_multiplication_scaler,
-    "float_ceiling_adjuster": float_ceiling_adjuster,
-    "factorial_modulo_processor": factorial_modulo_processor,
+    "text_frequency_analyzer": text_frequency_analyzer,
+    "gcd_calculator": gcd_calculator,
+    "hexadecimal_converter": hexadecimal_converter,
+    "mean_absolute_deviation": mean_absolute_deviation,
+    "password_strength_checker": password_strength_checker,
+    "rectangle_overlap_area": rectangle_overlap_area,
+    "collatz_sequence_length": collatz_sequence_length,
+    "word_frequency_counter": word_frequency_counter,
+    "binary_hamming_distance": binary_hamming_distance,
+    "geometric_sequence_sum": geometric_sequence_sum,
+    "caesar_cipher_encoder": caesar_cipher_encoder,
+    "matrix_determinant": matrix_determinant,
+    "isbn_validator": isbn_validator,
+    "day_of_week_calculator": day_of_week_calculator,
+    "armstrong_number_checker": armstrong_number_checker,
+    "binary_search_iterations": binary_search_iterations,
+    "polygon_area_calculator": polygon_area_calculator,
     "sum_until_limit": sum_until_limit,
     "count_divisibles": count_divisibles,
     "index_weighted_sum": index_weighted_sum,
@@ -194,24 +209,52 @@ programs = {
     "loop_string_hash": loop_string_hash,
 }
 
+# Create a list to store all results
+all_results = []
 
-print("Program Difficulty Ratings:")
+print("Processing Program Difficulty Ratings...")
 print("=" * 50)
 
 for name, func in programs.items():
-    source = inspect.getsource(func) # type: ignore
+    source = inspect.getsource(cast(Any, func))
     difficulty, scores, metrics = rate_program_difficulty(source)
+    
+    # Create a dictionary for this program's results
+    program_result = {
+        "program": name,
+        "difficulty_score": difficulty,
+        "component_scores": {k: round(v, 2) for k, v in scores.items()},
+        "metrics": metrics_to_dict(metrics),
+        "code_stats": {}
+    }
+    
+    # Get the tree and visitor again to access loop_count, function_calls, etc.
+    tree = ast.parse(source)
+    visitor = ProgramDifficultyRater()
+    visitor.visit(tree)
+    
+    program_result["code_stats"] = {
+        "loop_count": visitor.loop_count,
+        "function_calls": visitor.function_calls,
+        "branch_count": visitor.branch_count
+    }
+    
+    all_results.append(program_result)
+    
+    # Print basic info to console
+    print(f"Processed: {name} (Score: {difficulty}/10)")
 
-    print(f"\n{name}:")
-    print(f"Overall Difficulty: {difficulty}/10")
-    print("\nComponent Scores:")
-    for component, score in scores.items():
-        print(f"  {component:15} {score:.2f}")
-    print("\nMetrics:")
-    print(f"  Parameters:       {metrics.num_params}")
-    print(f"  Operations:       {metrics.num_operations}")
-    print(f"  Control Flow:     {metrics.control_flow_depth}")
-    print(f"  Data Types:       {', '.join(metrics.data_types)}")
-    print(f"  Assertions:       {metrics.num_assertions}")
-    print(f"  Math Complexity:  {metrics.math_complexity:.1f}")
-    print("-" * 50)
+# Sort the results by difficulty score (descending)
+all_results.sort(key=lambda x: cast(int, x["difficulty_score"]), reverse=True)
+
+# Ensure the difficulty directory exists
+os.makedirs("difficulty", exist_ok=True)
+
+# Write results to JSON file
+output_file = os.path.join("difficulty", "program_difficulty_scores.json")
+with open(output_file, "w") as f:
+    json.dump(all_results, f, indent=2)
+
+print("\nCompleted processing all programs.")
+print(f"Results written to: {output_file}")
+print(f"Total programs analyzed: {len(all_results)}")

@@ -1,0 +1,1402 @@
+[
+  {
+    "program": "prime_number_counter",
+    "difficulty_score": 10,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 4.18,
+      "control_flow": 0.6,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.45,
+      "loops": 0.5,
+      "calls": 8.41,
+      "branches": 0.45
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 4,
+      "control_flow_depth": 1,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0.8999999999999999
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 6,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "text_frequency_analyzer",
+    "difficulty_score": 10,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 2.85,
+      "control_flow": 0.6,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.06,
+      "loops": 0.5,
+      "calls": 8.41,
+      "branches": 1.68
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 1,
+      "data_types": "str",
+      "num_assertions": 1,
+      "math_complexity": 0.3
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 6,
+      "branch_count": 2
+    }
+  },
+  {
+    "program": "mean_absolute_deviation",
+    "difficulty_score": 10,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 4.18,
+      "control_flow": 0.6,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.88,
+      "loops": 0.0,
+      "calls": 8.41,
+      "branches": 0.45
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 4,
+      "control_flow_depth": 1,
+      "data_types": "list",
+      "num_assertions": 1,
+      "math_complexity": 1.3
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 6,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "password_strength_checker",
+    "difficulty_score": 10,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 1.8,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.06,
+      "loops": 0.0,
+      "calls": 16.76,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 0,
+      "data_types": "str",
+      "num_assertions": 1,
+      "math_complexity": 0.3
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 9,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "rectangle_overlap_area",
+    "difficulty_score": 10,
+    "component_scores": {
+      "params": 25.6,
+      "operations": 5.4,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.06,
+      "loops": 0.0,
+      "calls": 8.41,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 8,
+      "num_operations": 7,
+      "control_flow_depth": 0,
+      "data_types": "int, int, int, int, int, int, int, int",
+      "num_assertions": 1,
+      "math_complexity": 0.3
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 6,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "word_frequency_counter",
+    "difficulty_score": 10,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 2.85,
+      "control_flow": 0.6,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.06,
+      "loops": 0.5,
+      "calls": 10.93,
+      "branches": 0.45
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 1,
+      "data_types": "str",
+      "num_assertions": 1,
+      "math_complexity": 0.3
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 7,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "binary_hamming_distance",
+    "difficulty_score": 10,
+    "component_scores": {
+      "params": 1.6,
+      "operations": 1.8,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.06,
+      "loops": 0.0,
+      "calls": 16.76,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 2,
+      "num_operations": 1,
+      "control_flow_depth": 0,
+      "data_types": "int, int",
+      "num_assertions": 1,
+      "math_complexity": 0.3
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 9,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "geometric_sequence_sum",
+    "difficulty_score": 10,
+    "component_scores": {
+      "params": 3.6,
+      "operations": 5.4,
+      "control_flow": 0.6,
+      "data_types": 0.87,
+      "assertions": 0.2,
+      "math_complexity": 2.86,
+      "loops": 0.0,
+      "calls": 4.22,
+      "branches": 0.45
+    },
+    "metrics": {
+      "num_params": 3,
+      "num_operations": 7,
+      "control_flow_depth": 1,
+      "data_types": "float, float, int",
+      "num_assertions": 1,
+      "math_complexity": 2.5
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 4,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "caesar_cipher_encoder",
+    "difficulty_score": 10,
+    "component_scores": {
+      "params": 1.6,
+      "operations": 4.65,
+      "control_flow": 0.6,
+      "data_types": 0.87,
+      "assertions": 0.2,
+      "math_complexity": 0.22,
+      "loops": 0.5,
+      "calls": 13.72,
+      "branches": 0.45
+    },
+    "metrics": {
+      "num_params": 2,
+      "num_operations": 5,
+      "control_flow_depth": 1,
+      "data_types": "str, int",
+      "num_assertions": 1,
+      "math_complexity": 0.6
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 8,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "binary_search_iterations",
+    "difficulty_score": 10,
+    "component_scores": {
+      "params": 1.6,
+      "operations": 5.05,
+      "control_flow": 2.76,
+      "data_types": 0.87,
+      "assertions": 0.2,
+      "math_complexity": 0.22,
+      "loops": 0.5,
+      "calls": 0.4,
+      "branches": 1.68
+    },
+    "metrics": {
+      "num_params": 2,
+      "num_operations": 6,
+      "control_flow_depth": 2,
+      "data_types": "list, int",
+      "num_assertions": 1,
+      "math_complexity": 0.6
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 1,
+      "branch_count": 2
+    }
+  },
+  {
+    "program": "quadratic_discriminant",
+    "difficulty_score": 9,
+    "component_scores": {
+      "params": 3.6,
+      "operations": 4.65,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 1.43,
+      "loops": 0.0,
+      "calls": 0.4,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 3,
+      "num_operations": 5,
+      "control_flow_depth": 0,
+      "data_types": "int, int, int",
+      "num_assertions": 1,
+      "math_complexity": 1.7
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "hypotenuse_diff",
+    "difficulty_score": 9,
+    "component_scores": {
+      "params": 1.6,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.65,
+      "loops": 0.0,
+      "calls": 6.17,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 2,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "float, float",
+      "num_assertions": 1,
+      "math_complexity": 1.0999999999999999
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 5,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "digit_sum_processor",
+    "difficulty_score": 9,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.16,
+      "loops": 0.0,
+      "calls": 6.17,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0.5
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 5,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "isbn_validator",
+    "difficulty_score": 9,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 3.6,
+      "control_flow": 0.6,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.22,
+      "loops": 0.0,
+      "calls": 6.17,
+      "branches": 0.45
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 3,
+      "control_flow_depth": 1,
+      "data_types": "str",
+      "num_assertions": 1,
+      "math_complexity": 0.6
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 5,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "polygon_area_calculator",
+    "difficulty_score": 9,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 4.65,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 1.28,
+      "loops": 0.5,
+      "calls": 4.22,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 5,
+      "control_flow_depth": 0,
+      "data_types": "list",
+      "num_assertions": 1,
+      "math_complexity": 1.5999999999999999
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 4,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "vector_norm",
+    "difficulty_score": 8,
+    "component_scores": {
+      "params": 1.6,
+      "operations": 3.6,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 2.09,
+      "loops": 0.0,
+      "calls": 1.3,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 2,
+      "num_operations": 3,
+      "control_flow_depth": 0,
+      "data_types": "float, float",
+      "num_assertions": 1,
+      "math_complexity": 2.1
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 2,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "list_balance",
+    "difficulty_score": 8,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.16,
+      "loops": 0.0,
+      "calls": 4.22,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "list",
+      "num_assertions": 1,
+      "math_complexity": 0.5
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 4,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "string_reversal_checker",
+    "difficulty_score": 8,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.03,
+      "loops": 0.0,
+      "calls": 4.22,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "str",
+      "num_assertions": 1,
+      "math_complexity": 0.2
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 4,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "date_difference_calculator",
+    "difficulty_score": 8,
+    "component_scores": {
+      "params": 3.6,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.16,
+      "loops": 0.0,
+      "calls": 2.59,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 3,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "int, int, int",
+      "num_assertions": 1,
+      "math_complexity": 0.5
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 3,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "day_of_week_calculator",
+    "difficulty_score": 8,
+    "component_scores": {
+      "params": 3.6,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.06,
+      "loops": 0.0,
+      "calls": 1.3,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 3,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "int, int, int",
+      "num_assertions": 1,
+      "math_complexity": 0.3
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 2,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "loop_even_sum",
+    "difficulty_score": 8,
+    "component_scores": {
+      "params": 1.6,
+      "operations": 3.6,
+      "control_flow": 0.6,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.22,
+      "loops": 0.5,
+      "calls": 0.4,
+      "branches": 0.45
+    },
+    "metrics": {
+      "num_params": 2,
+      "num_operations": 3,
+      "control_flow_depth": 1,
+      "data_types": "int, int",
+      "num_assertions": 1,
+      "math_complexity": 0.6
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 1,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "circle_area_diff",
+    "difficulty_score": 7,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 4.65,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 1.43,
+      "loops": 0.0,
+      "calls": 0.4,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 5,
+      "control_flow_depth": 0,
+      "data_types": "float",
+      "num_assertions": 1,
+      "math_complexity": 1.7
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "triangle_checker",
+    "difficulty_score": 7,
+    "component_scores": {
+      "params": 3.6,
+      "operations": 1.8,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.0,
+      "loops": 0.0,
+      "calls": 0.4,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 3,
+      "num_operations": 1,
+      "control_flow_depth": 0,
+      "data_types": "int, int, int",
+      "num_assertions": 1,
+      "math_complexity": 0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "temperature_offset",
+    "difficulty_score": 7,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 4.18,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.37,
+      "loops": 0.0,
+      "calls": 1.3,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 4,
+      "control_flow_depth": 0,
+      "data_types": "float",
+      "num_assertions": 1,
+      "math_complexity": 0.8
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 2,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "random_mod_calculator",
+    "difficulty_score": 7,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 4.18,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.45,
+      "loops": 0.0,
+      "calls": 0.4,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 4,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0.8999999999999999
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "factorial_root_calculator",
+    "difficulty_score": 7,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 1.8,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 1.43,
+      "loops": 0.0,
+      "calls": 2.59,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 1.7
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 3,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "gcd_calculator",
+    "difficulty_score": 7,
+    "component_scores": {
+      "params": 1.6,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.22,
+      "loops": 0.5,
+      "calls": 0.0,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 2,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "int, int",
+      "num_assertions": 1,
+      "math_complexity": 0.6
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 0,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "hexadecimal_converter",
+    "difficulty_score": 7,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 1.8,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.0,
+      "loops": 0.0,
+      "calls": 4.22,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 4,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "collatz_sequence_length",
+    "difficulty_score": 7,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 4.65,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.76,
+      "loops": 0.5,
+      "calls": 0.0,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 5,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 1.2
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 0,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "matrix_determinant",
+    "difficulty_score": 7,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 4.18,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.65,
+      "loops": 0.0,
+      "calls": 0.4,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 4,
+      "control_flow_depth": 0,
+      "data_types": "list",
+      "num_assertions": 1,
+      "math_complexity": 1.0999999999999999
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "armstrong_number_checker",
+    "difficulty_score": 7,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 1.8,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.22,
+      "loops": 0.0,
+      "calls": 4.22,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0.6
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 4,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "nested_loop_checker",
+    "difficulty_score": 7,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 1.8,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.06,
+      "loops": 2.0,
+      "calls": 1.3,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0.3
+    },
+    "code_stats": {
+      "loop_count": 2,
+      "function_calls": 2,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "convert_temperature",
+    "difficulty_score": 6,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 3.6,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.37,
+      "loops": 0.0,
+      "calls": 0.4,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 3,
+      "control_flow_depth": 0,
+      "data_types": "float",
+      "num_assertions": 1,
+      "math_complexity": 0.8
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "calculate_discount",
+    "difficulty_score": 6,
+    "component_scores": {
+      "params": 1.6,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.16,
+      "loops": 0.0,
+      "calls": 0.4,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 2,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "float, float",
+      "num_assertions": 1,
+      "math_complexity": 0.5
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "process_complex_number",
+    "difficulty_score": 6,
+    "component_scores": {
+      "params": 1.6,
+      "operations": 0.0,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.65,
+      "loops": 0.0,
+      "calls": 2.59,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 2,
+      "num_operations": 0,
+      "control_flow_depth": 0,
+      "data_types": "float, float",
+      "num_assertions": 1,
+      "math_complexity": 1.0999999999999999
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 3,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "transform_data",
+    "difficulty_score": 6,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 3.6,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.22,
+      "loops": 0.0,
+      "calls": 0.0,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 3,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0.6
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 0,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "ascii_average",
+    "difficulty_score": 6,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 1.8,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.06,
+      "loops": 0.0,
+      "calls": 2.59,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 0,
+      "data_types": "str",
+      "num_assertions": 1,
+      "math_complexity": 0.3
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 3,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "odd_sum_validator",
+    "difficulty_score": 6,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.22,
+      "loops": 0.0,
+      "calls": 0.4,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "list",
+      "num_assertions": 1,
+      "math_complexity": 0.6
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "ceiling_multiplier",
+    "difficulty_score": 6,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.55,
+      "loops": 0.0,
+      "calls": 0.4,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 1.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "modulo_scaler",
+    "difficulty_score": 6,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 4.18,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.45,
+      "loops": 0.0,
+      "calls": 0.0,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 4,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0.8999999999999999
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 0,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "sum_until_limit",
+    "difficulty_score": 6,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 1.8,
+      "control_flow": 0.6,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.0,
+      "loops": 0.5,
+      "calls": 0.4,
+      "branches": 0.45
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 1,
+      "data_types": "list",
+      "num_assertions": 1,
+      "math_complexity": 0
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 1,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "count_divisibles",
+    "difficulty_score": 6,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 2.85,
+      "control_flow": 0.6,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.22,
+      "loops": 0.5,
+      "calls": 0.0,
+      "branches": 0.45
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 1,
+      "data_types": "list",
+      "num_assertions": 1,
+      "math_complexity": 0.6
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 0,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "index_weighted_sum",
+    "difficulty_score": 6,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.22,
+      "loops": 0.5,
+      "calls": 0.4,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "list",
+      "num_assertions": 1,
+      "math_complexity": 0.6
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "square_accumulator",
+    "difficulty_score": 6,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.22,
+      "loops": 0.5,
+      "calls": 0.4,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0.6
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "character_counter",
+    "difficulty_score": 6,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 1.8,
+      "control_flow": 0.6,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.06,
+      "loops": 0.5,
+      "calls": 0.0,
+      "branches": 0.45
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 1,
+      "data_types": "str",
+      "num_assertions": 1,
+      "math_complexity": 0.3
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 0,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "rolling_maximum",
+    "difficulty_score": 6,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 1.8,
+      "control_flow": 0.6,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.0,
+      "loops": 0.5,
+      "calls": 0.4,
+      "branches": 0.45
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 1,
+      "data_types": "list",
+      "num_assertions": 1,
+      "math_complexity": 0
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 1,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "fibonacci_counter",
+    "difficulty_score": 6,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.06,
+      "loops": 0.5,
+      "calls": 0.4,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0.3
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "loop_string_hash",
+    "difficulty_score": 6,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.22,
+      "loops": 0.5,
+      "calls": 0.4,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "str",
+      "num_assertions": 1,
+      "math_complexity": 0.6
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "process_data",
+    "difficulty_score": 5,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 1.8,
+      "control_flow": 0.6,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.06,
+      "loops": 0.0,
+      "calls": 0.0,
+      "branches": 0.45
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 1,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0.3
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 0,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "string_pattern_score",
+    "difficulty_score": 5,
+    "component_scores": {
+      "params": 0.4,
+      "operations": 1.8,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.2,
+      "math_complexity": 0.06,
+      "loops": 0.0,
+      "calls": 0.4,
+      "branches": 0.0
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 0,
+      "data_types": "str",
+      "num_assertions": 1,
+      "math_complexity": 0.3
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  }
+]

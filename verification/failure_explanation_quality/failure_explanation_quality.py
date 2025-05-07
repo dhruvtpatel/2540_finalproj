@@ -168,7 +168,9 @@ def evaluate_with_openai(evaluation: FailureEvaluation, client: OpenAI) -> FEQSc
         )
         
         # Get the parsed data from the response
-        parsed_data: FEQScoreModel = completion.choices[0].message.parsed
+        parsed_result = completion.choices[0].message.parsed
+        assert parsed_result is not None
+        parsed_data: FEQScoreModel = parsed_result
         
         # Since we know the model returned a valid FEQScoreModel, we can safely use its attributes
         return FEQScore(

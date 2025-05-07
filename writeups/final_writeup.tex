@@ -24,6 +24,7 @@
 \usepackage{tikz}
 % Optional libraries for specific functions
 \usetikzlibrary{arrows,shapes,positioning,matrix,patterns}
+\usepackage{tabularx}         % in your preamble
 
 \usepackage{xcolor}
 \usepackage{listings}
@@ -79,7 +80,7 @@ Ensuring the correctness and safety of software systems often requires enforcing
 
 Existing approaches to this problem face significant limitations: static analysis tools struggle with Python's dynamic nature, manual refactoring is error-prone, and automated precondition inference often produces approximations that are either too strict or too lenient. The fundamental challenge lies in automatically transforming programs to detect violations earlier while preserving the exact logical guarantees of the original assertions.
 
-We present SENTINEL, a novel approach that combines large language models for assertion generation with a multi-stage verification pipeline that guarantees logical equivalence between early and final checks. Our system enables more proactive error handling while maintaining program semantics. Experimental results demonstrate that early assertions can significantly reduce computational overhead—saving an average of 21.04 bytecode instructions per function—while preserving the original program's logical guarantees. We detail our motivations, results, and analysis further in the subsequent sections. 
+We present SENTINEL, a novel approach that combines large language models for assertion generation with a multi-stage verification pipeline that guarantees logical equivalence between early and final checks. Our system enables more proactive error handling while maintaining program semantics. Experimental results demonstrate that early assertions can significantly reduce computational overhead—saving an average of 28.60 bytecode instructions per function—while preserving the original program's logical guarantees. We detail our motivations, results, and analysis further in the subsequent sections. 
 
 \section{Project Overview}
 
@@ -363,7 +364,7 @@ We ran CrossHair symbolic execution on each of the transformed programs. The tra
 
 \paragraph{Nagini Static Verification.} 
 
-To complement our dynamic and symbolic testing efforts, we use \textbf{Nagini} to formally verify the logical equivalence $\phi_{\text{early}} \Leftrightarrow \phi_{\text{final}}$ for transformed Python programs. Built on the Viper intermediate verification language, Nagini supports PEP 484-style type annotations and permission-based heap access control, but imposes strict constraints: programs must be statically typed and avoid dynamic features like \texttt{eval} or runtime field creation. Adapting programs for Nagini required \textbf{adding type annotations and contracts, refactoring control flow, and eliminating unsupported language features}. Our verification process follows a two-phase strategy: first testing the original program with dynamic and symbolic methods, then adapting it for Nagini while preserving logical structure. This approach enables us to distinguish between true semantic failures (indicating assertion inequivalence) and compatibility issues (reflecting tooling limitations rather than transformation failures).
+To complement our dynamic and symbolic testing efforts, we use \textbf{Nagini} to formally verify the logical equivalence $\phi_{\text{early}} \Leftrightarrow \phi_{\text{final}}$ for transformed Python programs. Built on the Viper intermediate verification language, Nagini supports PEP 484-style type annotations and permission-based heap access control, but imposes strict constraints: programs must be statically typed and avoid dynamic features like \texttt{eval} or runtime field creation. Adapting programs for Nagini required \textbf{adding type annotations and contracts, minimally reformatting control flow, and eliminating unsupported language features}. Our verification process follows a two-phase strategy: first testing the original program with dynamic and symbolic methods, then adapting it for Nagini while preserving logical structure. This approach enables us to distinguish between true semantic failures (indicating assertion inequivalence) and compatibility issues (reflecting tooling limitations rather than transformation failures).
 
 \begin{figure}[H]
     \centering
@@ -435,7 +436,7 @@ Nagini, the static verification tool, was the most stringent. It successfully ve
 \end{itemize}
 Additionally, these outcomes validated our program complexity scoring model. Functions with higher complexity scores generally had lower verification success rates and higher FEQ (Failure Explanation Quotient) values, indicating that increased structural complexity and mathematical depth directly correlate with reduced verifiability. For instance, the average complexity score for fully verified functions was 4.7, while the average for rejected ones was 6.1. In summary, this layered evaluation approach allowed us to confirm that our weighted complexity model aligns closely with real-world verification difficulty.
 
-\subsection{Failure Explanations} \textbf{NEED TO REDO, THIS ISN'T USEFUL INFORMATION, WE NEED TO SHOW A MORE STATISTICAL BREAKDOWN OF REASONS FOR FAILURES, AND LEAD INTO FALSE CLASSIFICATIONS. SHOULD BE MORE DIRECT/CLEAR/INFORMATIONAL/COMPACT}
+\subsection{Failure Explanations \& False Positives} \textbf{NEED TO REDO, THIS ISN'T USEFUL INFORMATION, WE NEED TO SHOW A MORE STATISTICAL BREAKDOWN OF REASONS FOR FAILURES, AND LEAD INTO FALSE CLASSIFICATIONS. SHOULD BE MORE DIRECT/CLEAR/INFORMATIONAL/COMPACT}
 
 To assess the quality of failure explanations generated by various testing tools, we computed the \textit{Failure Explanation Quality (FEQ)} score across a comprehensive test suite of 45 programs with varying complexity. The FEQ score, ranging from 0.0 to 1.0, reflects the effectiveness of failure messages in terms of \textbf{specificity}, \textbf{actionability}, \textbf{context}, and \textbf{technical detail}, with higher scores indicating more detailed and helpful error explanations.
 
@@ -447,11 +448,9 @@ The verification method combination that detected failures influenced explanatio
 
 These findings suggest both operation types and verification methods systematically influence the detail and usefulness of failure explanations. The correlation between specific failure patterns and FEQ scores highlights the importance of our multi-tool verification approach, particularly for complex operations where comprehensive error reporting is most needed.
 
-\section{False Classifications}
-
 \textbf{NEED TO DO THIS JAWN}
 
-\section{Discussion}
+\section{Discussion [NEED TO REDO, MAKE MORE RELEVANT]}
 
 \subsection{Evaluating the Transformation Pipeline.}
 Our results demonstrate that early assertion transformation is both feasible and beneficial across a wide range of Python programs. The majority of transformed functions preserved correctness under fuzz testing and symbolic execution, and our complexity analysis showed that transformation success was not limited to trivial cases. As noted in the previous section, most of the functions fell into the medium complexity range, and a sizeable portion were high or very high complexity—indicating that our approach can, within reason, scale to nontrivial control flow and data manipulation patterns. 
@@ -729,6 +728,47 @@ loop\_string\_hash          & 0.40 & 2.85 & 0.00 & 0.25 & 0.20 & 0.22 & 0.50 & 0
 \end{tabular}
 \caption{Metric-wise complexity scores and total for each program.}
 \label{tab:difficulty-sub-scores}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{subscore_verification_relationship.png}
+    \caption{Difficulty Subscores vs. Verification Method Outcomes}
+    \label{fig:diff-sub-scores-graph}
+\end{figure}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}               % 1× share
+\newcolumntype{Z}{>{\raggedright\arraybackslash\hsize=2\hsize}X} % 2× share
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{2.8cm}|p{1.2cm}|p{2.5cm}|c|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.2cm}|p{1.3cm}|}
+\hline
+\textbf{Function} & \textbf{Test Method} & \textbf{Input} & \textbf{FEQ} & \textbf{False Positive} & \textbf{Specif- icity} & \textbf{Action- ability} & \textbf{Context} & \textbf{Technical Detail} \\
+\hline
+day\_of\_week\_ calculator\_ transformed & fuzzing & year=48, month=89, day=69 & 0.75 & False & 0.90 & 0.80 & 0.70 & 0.50 \\
+\hline
+convert\_ temperature\_ module.py & crosshair & convert\_ temperature\_ transformed(38.055...) & 0.74 & False & 0.80 & 0.60 & 0.90 & 0.70 \\
+\hline
+digit\_sum\_ processor\_ module.py & crosshair & digit\_sum\_ processor\_ transformed(298) & 0.74 & False & 0.80 & 0.60 & 0.70 & 0.90 \\ \hline
+factorial\_root\_ calculator\_ module.py & crosshair & factorial\_root\_ calculator\_ transformed(5) & 0.68 & False & 0.80 & 0.60 & 0.70 & 0.60 \\ \hline
+calculate\_ discount\_ module.py & crosshair & calculate\_ discount\_ transformed(101.0, 0.502...) & 0.66 & False & 0.80 & 0.60 & 0.50 & 0.70 \\ \hline
+date\_difference\_ calculator\_ transformed & fuzzing & year=56, month=78, day=7 & 0.66 & False & 0.70 & 0.50 & 0.70 & 0.80 \\ \hline
+process\_data\_ module.py & crosshair & process\_data\_ transformed(-50) & 0.61 & False & 0.70 & 0.60 & 0.50 & 0.60 \\ \hline
+polygon\_area\_ calculator\_ transformed & fuzzing & vertices=[0] & 0.60 & False & 0.80 & 0.60 & 0.50 & 0.40 \\ \hline
+collatz\_sequence\_ length\_module.py & crosshair & collatz\_sequence\_ length\_ transformed(26) & 0.57 & False & 0.60 & 0.50 & 0.70 & 0.50 \\ \hline
+random\_mod\_ calculator\_ module.py & crosshair & random\_mod\_ calculator\_ transformed(13) & 0.54 & False & 0.50 & 0.30 & 0.70 & 0.80 \\ \hline
+string\_reversal\_ checker\_module.py & crosshair & string\_reversal\_ checker\_ transformed('\textbackslash x00\textbackslash x01') & 0.54 & False & 0.60 & 0.40 & 0.50 & 0.70 \\ \hline
+matrix\_ determinant\_ transformed & fuzzing & matrix=[0] & 0.53 & True & 0.60 & 0.70 & 0.40 & 0.30 \\ \hline
+binary\_search\_ iterations\_ transformed & fuzzing & arr=[59, 4, 91, ...], target=83 & 0.50 & False & 0.50 & 0.50 & 0.60 & 0.40 \\\hline 
+isbn\_validator\_ transformed & fuzzing & isbn='³\textbackslash x95 \textbackslash U00014f7b...' & 0.50 & True & 0.70 & 0.50 & 0.30 & 0.40 \\\hline
+collatz\_sequence\_ length\_ transformed & fuzzing & n=54 & 0.36 & False & 0.50 & 0.30 & 0.40 & 0.20 \\\hline
+string\_reversal\_ checker\_ transformed & fuzzing & text='ÖnÄ...' & 0.36 & False & 0.40 & 0.40 & 0.30 & 0.30 \\\hline
+convert\_ temperature\_ transformed & fuzzing & celsius=37.558... & 0.20 & True & 0.30 & 0.10 & 0.20 & 0.20 \\
+\hline
+\end{tabular}
+\caption{Failure Explanation Quality (FEQ) scores and component metrics for each failure case, sorted by total FEQ score. Higher scores indicate more informative failure explanations.}
+\label{tab:feq-scores}
 \end{table}
 
 \end{document}

@@ -1,0 +1,587 @@
+[
+  {
+    "program": "armstrong_number_checker_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "ascii_average_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "binary_hamming_distance_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "binary_search_iterations_transformed",
+    "pass": false,
+    "failing_examples": [
+      {
+        "args": "arr=[59, 4, 91, 27, 17, 24, 14, 19, 69, 69], target=83",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "arr=[84, 42, 28, 28, 36, 59, 23, 60], target=97",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "arr=[43, 98, 25, 8, 71, 46, 80, 3, 91, 2], target=100",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "arr=[74, 72, 24, 93, 94, 19, 94, 44, 46, 65], target=99",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "arr=[94, 72, 24, 93, 94, 19, 94, 44, 46, 65], target=99",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "arr=[94, 72, 24, 93, 94, 94, 94, 44, 46, 65], target=99",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "arr=[94, 72, 24, 93, 94, 94, 94, 94, 46, 65], target=99",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "arr=[24, 72, 24, 93, 94, 94, 94, 94, 46, 65], target=99",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "arr=[24, 72, 24, 93, 94, 94, 94, 46, 46, 65], target=99",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "arr=[94, 72, 24, 93, 94, 94, 94, 46, 46, 65], target=99",
+        "error": "Early and final assertions are not equivalent"
+      }
+    ]
+  },
+  {
+    "program": "caesar_cipher_encoder_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "calculate_discount_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "ceiling_multiplier_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "character_counter_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "circle_area_diff_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "collatz_sequence_length_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "convert_temperature_transformed",
+    "pass": false,
+    "failing_examples": [
+      {
+        "args": "celsius=37.55882686801687",
+        "error": "Early and final assertions are not equivalent"
+      }
+    ]
+  },
+  {
+    "program": "count_divisibles_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "date_difference_calculator_transformed",
+    "pass": false,
+    "failing_examples": [
+      {
+        "args": "year=56, month=78, day=7",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=26, month=100, day=29",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=96, month=26, day=7",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=22, month=79, day=41",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=16, month=97, day=25",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=89, month=6, day=66",
+        "error": "day is out of range for month"
+      },
+      {
+        "args": "year=56, month=57, day=26",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=88, month=48, day=22",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=94, month=86, day=58",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=94, month=86, day=86",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=86, month=86, day=86",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=57, month=95, day=100",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=57, month=95, day=57",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=95, month=95, day=57",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=95, month=95, day=95",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=85, month=99, day=22",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=85, month=99, day=85",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=85, month=85, day=85",
+        "error": "month must be in 1..12"
+      }
+    ]
+  },
+  {
+    "program": "day_of_week_calculator_transformed",
+    "pass": false,
+    "failing_examples": [
+      {
+        "args": "year=48, month=89, day=69",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=14, month=15, day=75",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=46, month=100, day=100",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=66, month=68, day=25",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=51, month=24, day=54",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=67, month=61, day=23",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=46, month=39, day=54",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=62, month=92, day=75",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=62, month=92, day=92",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=92, month=92, day=92",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=99, month=88, day=78",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=88, month=88, day=78",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=88, month=88, day=88",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=32, month=82, day=82",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=32, month=82, day=32",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=82, month=82, day=32",
+        "error": "month must be in 1..12"
+      },
+      {
+        "args": "year=82, month=82, day=82",
+        "error": "month must be in 1..12"
+      }
+    ]
+  },
+  {
+    "program": "digit_sum_processor_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "factorial_root_calculator_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "fibonacci_counter_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "gcd_calculator_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "geometric_sequence_sum_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "hexadecimal_converter_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "hypotenuse_diff_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "index_weighted_sum_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "isbn_validator_transformed",
+    "pass": false,
+    "failing_examples": [
+      {
+        "args": "isbn='\u00b3\\x95\\U00014f7b\\x08\\U00033688\u00abH\\U000507a6'",
+        "error": "invalid literal for int() with base 10: '\u00b3'"
+      }
+    ]
+  },
+  {
+    "program": "list_balance_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "loop_even_sum_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "loop_string_hash_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "matrix_determinant_transformed",
+    "pass": false,
+    "failing_examples": [
+      {
+        "args": "matrix=[0]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[81]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[95]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[64]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[63, 45, 50, 93, 60]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[61, 14, 40]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[45]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[42, 79, 38, 57, 87, 71, 35, 67, 97, 54]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[100, 3, 44, 89, 18, 58, 96, 83, 46, 4]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[91, 56, 44, 40]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[22, 51]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[22, 22]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[47, 77, 100]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[47, 100, 100]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[47, 100, 47]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[47, 47, 47]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[47]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[30]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[76, 8, 79, 48, 53, 98, 6, 41, 82, 94]",
+        "error": "'int' object is not subscriptable"
+      },
+      {
+        "args": "matrix=[76, 8, 79, 48, 53, 98, 6, 41, 82, 41]",
+        "error": "'int' object is not subscriptable"
+      }
+    ]
+  },
+  {
+    "program": "mean_absolute_deviation_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "modulo_scaler_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "nested_loop_checker_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "odd_sum_validator_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "password_strength_checker_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "polygon_area_calculator_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "prime_number_counter_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "process_complex_number_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "process_data_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "quadratic_discriminant_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "random_mod_calculator_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "rectangle_overlap_area_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "rolling_maximum_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "square_accumulator_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "string_pattern_score_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "string_reversal_checker_transformed",
+    "pass": false,
+    "failing_examples": [
+      {
+        "args": "text='\u00d6n\u00c4\\U0004be3a\\x9b'",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "text='\u00d2\\x02\\x7f8\\x19=\\x14\\x01O'",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "text='-M'",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "text='\\U000baa25\u00ed\u00dej\u00d4\\U0007302d\\x06\\x97\\x0e'",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "text='\\U0006c0f2\u00ac\u00f7\\U0006ee44a\\U000fda5b\\U000ef0a1\ud850\ude78\u00ef'",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "text='X4X\u00c7\\U000d4f3e\\x19\\x85\u00d0-'",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "text=\"\\U000977ed\\x08:-\\U000ffe22\u00dd\\x80\\U000636f6'\u27ff\"",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "text='\u00aa)\\U000a8140&3\\x1e\u00a6\\x80S'",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "text='\\x84\\U0002f16b\\U00077583'",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "text='\\x184'",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "text='\u00dfG\\U00107cfe\\x94\\U000d25e4\u00dc\u00eeKw'",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "text='\\U0003ab69\u00fb\\x1c\u00e0\\U000cd5b0\u00a2\u00d9m+\\U00106f68'",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "text='\ud851\udc6bI\\x17\\U000489cd\u00c1\\U00010be2\\x92\u00e8\u00fb\\x93'",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "text='0\u00ba\\x10'",
+        "error": "Early and final assertions are not equivalent"
+      },
+      {
+        "args": "text='status'",
+        "error": "Early and final assertions are not equivalent"
+      }
+    ]
+  },
+  {
+    "program": "sum_until_limit_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "temperature_offset_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "text_frequency_analyzer_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "transform_data_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "triangle_checker_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "vector_norm_transformed",
+    "pass": true,
+    "failing_examples": []
+  },
+  {
+    "program": "word_frequency_counter_transformed",
+    "pass": true,
+    "failing_examples": []
+  }
+]

@@ -1,0 +1,1702 @@
+[
+  {
+    "program": "binary_search_iterations",
+    "difficulty_score": 3.722005187253585,
+    "component_scores": {
+      "params": 1.2,
+      "operations": 5.05,
+      "control_flow": 7.85,
+      "data_types": 0.93,
+      "assertions": 0.66,
+      "math_complexity": 0.33,
+      "loop_complexity": 2.48,
+      "assertion_complexity": 3.36,
+      "call_complexity": 0.48,
+      "branch_complexity": 2.42,
+      "bytecode_complexity": 36.24
+    },
+    "metrics": {
+      "num_params": 2,
+      "num_operations": 6,
+      "control_flow_depth": 3,
+      "data_types": "list, int",
+      "num_assertions": 1,
+      "math_complexity": 0.8,
+      "loop_complexity": 2.1999999999999997,
+      "assertion_complexity": 2.2199999999999998,
+      "call_complexity": 1.2,
+      "branch_complexity": 2.4
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 1,
+      "branch_count": 2
+    }
+  },
+  {
+    "program": "caesar_cipher_encoder",
+    "difficulty_score": 3.6100587411936704,
+    "component_scores": {
+      "params": 1.2,
+      "operations": 4.65,
+      "control_flow": 3.22,
+      "data_types": 0.93,
+      "assertions": 0.6,
+      "math_complexity": 0.33,
+      "loop_complexity": 4.6,
+      "assertion_complexity": 2.99,
+      "call_complexity": 10.04,
+      "branch_complexity": 0.5,
+      "bytecode_complexity": 28.08
+    },
+    "metrics": {
+      "num_params": 2,
+      "num_operations": 5,
+      "control_flow_depth": 2,
+      "data_types": "str, int",
+      "num_assertions": 1,
+      "math_complexity": 0.8,
+      "loop_complexity": 3.1000000000000005,
+      "assertion_complexity": 2.08,
+      "call_complexity": 7.2,
+      "branch_complexity": 1.0
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 8,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "rectangle_overlap_area",
+    "difficulty_score": 3.585275766070639,
+    "component_scores": {
+      "params": 19.2,
+      "operations": 5.4,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.54,
+      "math_complexity": 0.09,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.64,
+      "call_complexity": 13.04,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 15.13
+    },
+    "metrics": {
+      "num_params": 8,
+      "num_operations": 7,
+      "control_flow_depth": 0,
+      "data_types": "int, int, int, int, int, int, int, int",
+      "num_assertions": 1,
+      "math_complexity": 0.4,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 1.94,
+      "call_complexity": 8.4,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 6,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "prime_number_counter",
+    "difficulty_score": 3.278926813985511,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 4.18,
+      "control_flow": 3.22,
+      "data_types": 0.25,
+      "assertions": 0.54,
+      "math_complexity": 0.71,
+      "loop_complexity": 3.83,
+      "assertion_complexity": 2.64,
+      "call_complexity": 8.66,
+      "branch_complexity": 0.03,
+      "bytecode_complexity": 21.77
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 4,
+      "control_flow_depth": 2,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 1.2000000000000002,
+      "loop_complexity": 2.8000000000000003,
+      "assertion_complexity": 1.94,
+      "call_complexity": 6.6,
+      "branch_complexity": 0.2
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 6,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "geometric_sequence_sum",
+    "difficulty_score": 3.200962791216074,
+    "component_scores": {
+      "params": 2.7,
+      "operations": 5.4,
+      "control_flow": 0.7,
+      "data_types": 0.93,
+      "assertions": 0.57,
+      "math_complexity": 5.11,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.84,
+      "call_complexity": 2.8,
+      "branch_complexity": 0.92,
+      "bytecode_complexity": 21.65
+    },
+    "metrics": {
+      "num_params": 3,
+      "num_operations": 7,
+      "control_flow_depth": 1,
+      "data_types": "float, float, int",
+      "num_assertions": 1,
+      "math_complexity": 3.4000000000000004,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.02,
+      "call_complexity": 3.4,
+      "branch_complexity": 1.4
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 4,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "polygon_area_calculator",
+    "difficulty_score": 2.8516353542122137,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 4.65,
+      "control_flow": 0.7,
+      "data_types": 0.25,
+      "assertions": 0.56,
+      "math_complexity": 2.24,
+      "loop_complexity": 1.4,
+      "assertion_complexity": 2.74,
+      "call_complexity": 2.8,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 17.53
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 5,
+      "control_flow_depth": 1,
+      "data_types": "list",
+      "num_assertions": 1,
+      "math_complexity": 2.2,
+      "loop_complexity": 1.5999999999999999,
+      "assertion_complexity": 1.98,
+      "call_complexity": 3.4,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 4,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "collatz_sequence_length",
+    "difficulty_score": 2.82886796967674,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 4.65,
+      "control_flow": 0.7,
+      "data_types": 0.25,
+      "assertions": 0.72,
+      "math_complexity": 1.22,
+      "loop_complexity": 1.73,
+      "assertion_complexity": 3.7,
+      "call_complexity": 0.0,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 19.26
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 5,
+      "control_flow_depth": 1,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 1.6,
+      "loop_complexity": 1.7999999999999998,
+      "assertion_complexity": 2.34,
+      "call_complexity": 0.0,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 0,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "text_frequency_analyzer",
+    "difficulty_score": 2.7625875954879677,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 2.85,
+      "control_flow": 3.22,
+      "data_types": 0.25,
+      "assertions": 0.63,
+      "math_complexity": 0.09,
+      "loop_complexity": 1.91,
+      "assertion_complexity": 3.2,
+      "call_complexity": 0.78,
+      "branch_complexity": 0.59,
+      "bytecode_complexity": 16.88
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 2,
+      "data_types": "str",
+      "num_assertions": 1,
+      "math_complexity": 0.4,
+      "loop_complexity": 1.9000000000000001,
+      "assertion_complexity": 2.16,
+      "call_complexity": 1.6,
+      "branch_complexity": 1.1
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 6,
+      "branch_count": 2
+    }
+  },
+  {
+    "program": "loop_even_sum",
+    "difficulty_score": 2.7192054824248433,
+    "component_scores": {
+      "params": 1.2,
+      "operations": 3.6,
+      "control_flow": 3.22,
+      "data_types": 0.25,
+      "assertions": 0.59,
+      "math_complexity": 0.33,
+      "loop_complexity": 0.83,
+      "assertion_complexity": 2.94,
+      "call_complexity": 0.62,
+      "branch_complexity": 0.14,
+      "bytecode_complexity": 15.8
+    },
+    "metrics": {
+      "num_params": 2,
+      "num_operations": 3,
+      "control_flow_depth": 2,
+      "data_types": "int, int",
+      "num_assertions": 1,
+      "math_complexity": 0.8,
+      "loop_complexity": 1.2,
+      "assertion_complexity": 2.06,
+      "call_complexity": 1.4,
+      "branch_complexity": 0.5
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 1,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "mean_absolute_deviation",
+    "difficulty_score": 2.6874771771072496,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 4.18,
+      "control_flow": 0.7,
+      "data_types": 0.25,
+      "assertions": 0.48,
+      "math_complexity": 1.53,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.3,
+      "call_complexity": 6.95,
+      "branch_complexity": 0.2,
+      "bytecode_complexity": 11.79
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 4,
+      "control_flow_depth": 1,
+      "data_types": "list",
+      "num_assertions": 1,
+      "math_complexity": 1.8000000000000003,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 1.8,
+      "call_complexity": 5.8,
+      "branch_complexity": 0.6000000000000001
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 6,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "nested_loop_checker",
+    "difficulty_score": 2.617231267347198,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 1.8,
+      "control_flow": 3.22,
+      "data_types": 0.25,
+      "assertions": 0.6,
+      "math_complexity": 0.09,
+      "loop_complexity": 2.9,
+      "assertion_complexity": 2.99,
+      "call_complexity": 1.55,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 13.16
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 2,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0.4,
+      "loop_complexity": 2.4000000000000004,
+      "assertion_complexity": 2.08,
+      "call_complexity": 2.4,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 2,
+      "function_calls": 2,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "word_frequency_counter",
+    "difficulty_score": 2.614565716664524,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 2.85,
+      "control_flow": 3.22,
+      "data_types": 0.25,
+      "assertions": 0.62,
+      "math_complexity": 0.09,
+      "loop_complexity": 1.4,
+      "assertion_complexity": 3.09,
+      "call_complexity": 0.95,
+      "branch_complexity": 0.03,
+      "bytecode_complexity": 13.99
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 2,
+      "data_types": "str",
+      "num_assertions": 1,
+      "math_complexity": 0.4,
+      "loop_complexity": 1.6,
+      "assertion_complexity": 2.12,
+      "call_complexity": 1.8,
+      "branch_complexity": 0.2
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 7,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "binary_hamming_distance",
+    "difficulty_score": 2.594048547312592,
+    "component_scores": {
+      "params": 1.2,
+      "operations": 1.8,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.64,
+      "math_complexity": 0.09,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 3.25,
+      "call_complexity": 15.22,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 3.81
+    },
+    "metrics": {
+      "num_params": 2,
+      "num_operations": 1,
+      "control_flow_depth": 0,
+      "data_types": "int, int",
+      "num_assertions": 1,
+      "math_complexity": 0.4,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.1799999999999997,
+      "call_complexity": 9.200000000000001,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 9,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "quadratic_discriminant",
+    "difficulty_score": 2.579216843083397,
+    "component_scores": {
+      "params": 2.7,
+      "operations": 4.65,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.69,
+      "math_complexity": 2.43,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 3.53,
+      "call_complexity": 0.11,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 11.53
+    },
+    "metrics": {
+      "num_params": 3,
+      "num_operations": 5,
+      "control_flow_depth": 0,
+      "data_types": "int, int, int",
+      "num_assertions": 1,
+      "math_complexity": 2.3,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.28,
+      "call_complexity": 0.5,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "isbn_validator",
+    "difficulty_score": 2.5534876215714455,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 3.6,
+      "control_flow": 0.7,
+      "data_types": 0.25,
+      "assertions": 0.58,
+      "math_complexity": 0.33,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.89,
+      "call_complexity": 5.04,
+      "branch_complexity": 0.5,
+      "bytecode_complexity": 11.07
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 3,
+      "control_flow_depth": 1,
+      "data_types": "str",
+      "num_assertions": 1,
+      "math_complexity": 0.8,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.04,
+      "call_complexity": 4.8,
+      "branch_complexity": 1.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 5,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "count_divisibles",
+    "difficulty_score": 2.4860668971449154,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 2.85,
+      "control_flow": 3.22,
+      "data_types": 0.25,
+      "assertions": 0.63,
+      "math_complexity": 0.33,
+      "loop_complexity": 0.32,
+      "assertion_complexity": 3.15,
+      "call_complexity": 0.0,
+      "branch_complexity": 0.14,
+      "bytecode_complexity": 12.43
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 2,
+      "data_types": "list",
+      "num_assertions": 1,
+      "math_complexity": 0.8,
+      "loop_complexity": 0.7,
+      "assertion_complexity": 2.14,
+      "call_complexity": 0.0,
+      "branch_complexity": 0.5
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 0,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "circle_area_diff",
+    "difficulty_score": 2.4562347122013533,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 4.65,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.64,
+      "math_complexity": 2.43,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 3.25,
+      "call_complexity": 0.11,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 11.25
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 5,
+      "control_flow_depth": 0,
+      "data_types": "float",
+      "num_assertions": 1,
+      "math_complexity": 2.3,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.1799999999999997,
+      "call_complexity": 0.5,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "character_counter",
+    "difficulty_score": 2.391439970278168,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 1.8,
+      "control_flow": 3.22,
+      "data_types": 0.25,
+      "assertions": 0.6,
+      "math_complexity": 0.09,
+      "loop_complexity": 0.17,
+      "assertion_complexity": 2.99,
+      "call_complexity": 0.0,
+      "branch_complexity": 0.8,
+      "bytecode_complexity": 11.18
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 2,
+      "data_types": "str",
+      "num_assertions": 1,
+      "math_complexity": 0.4,
+      "loop_complexity": 0.5,
+      "assertion_complexity": 2.08,
+      "call_complexity": 0.0,
+      "branch_complexity": 1.3
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 0,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "sum_until_limit",
+    "difficulty_score": 2.3416878142512356,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 1.8,
+      "control_flow": 3.22,
+      "data_types": 0.25,
+      "assertions": 0.57,
+      "math_complexity": 0.0,
+      "loop_complexity": 0.17,
+      "assertion_complexity": 2.84,
+      "call_complexity": 0.48,
+      "branch_complexity": 0.41,
+      "bytecode_complexity": 10.24
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 2,
+      "data_types": "list",
+      "num_assertions": 1,
+      "math_complexity": 0.0,
+      "loop_complexity": 0.5,
+      "assertion_complexity": 2.02,
+      "call_complexity": 1.2,
+      "branch_complexity": 0.9
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 1,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "rolling_maximum",
+    "difficulty_score": 2.3214143561304965,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 1.8,
+      "control_flow": 3.22,
+      "data_types": 0.25,
+      "assertions": 0.54,
+      "math_complexity": 0.0,
+      "loop_complexity": 0.17,
+      "assertion_complexity": 2.64,
+      "call_complexity": 0.48,
+      "branch_complexity": 0.41,
+      "bytecode_complexity": 10.02
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 2,
+      "data_types": "list",
+      "num_assertions": 1,
+      "math_complexity": 0.0,
+      "loop_complexity": 0.5,
+      "assertion_complexity": 1.94,
+      "call_complexity": 1.2,
+      "branch_complexity": 0.9
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 1,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "fibonacci_counter",
+    "difficulty_score": 2.277319048348643,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 2.85,
+      "control_flow": 0.7,
+      "data_types": 0.25,
+      "assertions": 0.64,
+      "math_complexity": 0.09,
+      "loop_complexity": 0.6,
+      "assertion_complexity": 3.25,
+      "call_complexity": 0.48,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 9.71
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 1,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0.4,
+      "loop_complexity": 1.0,
+      "assertion_complexity": 2.1799999999999997,
+      "call_complexity": 1.2,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "index_weighted_sum",
+    "difficulty_score": 2.2724457889643075,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 2.85,
+      "control_flow": 0.7,
+      "data_types": 0.25,
+      "assertions": 0.62,
+      "math_complexity": 0.33,
+      "loop_complexity": 0.6,
+      "assertion_complexity": 3.09,
+      "call_complexity": 0.48,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 9.56
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 1,
+      "data_types": "list",
+      "num_assertions": 1,
+      "math_complexity": 0.8,
+      "loop_complexity": 1.0,
+      "assertion_complexity": 2.12,
+      "call_complexity": 1.2,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "vector_norm",
+    "difficulty_score": 2.2676085031021436,
+    "component_scores": {
+      "params": 1.2,
+      "operations": 3.6,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.5,
+      "math_complexity": 3.54,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.4,
+      "call_complexity": 0.78,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 6.41
+    },
+    "metrics": {
+      "num_params": 2,
+      "num_operations": 3,
+      "control_flow_depth": 0,
+      "data_types": "float, float",
+      "num_assertions": 1,
+      "math_complexity": 2.8,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 1.84,
+      "call_complexity": 1.6,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 2,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "square_accumulator",
+    "difficulty_score": 2.2617650316469176,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 2.85,
+      "control_flow": 0.7,
+      "data_types": 0.25,
+      "assertions": 0.6,
+      "math_complexity": 0.33,
+      "loop_complexity": 0.6,
+      "assertion_complexity": 2.99,
+      "call_complexity": 0.48,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 9.45
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 1,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0.8,
+      "loop_complexity": 1.0,
+      "assertion_complexity": 2.08,
+      "call_complexity": 1.2,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "matrix_determinant",
+    "difficulty_score": 2.2602852247967253,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 4.18,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.61,
+      "math_complexity": 1.08,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 3.04,
+      "call_complexity": 0.11,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 8.95
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 4,
+      "control_flow_depth": 0,
+      "data_types": "list",
+      "num_assertions": 1,
+      "math_complexity": 1.5000000000000002,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.1,
+      "call_complexity": 0.5,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "temperature_offset",
+    "difficulty_score": 2.257445754617177,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 4.18,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.58,
+      "math_complexity": 0.6,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.89,
+      "call_complexity": 0.86,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 8.8
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 4,
+      "control_flow_depth": 0,
+      "data_types": "float",
+      "num_assertions": 1,
+      "math_complexity": 1.1,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.04,
+      "call_complexity": 1.7,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 2,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "digit_sum_processor",
+    "difficulty_score": 2.2453878655531785,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.58,
+      "math_complexity": 0.25,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.89,
+      "call_complexity": 5.96,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 5.12
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0.7,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.04,
+      "call_complexity": 5.3,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 5,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "loop_string_hash",
+    "difficulty_score": 2.2404985195649485,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 2.85,
+      "control_flow": 0.7,
+      "data_types": 0.25,
+      "assertions": 0.57,
+      "math_complexity": 0.33,
+      "loop_complexity": 0.6,
+      "assertion_complexity": 2.79,
+      "call_complexity": 0.48,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 9.24
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 1,
+      "data_types": "str",
+      "num_assertions": 1,
+      "math_complexity": 0.8,
+      "loop_complexity": 1.0,
+      "assertion_complexity": 2.0,
+      "call_complexity": 1.2,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "modulo_scaler",
+    "difficulty_score": 2.231921483561172,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 4.18,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.6,
+      "math_complexity": 0.71,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.99,
+      "call_complexity": 0.0,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 8.9
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 4,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 1.2000000000000002,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.08,
+      "call_complexity": 0.0,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 0,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "random_mod_calculator",
+    "difficulty_score": 2.2247505293554344,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 4.18,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.58,
+      "math_complexity": 0.71,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.89,
+      "call_complexity": 0.07,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 8.8
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 4,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 1.2000000000000002,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.04,
+      "call_complexity": 0.4,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "convert_temperature",
+    "difficulty_score": 2.219706102696489,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 3.6,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.78,
+      "math_complexity": 0.6,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 4.1,
+      "call_complexity": 0.11,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 7.93
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 3,
+      "control_flow_depth": 0,
+      "data_types": "float",
+      "num_assertions": 1,
+      "math_complexity": 1.1,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.4799999999999995,
+      "call_complexity": 0.5,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "gcd_calculator",
+    "difficulty_score": 2.213779362011094,
+    "component_scores": {
+      "params": 1.2,
+      "operations": 2.85,
+      "control_flow": 0.7,
+      "data_types": 0.25,
+      "assertions": 0.52,
+      "math_complexity": 0.33,
+      "loop_complexity": 0.5,
+      "assertion_complexity": 2.49,
+      "call_complexity": 0.0,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 8.72
+    },
+    "metrics": {
+      "num_params": 2,
+      "num_operations": 2,
+      "control_flow_depth": 1,
+      "data_types": "int, int",
+      "num_assertions": 1,
+      "math_complexity": 0.8,
+      "loop_complexity": 0.8999999999999999,
+      "assertion_complexity": 1.8800000000000001,
+      "call_complexity": 0.0,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 1,
+      "function_calls": 0,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "hypotenuse_diff",
+    "difficulty_score": 2.2045938522327804,
+    "component_scores": {
+      "params": 1.2,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.46,
+      "math_complexity": 1.08,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.17,
+      "call_complexity": 4.86,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 4.49
+    },
+    "metrics": {
+      "num_params": 2,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "float, float",
+      "num_assertions": 1,
+      "math_complexity": 1.5,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 1.74,
+      "call_complexity": 4.7,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 5,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "password_strength_checker",
+    "difficulty_score": 2.1966954985116205,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 1.8,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.62,
+      "math_complexity": 0.09,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 3.09,
+      "call_complexity": 7.36,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 3.69
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 0,
+      "data_types": "str",
+      "num_assertions": 1,
+      "math_complexity": 0.4,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.12,
+      "call_complexity": 6.0,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 9,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "transform_data",
+    "difficulty_score": 2.1373783978878294,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 3.6,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.68,
+      "math_complexity": 0.33,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 3.47,
+      "call_complexity": 0.0,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 7.4
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 3,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0.8,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.26,
+      "call_complexity": 0.0,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 0,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "list_balance",
+    "difficulty_score": 2.130638872585854,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.57,
+      "math_complexity": 0.25,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.79,
+      "call_complexity": 3.85,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 5.03
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "list",
+      "num_assertions": 1,
+      "math_complexity": 0.7,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.0,
+      "call_complexity": 4.1,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 4,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "date_difference_calculator",
+    "difficulty_score": 2.110519265352255,
+    "component_scores": {
+      "params": 2.7,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.58,
+      "math_complexity": 0.25,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.89,
+      "call_complexity": 0.86,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 5.12
+    },
+    "metrics": {
+      "num_params": 3,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "int, int, int",
+      "num_assertions": 1,
+      "math_complexity": 0.7,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.04,
+      "call_complexity": 1.7000000000000002,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 3,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "armstrong_number_checker",
+    "difficulty_score": 2.105984892722336,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 1.8,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.64,
+      "math_complexity": 0.33,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 3.25,
+      "call_complexity": 5.04,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 3.81
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0.8,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.1799999999999997,
+      "call_complexity": 4.8,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 4,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "hexadecimal_converter",
+    "difficulty_score": 2.102516348133966,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 1.8,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.63,
+      "math_complexity": 0.0,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 3.2,
+      "call_complexity": 5.4,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 3.77
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0.0,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.16,
+      "call_complexity": 5.0,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 4,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "calculate_discount",
+    "difficulty_score": 2.081368126161277,
+    "component_scores": {
+      "params": 1.2,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.73,
+      "math_complexity": 0.25,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 3.75,
+      "call_complexity": 0.11,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 5.81
+    },
+    "metrics": {
+      "num_params": 2,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "float, float",
+      "num_assertions": 1,
+      "math_complexity": 0.7,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.36,
+      "call_complexity": 0.5,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "day_of_week_calculator",
+    "difficulty_score": 2.069169375676277,
+    "component_scores": {
+      "params": 2.7,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.59,
+      "math_complexity": 0.09,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.94,
+      "call_complexity": 0.15,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 5.16
+    },
+    "metrics": {
+      "num_params": 3,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "int, int, int",
+      "num_assertions": 1,
+      "math_complexity": 0.4,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.06,
+      "call_complexity": 0.6000000000000001,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 2,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "factorial_root_calculator",
+    "difficulty_score": 2.0621414425436426,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 1.8,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.6,
+      "math_complexity": 2.24,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.99,
+      "call_complexity": 2.8,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 3.62
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 2.2,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.08,
+      "call_complexity": 3.4,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 3,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "string_reversal_checker",
+    "difficulty_score": 2.0282122190548324,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.57,
+      "math_complexity": 0.05,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.79,
+      "call_complexity": 2.14,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 5.03
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "str",
+      "num_assertions": 1,
+      "math_complexity": 0.3,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.0,
+      "call_complexity": 2.9,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 4,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "process_data",
+    "difficulty_score": 2.0178685554678317,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 1.8,
+      "control_flow": 0.7,
+      "data_types": 0.25,
+      "assertions": 0.47,
+      "math_complexity": 0.09,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.21,
+      "call_complexity": 0.0,
+      "branch_complexity": 0.92,
+      "bytecode_complexity": 7.05
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 1,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 0.4,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 1.76,
+      "call_complexity": 0.0,
+      "branch_complexity": 1.4
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 0,
+      "branch_count": 1
+    }
+  },
+  {
+    "program": "ceiling_multiplier",
+    "difficulty_score": 1.9568751816958077,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.54,
+      "math_complexity": 0.82,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.64,
+      "call_complexity": 0.41,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 4.9
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "int",
+      "num_assertions": 1,
+      "math_complexity": 1.3,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 1.94,
+      "call_complexity": 1.1,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "odd_sum_validator",
+    "difficulty_score": 1.943336266970513,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 2.85,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.56,
+      "math_complexity": 0.33,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.74,
+      "call_complexity": 0.48,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 4.99
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 2,
+      "control_flow_depth": 0,
+      "data_types": "list",
+      "num_assertions": 1,
+      "math_complexity": 0.8,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 1.98,
+      "call_complexity": 1.2,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "ascii_average",
+    "difficulty_score": 1.9176801344231695,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 1.8,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.54,
+      "math_complexity": 0.09,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.64,
+      "call_complexity": 3.09,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 3.35
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 0,
+      "data_types": "str",
+      "num_assertions": 1,
+      "math_complexity": 0.4,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 1.94,
+      "call_complexity": 3.5999999999999996,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 3,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "triangle_checker",
+    "difficulty_score": 1.8766633181410766,
+    "component_scores": {
+      "params": 2.7,
+      "operations": 1.8,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.51,
+      "math_complexity": 0.0,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.44,
+      "call_complexity": 0.48,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 3.21
+    },
+    "metrics": {
+      "num_params": 3,
+      "num_operations": 1,
+      "control_flow_depth": 0,
+      "data_types": "int, int, int",
+      "num_assertions": 1,
+      "math_complexity": 0.0,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 1.86,
+      "call_complexity": 1.2,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "process_complex_number",
+    "difficulty_score": 1.843063726372699,
+    "component_scores": {
+      "params": 1.2,
+      "operations": 0.0,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.7,
+      "math_complexity": 1.08,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 3.58,
+      "call_complexity": 1.44,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 2.6
+    },
+    "metrics": {
+      "num_params": 2,
+      "num_operations": 0,
+      "control_flow_depth": 0,
+      "data_types": "float, float",
+      "num_assertions": 1,
+      "math_complexity": 1.5,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.3,
+      "call_complexity": 2.3,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 3,
+      "branch_count": 0
+    }
+  },
+  {
+    "program": "string_pattern_score",
+    "difficulty_score": 1.75653488300286,
+    "component_scores": {
+      "params": 0.3,
+      "operations": 1.8,
+      "control_flow": 0.0,
+      "data_types": 0.25,
+      "assertions": 0.55,
+      "math_complexity": 0.09,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 2.69,
+      "call_complexity": 0.48,
+      "branch_complexity": 0.0,
+      "bytecode_complexity": 3.39
+    },
+    "metrics": {
+      "num_params": 1,
+      "num_operations": 1,
+      "control_flow_depth": 0,
+      "data_types": "str",
+      "num_assertions": 1,
+      "math_complexity": 0.4,
+      "loop_complexity": 0.0,
+      "assertion_complexity": 1.96,
+      "call_complexity": 1.2,
+      "branch_complexity": 0.0
+    },
+    "code_stats": {
+      "loop_count": 0,
+      "function_calls": 1,
+      "branch_count": 0
+    }
+  }
+]

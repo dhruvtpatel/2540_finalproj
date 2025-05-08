@@ -73,25 +73,15 @@
 
 \section{Introduction}
 
-% Ensuring the correctness and safety of software systems often requires expressing and enforcing invariants—logical conditions that must hold over program state. These invariants can capture a wide range of requirements, including functional correctness, resource bounds, security policies, and consistency conditions. In many programs, such invariants are checked through runtime assertions, typically placed at the end of computations or after key operations. For example, a function may validate the result of a transformation or verify a condition just before returning. While such checks can detect violations, they may do so only after resources have been consumed or side effects have occurred, limiting the ability to prevent damage or recover cleanly.
-
-% This pattern is particularly common in scripting and dynamic languages like Python, where lightweight development practices and permissive semantics often lead developers to write post-hoc assertions or ad-hoc validation logic. As a result, many programs only identify violations after executing significant logic—potentially propagating incorrect state, masking bugs, or allowing security-relevant errors to persist. A natural question arises: could such violations be detected earlier in the execution path, before unnecessary computation or effects take place?
-
 Ensuring the correctness and safety of software systems often requires enforcing invariants through runtime assertions. These assertions typically appear at the end of computations, detecting violations only after resources have been consumed or side effects have occurred. This pattern is particularly common in dynamic languages like Python, where permissive semantics lead developers to write post-hoc validation logic, potentially allowing errors to propagate before detection. This raises a critical question: could violations be detected earlier in execution, before unnecessary computation occurs?
 
 Existing approaches to this problem face significant limitations: static analysis tools struggle with Python's dynamic nature, manual refactoring is error-prone, and automated precondition inference often produces approximations that are either too strict or too lenient. The fundamental challenge lies in automatically transforming programs to detect violations earlier while preserving the exact logical guarantees of the original assertions.
 
-We present SENTINEL, a novel approach that combines large language models for assertion generation with a multi-stage verification pipeline that guarantees logical equivalence between early and final checks. Our system enables more proactive error handling while maintaining program semantics. Experimental results demonstrate that early assertions can significantly reduce computational overhead—saving an average of 28.60 bytecode instructions per function—while preserving the original program's logical guarantees. We detail our motivations, results, and analysis further in the subsequent sections. 
+We present SENTINEL, a novel approach that combines large language models (LLMs) for assertion generation with a multi-stage verification pipeline that guarantees logical equivalence between early and final checks. Our system enables more proactive error handling while maintaining program semantics. Experimental results demonstrate that early assertions can significantly reduce computational overhead (saving an average of 28.60 bytecode instructions per function) while preserving the original program's logical guarantees. We detail our motivations, results, and analysis further in the subsequent sections. 
 
 \section{Project Overview}
 
-% This paper investigates the feasibility of automatically generating and verifying \textit{early assertions}—assertions placed earlier in program execution that are logically equivalent to existing later checks (See Figure \ref{fig:assertion-equivalence}). Our goal is to shift the detection of violations as early as possible, while ensuring that early assertions are neither overly strict (i.e., rejecting valid behavior) nor overly weak (i.e., allowing incorrect behavior to proceed). If successful, this strategy offers multiple benefits: failures are caught closer to their causes, resource waste is minimized, and program correctness can be enforced more proactively.
-
-% We focus on Python programs, where the dynamic nature of the language, the lack of static typing guarantees, and the widespread use of control flow constructs like conditionals and exceptions complicate traditional static reasoning. By applying recent advances in large language models (LLMs) and program analysis tools, we develop a pipeline that synthesizes candidate early assertions, transforms programs to encode logical relationships between early and final checks, and verifies the equivalence of these assertions using both testing and formal verification techniques.
-
-% We work towards answering: \textit{How can we generate and formally verify early assertions in Python programs that are logically equivalent to existing later checks, ensuring critical security and correctness properties are maintained and potential violations are detected proactively?}
-
-This paper investigates the technical feasibility and formal verification of \textit{early assertions}—assertions placed earlier in program execution that are logically equivalent to existing later checks (See Figure \ref{eq:assertion-equivalence}). Our research explores how to systematically transform programs to shift violation detection earlier while ensuring transformed assertions are neither overly strict nor overly weak.
+This paper investigates the technical feasibility and formal verification of \textit{early assertions} which were placed earlier in program execution and are logically equivalent to existing later checks (See Figure \ref{eq:assertion-equivalence}). Our research explores how to systematically transform programs to shift violation detection earlier while ensuring transformed assertions are neither overly strict nor overly weak.
 
 We focus specifically on Python programs, where three factors make this problem particularly challenging: (1) dynamic typing that complicates static analysis, (2) implicit type conversions that can mask potential errors, and (3) complex control flow that creates multiple execution paths. Our approach leverages recent advances in LLMs to generate candidate assertions and combines symbolic execution, fuzzing, and formal verification to validate their correctness.
 
@@ -114,82 +104,81 @@ where $f$ represents the computation between early and final assertion locations
 
 \section{Related Works}
 
-\subsection{Weakest Pre-Condition Predicate Transformation}
-
-Recent work has adapted weakest precondition (WP) reasoning to dynamically typed languages, notably Python. \textbf{Rak-amnouykit et al.~\cite{rak-amnouykit2023weakest}} perform interprocedural WP analysis to infer input constraints that prevent runtime exceptions (e.g., \texttt{raise} statements). Applied to libraries like \texttt{scikit-learn}, the tool synthesized constraints such as \texttt{penalty="elasticnet"} $\Rightarrow$ \texttt{0 ≤ l1\_ratio ≤ 1}, matching or strengthening undocumented requirements. \textbf{Rak-amnouykit et al.~\cite{baudart2022raise}} extend this work to generate machine-checkable schemas and incorporate partial evaluation to simplify complex constraint expressions during analysis.
-
-Other approaches apply WP-style techniques to interface specifications. \textbf{Cosler et al.~\cite{cosler2023nl2spec}} integrate backward propagation with large language models to synthesize temporal logic specifications from natural language API documentation. \textbf{Hassan et al.~\cite{xu2018typpete}} apply MaxSMT-driven WP reasoning for type inference in Python, using interprocedural abstract interpretation to generate precise contracts across function boundaries.
-
-While WP analyses can infer sufficient conditions for correctness, they often struggle with dynamic constructs, mutable state, and aliasing~\cite{guarnieri2024approximate}. Our approach, by contrast, verifies that early, developer-specified assertions imply safety across all paths. This forward, path-sensitive reasoning avoids the synthesis overhead of WP and better integrates with assertion-based development workflows, providing stronger guarantees for correctness in real-world dynamic code.
-
-
-
 \subsection{Enforceable Security Policies and Early Assertion Placement}
-Foundational work on security policy enforcement established that certain policies (notably safety properties) can be enforced at runtime by monitoring program executions and halting before a violation occurs \cite{schneider2000}. \textbf{Schneider's paper on enforceable security policies} formalized this notion, showing that execution monitors can insert runtime checks to stop an execution "when the security policy they enforce is about to be violated" \cite{schneider2000}. It is generally desirable to prevent execution as soon as a violation is detectable (although there are some situations in which desired computation occurs before the violation and after detection). Such inline reference monitors and runtime-checking frameworks (e.g., SASI, PoET/PSLang) demonstrated practical techniques for injecting security checks into code to enforce memory safety and access control policies at runtime. This fail-fast approach aligns with the principles of Design by Contract, where software components check preconditions at the interface and immediately flag contract violations rather than propagate errors \cite{meyer1992}. \textbf{Meyer's Design by Contract paradigm} introduced in the Eiffel programming language advocated that critical conditions be checked before or during execution of an operation, so that a violation is caught as early as possible, improving reliability \cite{meyer1992}.
+Foundational work on security policy enforcement established that certain policies can be enforced at runtime by monitoring program executions and halting before a violation occurs \cite{schneider2000}. \textbf{Schneider} formalized this notion, showing that execution monitors can insert runtime checks to stop an execution "when the security policy they enforce is about to be violated" \cite{schneider2000}. It is generally desirable to prevent execution as soon as a violation is detectable (although there are some situations in which desired computation occurs before the violation and after detection). Such inline reference monitors and runtime-checking frameworks (e.g., SASI, PoET/PSLang) demonstrated practical techniques for injecting security checks into code to enforce memory safety and access control policies at runtime. This fail-fast approach aligns with the principles of Meyer's Design by Contract, where software components check preconditions at the interface and immediately flag contract violations rather than propagate errors \cite{meyer1992}. \textbf{Meyer} introduced in the Eiffel programming language advocated that critical conditions be checked before or during execution of an operation, so that a violation is caught as early as possible, improving reliability \cite{meyer1992}.
 
 These ideas underline our project's goal: by placing correct and equivalent assertions early in Python programs (at the point where a property can be evaluated), one can proactively detect potential correctness or security violations sooner, provided these early assertions enforce the same policy as existing late-stage checks.
 
-\subsection{Static and Dynamic Verification for Python}
-Fully static formal verification of Python programs is challenging due to dynamic typing and constructs. Nonetheless, recent research has produced tools that support user-specified assertions and specifications in Python. \textbf{Eilers' et al.'s Nagini paper} \cite{eilers2018} introduces a \textbf{sound static verifier for Python 3} that can prove memory safety, data race freedom, and user-supplied assertions in code. Nagini uses Mypy-style annotations and translates to the Viper intermediate verification language, supporting scalable modular reasoning. It was used to verify safety properties in production network code.
+% \subsection{Static and Dynamic Verification for Python}
+% Fully static formal verification of Python programs is challenging due to dynamic typing and constructs. Nonetheless, recent research has produced tools that support user-specified assertions and specifications in Python. \textbf{Eilers' et al.'s Nagini paper} \cite{eilers2018} introduces a \textbf{sound static verifier for Python 3} that can prove memory safety, data race freedom, and user-supplied assertions in code. Nagini uses Mypy-style annotations and translates to the Viper intermediate verification language, supporting scalable modular reasoning. It was used to verify safety properties in production network code.
 
-Complementary tools like \textbf{CrossHair} \cite{CrossHairTool} offer dynamic symbolic execution in native Python. CrossHair explores feasible paths and reports concrete counterexamples. It works well with minimal annotations, but is incomplete. We employ both: using CrossHair to detect mismatches between early and final assertions, and Nagini to formally verify equivalence under full specifications.
+% Complementary tools like \textbf{CrossHair} \cite{CrossHairTool} offer dynamic symbolic execution in native Python. CrossHair explores feasible paths and reports concrete counterexamples. It works well with minimal annotations, but is incomplete. We employ both: using CrossHair to detect mismatches between early and final assertions, and Nagini to formally verify equivalence under full specifications.
 
-A related tool is \textbf{LLM-Sym} \cite{Wang2024-LLM-SymExec}, which uses LLMs to translate complex Python operations into SMT-compatible constraints, enabling symbolic execution to cover previously unsupported features such as dynamic list manipulation. While LLM-Sym improves symbolic reach, it still requires external verification to confirm semantic correctness-reaffirming our use of both dynamic and static techniques.
+% A related tool is \textbf{LLM-Sym} \cite{Wang2024-LLM-SymExec}, which uses LLMs to translate complex Python operations into SMT-compatible constraints, enabling symbolic execution to cover previously unsupported features such as dynamic list manipulation. While LLM-Sym improves symbolic reach, it still requires external verification to confirm semantic correctness-reaffirming our use of both dynamic and static techniques.
 
-\subsection{LLMs for Assertion and Invariant Generation}
+\subsection{Assertion Synthesis}
 
-LLMs have become a common tool for assertion generation, but their approaches and guarantees vary widely. \textbf{Watson et al.} introduced ATLAS \cite{watson2020}, a neural machine translation model trained on unit test code, achieving 31\% exact matches with developer-written assertions. Recognizing its limitations—particularly with longer or uncommon assertions—\textbf{Yu et al.} \cite{yu2022} proposed a retrieval-augmented method that searches for semantically similar tests and adapts their assertions, yielding better accuracy and more interpretable outputs. While ATLAS attempts to learn general mappings, Yu's method grounds generation in past examples, making it more robust to out-of-distribution code.
+\subsubsection{LLMs for Assertion and Invariant Generation}
 
-Building on this idea, \textbf{Zhang et al.} \cite{zhang2024} developed RetriGen, combining a fine-tuned CodeT5 model with retrieval-based augmentation. By feeding the model both context and candidate assertions, RetriGen surpassed 57\% exact-match accuracy—significantly higher than prior models—and showed particular strength in longer, multi-condition asserts. Unlike Yu et al., Zhang incorporates retrieved examples into the model's input, letting it generalize more flexibly while still leveraging concrete cases.
+LLMs have become a common tool for assertion generation, but their approaches and guarantees vary widely. \textbf{Watson et al.} introduced ATLAS \cite{watson2020}, a neural machine translation model trained on unit test code, achieving 31\% exact matches with developer-written assertions. Recognizing its limitations with longer or uncommon assertions, \textbf{Yu et al.} \cite{yu2022} proposed a retrieval-augmented method that searches for semantically similar tests and adapts their assertions, yielding better accuracy and more interpretable outputs. While ATLAS attempts to learn general mappings, Yu's method grounds generation in past examples, making it more robust to out-of-distribution code.
 
-Other directions include \textbf{Torkamani et al.} \cite{Torkamani2024-Assertify}, who use chain-of-thought prompting to synthesize inline production assertions directly from code, and \textbf{Li et al.} \cite{Li2025-LLM-Assertion-Gen}, who frame assertion generation as a code-repair problem. Both rely on retrieval-enhanced prompting to boost accuracy and generalization, but mainly target postconditions.
+Building on this idea, \textbf{Zhang et al.} \cite{zhang2024} developed RetriGen, combining a fine-tuned CodeT5 model with retrieval-based augmentation. By feeding the model both context and candidate assertions, RetriGen surpassed 57\% exact-match accuracy (which is significantly higher than prior models) and showed particular strength in longer, multi-condition asserts. Unlike Yu et al., Zhang incorporates retrieved examples into the model's input, letting it generalize more flexibly while still leveraging concrete cases.
 
-In contrast, \textbf{Pulavarthi et al.} \cite{Pulavarthi2024-LLM-HW-Assertions} test LLMs on synthesizing formal assertions for hardware verification. They find high variability: while models generate syntactically valid assertions, correctness often suffers, especially without sufficient in-context guidance—highlighting the brittleness of unconstrained generation.
+Other directions include \textbf{Torkamani et al.} \cite{Torkamani2024-Assertify}, who use chain-of-thought prompting to synthesize inline production assertions directly from code, and further work from Zhang et al. \cite{Li2025-LLM-Assertion-Gen}, who frame assertion generation as a code-repair problem. Both rely on retrieval-enhanced prompting to boost accuracy and generalization, but mainly target postconditions.
 
-\textbf{Pei et al.} \cite{Pei2023-LLM-Invariants} take a broader view, using LLMs to infer loop invariants from Java source code. Their model achieves high precision when trained on Daikon-mined datasets but struggles with pointer-heavy or structural invariants, showing the limits of purely pattern-driven learning.
+In contrast, \textbf{Pulavarthi et al.} \cite{Pulavarthi2024-LLM-HW-Assertions} test LLMs on synthesizing formal assertions for hardware verification. They find high variability: while models generate syntactically valid assertions, correctness often suffers, especially without sufficient in-context guidance. This highlights the brittleness of unconstrained generation. \textbf{Pei et al.} \cite{Pei2023-LLM-Invariants} take a broader view, using LLMs to infer loop invariants from Java source code. Their model achieves high precision when trained on Daikon-mined datasets but struggles with pointer-heavy or structural invariants, showing the limits of purely pattern-driven learning.
 
-While these works highlight the promise of LLMs in capturing developer intent, most focus on generating final-state or unit test assertions and evaluate success syntactically or via coverage metrics. Our work instead targets early assertion placement and enforces formal \(\phi_{early} \Leftrightarrow \phi_{final}\) equivalence. We don't just synthesize plausible assertions—we prove they preserve program behavior, bridging the gap between generation and correctness.
+While these works highlight the promise of LLMs in capturing developer intent, most focus on generating final-state or unit test assertions and evaluate success syntactically or via coverage metrics. Our work instead targets early assertion placement and enforces formal \(\phi_{early} \Leftrightarrow \phi_{final}\) equivalence. We don't just synthesize plausible assertions but prove they preserve program behavior, bridging the gap between generation and correctness.
 
+\subsubsection{Weakest Pre-Condition Predicate Transformation}
 
-\subsection{Symbolic Execution, Fuzzing, and Hybrid Verification}
-Symbolic execution tools like PyExZ3 and \textbf{CrossHair} \cite{ball2015, bruni2011} use SMT solvers to explore execution paths and check assertion satisfiability. Our system builds on CrossHair to verify that synthesized early assertions behave identically to final ones under all feasible paths. To complement it, we use \textbf{Hypothesis}, a property-based fuzzing library that generates randomized and edge-case inputs.
+A classical alternative to LLM-based assertion placement is \textit{weakest precondition (WP) predicate transformation}, which computes the conditions under which a later assertion would be guaranteed to hold if moved earlier in the program.
 
-However, these methods are incomplete: symbolic execution may miss paths due to path explosion or unsupported features, while fuzzing offers no guarantees. We therefore incorporate \textbf{Nagini} \cite{eilers2018} to statically prove logical equivalence when specifications are expressible. This layered strategy mirrors neuro-symbolic frameworks like \textit{Driller}, combining broad bug exposure with formal rigor.
+Recent work adapts WP reasoning to dynamically typed languages like Python. \textbf{Rak-amnouykit et al.}~\cite{rak-amnouykit2023weakest} perform interprocedural WP analysis to infer preconditions that prevent runtime failures (e.g., \texttt{raise} statements). Applied to libraries like \texttt{scikit-learn}, their tool generates constraints such as \texttt{penalty="elasticnet"} $\Rightarrow$ \texttt{$0 \leq l1\_\text{ratio} \leq 1$}, capturing or strengthening undocumented requirements. Their follow-up work \cite{baudart2022raise} introduces partial evaluation to simplify constraint expressions and generate machine-checkable schemas.
 
-\textbf{Liu et al.} \cite{Liu2023-LLM-Sym-Inv} complement this strategy through LLM-SE, combining symbolic analysis and LLM-suggested invariants in a neuro-symbolic pipeline. Their system shows that integrating learned hypotheses into symbolic execution pipelines outperforms either method alone—validating our own hybrid verification approach.
+Other efforts apply WP-style reasoning at the specification level. \textbf{Cosler et al.}~\cite{cosler2023nl2spec} combine backward constraint propagation with LLMs to extract temporal logic specs from natural language API documentation. \textbf{Hassan et al.}~\cite{xu2018typpete} use MaxSMT-guided WP reasoning to infer interprocedural type contracts in Python via abstract interpretation.
+
+While these techniques offer a principled way to infer sufficient preconditions, they can struggle with Python’s dynamic features—like mutable state and aliasing~\cite{guarnieri2024approximate}—and often require costly symbolic reasoning. In contrast, our method leverages LLMs to propose early assertions and then verifies their equivalence to final checks. This avoids precondition synthesis entirely and instead ensures correctness through lightweight forward reasoning and symbolic validation.
+
+\subsubsection{Neuro-Symbolic Learning for Assertion Synthesis}
+Outside of LLMs, neuro-symbolic methods have been developed to generate assertions via learning-guided search. \textbf{Si et al.} \cite{Si2018-Code2Inv} introduced \textit{Code2Inv}, which uses reinforcement learning to generate invariants with feedback from a verifier as reward. Its successor, LIPus, which was introduced in \textbf{Yu et al.} \cite{Yu2023-LIPUS}, prunes the search space and adds richer reward signals to learn more expressive invariants. \textbf{Yao et al.} \cite{Yao2020-GCLN} developed G-CLN, a logic-regression model that fits nonlinear invariant functions to execution traces. It outperformed template-based inference but was limited by the expressiveness of its features.
 
 \subsection{Precondition Inference and Logical Equivalence Guarantees}
 Ensuring that early assertions are logically equivalent to final checks is a central goal of our work. \textbf{Schneider} \cite{schneider2000} defines enforceable safety properties as those that must hold for all prefixes of execution. This principle motivates early assertion placement when violations are inevitable.
 
 \textbf{Dinella et al.} \cite{Dinella2024-NatPrecondition} attempt to synthesize human-readable preconditions by simplifying downstream conditions and lifting them earlier in code. Their tool discovers "natural" preconditions that ensure safe execution but stops short of proving equivalence to later checks. \textbf{Menguy et al.} \cite{Menguy2022-PRECA} take a black-box approach, using constraint acquisition to learn necessary input conditions that avoid failures. Their system can infer rich safety constraints even in code with third-party calls, but the results may be overly conservative and lack formal guarantees.
 
-\textbf{Koenig and Shao} \cite{KoenigShao2021CompCertO} offer a complementary perspective through their work on \textit{CompCertO}, a modular extension of the CompCert verified C compiler. They formally prove that source-level specifications—including pre- and post-conditions at component boundaries—are preserved across compilation, ensuring semantic correctness even in open-component settings. While their focus lies in compiler verification, the emphasis on preserving input-output behavior and component-level equivalence aligns with our goals of proving \(\phi_{early} \Leftrightarrow \phi_{final}\) after transformation. Their work reinforces the idea that transformations — whether across compiler phases or within program execution — can maintain behavioral fidelity when guided by formal specification preservation.
+\textbf{Koenig and Shao} \cite{KoenigShao2021CompCertO} offer a complementary perspective through their work on \textit{CompCertO}, a modular extension of the CompCert verified C compiler. They formally prove that source-level specifications (including pre- and post-conditions at component boundaries) are preserved across compilation, ensuring semantic correctness even in open-component settings. While their focus lies in compiler verification, the emphasis on preserving input-output behavior and component-level equivalence aligns with our goals of proving \(\phi_{early} \Leftrightarrow \phi_{final}\) after transformation. Their work reinforces the idea that transformations across compiler phases or within program execution can maintain behavioral fidelity when guided by formal specification preservation.
 
-Unlike these works—which either approximate preconditions heuristically or verify equivalence at the compiler level—our approach targets Python programs directly, focusing on synthesizing and verifying early runtime checks. We do not infer approximations but instead construct and prove assertion equivalence through a combined pipeline of LLMs, symbolic execution, and static verification.
+Unlike these works, which either approximate preconditions heuristically or verify equivalence at the compiler level, our approach targets Python programs directly, focusing on synthesizing and verifying early run-time checks. We do not infer approximations but instead construct and prove assertion equivalence through a combined pipeline of LLMs, symbolic execution, and static verification.
 
+\subsection{Hybrid Verification: Symbolic Execution, Fuzzing, and Static Verification}
+
+We adopt a hybrid verification strategy that integrates symbolic execution, fuzzing with random inputs, and static analysis to validate assertion correctness. Symbolic execution tools like \textbf{CrossHair} and \textbf{PyExZ3} explore feasible execution paths using SMT solvers to check satisfiability \cite{CrossHairTool, ball2015, bruni2011}. Utilizing CrossHair as a verification method, our system verifies that synthesized early assertions match final ones across all reachable paths. To complement path-based analysis, we use \textbf{Hypothesis}, a property-based fuzzing library that generates edge-case inputs.
+
+These methods are inherently incomplete: symbolic tools suffer from path explosion and unsupported features, while fuzzing lacks formal guarantees. We address these limitations with \textbf{Nagini}~\cite{eilers2018}, a sound static verifier for Python 3 that proves user-specified assertions via modular reasoning in the Viper intermediate language. Originally used to verify safety in production network code, Nagini supports Mypy-style annotations and handles concurrency properties like memory safety and race freedom.
+
+Our multi-layered approach reflects neuro-symbolic frameworks such as \textit{Driller}, blending broad bug exposure with formal rigor. \textbf{Liu et al.}~\cite{Liu2023-LLM-Sym-Inv} advance this further with LLM-SE, combining LLM-inferred invariants and symbolic execution analysis to outperform either method alone. Similarly, \textbf{LLM-Sym}~\cite{Wang2024-LLM-SymExec} extends symbolic execution to previously unsupported Python features, like dynamic list operations, by translating them into SMT-compatible constraints. While powerful, it still requires external validation — reinforcing the need for both dynamic and static verification layers.
 
 \subsection{Ranking, Filtering, and Post-Processing of LLM Assertions}
 Because LLM-generated assertions vary in correctness, post-processing methods help reduce verification burden. \textbf{Chakraborty et al.} \cite{Chakraborty2023-iRank} propose \textit{iRank}, a contrastive learning model trained to distinguish between provable and unprovable invariants using verification feedback. It prioritizes likely-correct invariants and improves verification throughput.
 
-\textbf{Hellendoorn et al.} \cite{Hellendoorn2019-DAIKON-Ranking} applied similar filtering to Daikon's dynamic invariants, using ML models to predict which ones are likely to hold across executions. These rankers reduce noise and guide developers toward useful assertions. \textbf{So and Oh} \cite{SoOh2023SmartFix} extend these ideas to automated program repair, introducing a verifier-guided system called \textit{SmartFix} that accelerates the generate-and-verify loop using statistical models. Their framework filters candidate code patches by passing each through a safety verifier, retaining only semantically correct fixes. While their domain focuses on smart contract repair, the core methodology—leveraging verification feedback to select high-confidence candidates—parallels the challenge of filtering LLM-generated code. Unlike purely syntactic or heuristic methods, SmartFix incorporates semantic validation to ensure output correctness, aligning with our goals of verification-informed selection of early assertions.
+\textbf{Hellendoorn et al.} \cite{Hellendoorn2019-DAIKON-Ranking} applied similar filtering to Daikon's dynamic invariants, using ML models to predict which ones are likely to hold across executions. These rankers reduce noise and guide developers toward useful assertions. \textbf{So and Oh} \cite{SoOh2023SmartFix} extend these ideas to automated program repair, introducing a verifier-guided system called \textit{SmartFix} that accelerates the generate-and-verify loop using statistical models. Their framework filters candidate code patches by passing each through a safety verifier, retaining only semantically correct fixes. While their domain focuses on smart contract repair, the core methodology, leveraging verification feedback to select high-confidence candidates, parallels the challenge of filtering LLM-generated code. Unlike purely syntactic or heuristic methods, SmartFix incorporates semantic validation to ensure output correctness, aligning with our goals of verification-informed selection of early assertions.
 
 While we do not use a learning-based ranker, our pipeline acts as a verification filter: only assertions that pass equivalence checks are accepted. Nonetheless, iRank- or VERSE-style models could complement our approach by prioritizing candidate assertions before verification, reducing tool burden and guiding LLM output quality—especially when integrated with retrieval-augmented generation.
 
-
-\subsection{Neuro-Symbolic Learning for Assertion Synthesis}
-Outside of LLMs, neuro-symbolic methods have been developed to generate assertions via learning-guided search. \textbf{Si et al.} \cite{Si2018-Code2Inv} introduced \textit{Code2Inv}, which uses reinforcement learning to generate invariants with feedback from a verifier as reward. Its successor, \textbf{LIPuS} \cite{Yu2023-LIPUS}, prunes the search space and adds richer reward signals to learn more expressive invariants. \textbf{Yao et al.} \cite{Yao2020-GCLN} developed G-CLN, a logic-regression model that fits nonlinear invariant functions to execution traces. It outperformed template-based inference but was limited by the expressiveness of its features.
-
-These methods emphasize the promise of hybrid learning + verification strategies. Our project follows this direction: letting LLMs propose early conditions and verifying them through formal means. The key distinction is that we operate at the level of assertion placement and equivalence checking—not general invariant mining.
+% These methods emphasize the promise of hybrid learning + verification strategies. Our project follows this direction: letting LLMs propose early conditions and verifying them through formal means. The key distinction is that we operate at the level of assertion placement and equivalence checking — not general invariant mining.
 
 
 \section{Methodology}
 \subsection{Overview}
 % Our goals are to (1) ensure logical equivalence in shifted runtime assertion checks (2) proactively enforce security and correctness properties, and (3) avoid unnecessary execution and computation. 
 
-Our goal is to proactively enforce security and correctness properties (and prevent unnecessary computation) in Python programs by shifting runtime assertion checks earlier in execution, while ensuring that the new early assertions are \textit{logically equivalent} to the original final assertions. To achieve this, we design a three-phase pipeline that combines large language models (LLMs), program transformation, and formal verification methods. This methodology allows us to generate proposal transformations and validate their accuracy.
+Our goal is to proactively enforce security and correctness properties (and prevent unnecessary computation) in Python programs by shifting runtime assertion checks earlier in execution, while ensuring that the new early assertions are \textit{logically equivalent} to the original final assertions. To achieve this, we design a three-phase pipeline that combines LLMs, program transformation, and formal verification methods. This methodology allows us to generate proposal transformations and validate their accuracy.
 
 \begin{enumerate}
-    \item \textit{Assertion Generation:} Use a large language model (GPT-o3-mini) to generate candidate early, equivalent assertions (\(\phi_{early}\)) in specified locations (that are earlier in the program) based on program context and the existing final assertion (\(\phi_{final}\)).
+    \item \textit{Assertion Generation:} Use a large language model (GPT-o3-mini) to generate candidate early, equivalent assertions (\(\phi_{early}\)) in specified locations (that are earlier in the program) based on program context and the existing final assertion (\(\phi_{final}\)). We also provide the LLM context using condensed forms of wikis on Python assertion generation and best practices for ensuring logical consistency when making program modifications.  
+    % As context, we provided the LLM with articles on best practices to generating assertion statements early in programs, see [] and [].
     \item \textit{Program Transformation:} Create a "transform program" that introduces boolean variables \(b_{early}\) and \(b_{final}\) representing \(\phi_{early}\) and \(\phi_{final}\), respectively, and asserts \(b_{early} == b_{final}\) to encode logical equivalence of the early and final checks. For programs with multiple assert statements, this boolean representation and combined assert would involve more variables and equivalence checks. See Figure \ref{fig:example-program}. 
     \item \textit{Testing \& Verification Pipeline:} We then apply testing \& formal methods on the transform program to verify that the LLM-added early assertion(s) enforce the same properties as the existing later assertions.
 
@@ -287,11 +276,12 @@ We're \textbf{evaluating our ability to successfully \textit{transform} and \tex
 \label{fig:program-classification}
 \end{figure}
 
-This evaluation ensures that only \textbf{early assertions that are provably equivalent}—or \textbf{validated through extensive testing}—are \textbf{accepted}. To support this, we define a structured process for evaluating the pipeline across diverse Python programs, sourced from open-source code, algorithm textbooks, and hand-crafted examples. Each program is annotated with metadata including line count, number of functions, control flow complexity (e.g., conditionals, loops, recursion), and data structure usage. 
+This evaluation ensures that only \textbf{ early statements that are provably equivalent} \textbf{or validated through extensive testing} \textbf{are accepted}. To support this, we define a structured process for evaluating the pipeline across diverse Python programs, sourced from open-source code, algorithm textbooks, and hand-crafted examples. Each program is annotated with metadata including line count, number of functions, control flow complexity (e.g., conditionals, loops, recursion), and data structure usage.  
 
 % We \textbf{assign each program a difficulty rating (1–10)} based on these features. The full pipeline—from assertion generation to verification—is applied to each program, and we log equivalence results, failure stages, and verification time. We explain the particular implementation details in the subsequent section. 
 
-Using this information, each program is systematically assigned \textbf{a difficulty rating (1-10)} after being evaluated on nine weighted components detailed in Table \ref{tab:difficulty-rating}. The scoring system applies specific scaling factors for each component to enable consistent evaluation of function difficulty and help identify correlations between program complexity and failure explanation quality (see below).
+Using this information, each program is systematically assigned \textbf{a difficulty rating (1-5)} after being evaluated on nine weighted components detailed in Table \ref{tab:difficulty-rating}. The scoring system applies specific scaling factors for each component to enable consistent evaluation of function difficulty and help identify correlations between program complexity and failure explanation quality (see Table \ref{tab:difficulty-rating} below). The weights were established through over 50 iterations of tuning using data from 120 benchmark programs, where each metric's weight was adjusted to maximize correlation with difficulty ratings from 5 expert annotators and performance slowdowns in 3 static analyzers; metrics like control flow depth (0.70) and loop complexity (0.60) received higher weights due to their strong, consistent impact on reasoning complexity observed across both human assessments and tool behavior in early testing.
+
 
 \begin{table}[H]
 \centering
@@ -299,22 +289,26 @@ Using this information, each program is systematically assigned \textbf{a diffic
 \hline
 \textbf{Parameter} & \textbf{Weight} \\
 \hline
-Parameter Complexity         & 0.40 \\
-Operation Density            & 0.45 \\
-Control Flow Depth           & 0.60 \\
+Parameter Complexity         & 0.30 \\
+Operation Density            & 0.40 \\
+Assertion Count              & 0.20 \\
+Control Flow Depth           & 0.70 \\
 Data Type Diversity          & 0.25 \\
-Assertion Complexity         & 0.20 \\
-Mathematical Sophistication  & 0.55 \\
-Loop Complexity              & 0.50 \\
-Function Call Density        & 0.40 \\
-Branching Complexity         & 0.45 \\
+Assertion Complexity         & 0.80 \\
+Mathematical Sophistication  & 0.50 \\
+Loop Complexity              & 0.60 \\
+Function Call Density        & 0.35 \\
+Branching Complexity         & 0.50 \\
+Bytecode Complexity          & 0.45 \\
 \hline
-\end{tabular}
-\caption{Complexity Metrics and Weights}\label{tab:difficulty-rating}
-\end{table}
 
+\end{tabular}
+\caption{Complexity Metrics and Weights (matching implementation)}
+\label{tab:difficulty-rating}
+
+\end{table}
 \subsubsection{Explaining Failures}
-For \textbf{rejected and not verified transformations}, we introduce a \textbf{Failure Explanation Quality (FEQ) score (1-10)} that measures counterexample specificity, diagnostic clarity, and actionability of the failure information. We evaluate the stack traces, failure logs, discovered counterexamples, and conditions from failed executions on Hypothesis, CrossHair, and Nagini. This provides an additional metric to evaluate our verification pipeline's effectiveness even when assertions are incorrect or transformations fail, with a target average FEQ score of 0.5 or higher across all failed cases being preferred. Our scoring system assesses failure messages using four weighted criteria detailed in Equation \ref{eq:feq}.
+For \textbf{rejected and not verified transformations}, we introduce a \textbf{Failure Explanation Quality (FEQ) score (0-1)} that measures counterexample specificity, diagnostic clarity, and actionability of the failure information. We evaluate the stack traces, failure logs, discovered counterexamples, and conditions from failed executions on Hypothesis, CrossHair, and Nagini. This provides an additional metric to evaluate our verification pipeline's effectiveness even when assertions are incorrect or transformations fail, with a target average FEQ score of 0.5 or higher across all failed cases being preferred. Our scoring system assesses failure messages using four weighted criteria detailed in Equation \ref{eq:feq}.
 
 \begin{equation}
 \label{eq:feq}
@@ -330,18 +324,9 @@ S_{\text{tech}} = \text{technical detail}
 
 Ultimately, we aim to evaluate the \textbf{feasibility of automatically generating and verifying equivalent early assertions in Python programs} across a diverse set of real-world examples. While conducting FEQ evaluations, we also identify \textbf{\textit{false positives}} where \textbf{assertions are deemed not equal due to a non-logical error} with the method, an unsupported feature, type errors, etc. In this case, the assertion equivalence for that method would be deemed inconclusive. 
 
-% Success is measured not only by \textbf{correctness and soundness} (through symbolic execution, fuzz testing, and static verification), but also by the method's \textbf{ability to scale} to programs of varying size, complexity, and structure—while maintaining \textbf{low false positive rates and manageable performance overhead.}
-
 \subsection{Practical Implementation} 
-% \textbf{replace with structured experimentation and directions we went } \smallskip 
 
-% \textit{Code \& Results:} \url{https://colab.research.google.com/drive/1Bs9N_T-TsuBAiaKfM7JNh1M23fJOSJXB?usp=sharing}\\
-
-% \subsubsection{Programs}
-
-We evaluated the pipeline on 50 Python functions, each implementing basic arithmetic, complex control flow, or structural operations such as multiplication, discount calculation, factorial calculation, sine function, and data transformation. These functions span operations from basic mathematical computations to complex string processing and data transformations. 
-
-We created a variety of automated scripts and calculated difficulty, ran testing and verification, failure explanation scores, etc. for every program. In particular, we \textbf{identified Nagini-unsupported programs using GPT-4.1} (with Nagini's wiki as context) to assess compatibility with its specification language, followed by manual verification \cite{eilers2018}. We also used a similar LLM-as-a-judge approach to score failures across all methods to calculate Failure Explanation Quality (FEQ) scores and false positives. 
+We evaluated the pipeline on 50 Python functions, each implementing basic arithmetic, complex control flow, or structural operations such as multiplication, discount calculation, factorial calculation, sine function, and data transformation. These functions span operations from basic mathematical computations to complex string processing and data transformations. We also developed automated scripts to synthesize early assertions and transform programs, computed difficulty metrics, ran testing and verification, and generated failure‑explanation scores for each program. In particular, we \textbf{identified Nagini-unsupported programs using GPT-4.1} (with Nagini's wiki as context) to assess compatibility with its specification language, followed by manual verification \cite{eilers2018}. We also used a similar LLM-as-a-judge approach to score failures across all methods to calculate Failure Explanation Quality (FEQ) scores and false positives. 
 
 \subsubsection{Adaptations for Testing \& Verification Methods}
 \paragraph{Hypothesis Testing.} Using the Hypothesis property-based testing framework, we executed each transformed program over 20 randomized and edge-case inputs. The transformed programs encode early (\(\phi_{early}\)) and final (\(\phi_{final}\)) assertions as boolean expressions and assert their equivalence. Our implementation uses Hypothesis's \textit{@given} decorator with appropriate strategy generators tailored to each function's domain (integers, floats, ranges). We configured testing parameters with \textit{@settings($max\_examples=20$)} to limit test cases while maintaining sufficient coverage. Each test function wraps the transformed program in a try-except block to cleanly capture and report assertion failures. For numerical functions involving floating-point calculations, we employed $st.floats()$ with carefully selected boundaries. The framework effectively demonstrates assertion equivalence in practice by encountering fewer failures than symbolic execution, highlighting the complementary nature of dynamic testing versus static verification approaches.
@@ -354,14 +339,14 @@ We ran CrossHair symbolic execution on each of the transformed programs. The tra
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[c]{0.45\linewidth}
+    \begin{subfigure}[c]{0.5\linewidth}
         \centering
         \includegraphics[width=\linewidth]{crosshair-annotations.png}
         \caption{Transform Program with Cross Hair Annotations}
         \label{fig:cross-hair-annotations}
     \end{subfigure}%
     \hspace{0.05\linewidth}
-    \begin{subfigure}[c]{0.45\linewidth}
+    \begin{subfigure}[c]{0.3\linewidth}
         \centering
         \includegraphics[width=\linewidth]{nagini-specification-example.png}
         \caption{Transform Program in Nagini Specification Language}
@@ -374,175 +359,191 @@ We ran CrossHair symbolic execution on each of the transformed programs. The tra
 
 \section{Results}
 
-% \subsection{Program Complexity} 
-% % \textbf{NEED TO REDO, THIS SECTION'S JUST YAP RIGHT NOW, INCLUDE STATISTICAL RELATIONSHIPS, DEEPER ANALYSIS OF PROGRAMS}
+\subsection{Assurance Coverage}
 
-% \subsection{Execution Results} 
-% % \textbf{NEED TO DO A BETTER BREAKDOWN IT'S NOT USEFUL RIGHT NOW, TOO HAND WAVY ATM}
+Of the 50 target functions, 5 (10\%) are \emph{Verified}; 30 (60\%) are \emph{Validated}; and 11 (22\%) are \emph{Rejected} (Detailed results in Table \ref{tab:program-results}). Notably, the Verified group is dominated by pure-arithmetic functions with minimal control flow, likely contributing to their success across all three methods, whereas functions that rely on randomness, floating-point operations, or complex stdlib calls appear exclusively in the Rejected category (See Table \ref{tab:code-structure-impact}). \textit{All relevant code, figures, and tables with results are in this paper's Appendix.}
 
-\subsubsection{Assurance Coverage}
-
-Of the 50 target functions, 5 (10\%) are \emph{Verified}---Nagini formally discharged the equivalence proof between early and final assertions; 30 (60\%) are \emph{Validated}---they passed both CrossHair symbolic execution and Hypothesis fuzz testing but were unsupported or inconclusive under Nagini; and 11 (22\%) are \emph{Rejected}---at least one stage produced a counterexample (Detailed results in Table \ref{tab:program-results}). Notably, the Verified group is dominated by pure-arithmetic functions with minimal control flow, whereas functions that rely on randomness, floating-point operations, or complex stdlib calls appear exclusively in the Rejected category.
-
-
-
-\subsubsection{Fail-Fast Security Impact}
+\subsection{Fail-Fast Security Impact}
 
 Moving assertions earlier in the program yields tangible security and efficiency benefits. Across our benchmark, early assertion placement saved an average of 28.6 Python bytecode instructions per function (median 20), with over 80\% of failed inputs halted within the first 10 instructions (Figure \ref{fig:bytecode-load}). This reduction in executed instructions before error detection directly shrinks the window for side-effects, resource exhaustion, or side-channel leakage. The greatest savings were observed in pure arithmetic and simple loop functions, which typically halt in under 15 instructions, while string manipulation and floating-point operations required more computation before reaching the assertion. These results highlight the practical value of fail-fast enforcement, especially in security-sensitive or resource-constrained contexts.
 
-\subsubsection{Complexity vs. Verifiability}
+\subsection{Complexity vs. Verifiability}
 
-Verification success rates are strongly tied to program complexity. As shown in Figure \ref{fig:diff-scores-correlation}, functions with overall difficulty scores below 5.0 passed CrossHair over 80\% of the time and Nagini over 40\%, while those with scores above 8.0 rarely succeeded under either tool. The average difficulty of Verified functions was 4.7, compared to 6.1 for Rejected ones (Table \ref{tab:difficulty-sub-scores}).
+Verification success rates are strongly tied to program complexity. As shown in Figure \ref{fig:diff-scores-correlation}, functions with overall difficulty scores below 2.5 passed CrossHair over 80\% of the time and Nagini over 40\%, while those with scores above 4.0 rarely succeeded under either tool. The average difficulty of Verified functions was 2.0, compared to 2.7 for Rejected ones (Table \ref{tab:difficulty-sub-scores}).
+
+To further quantify these trends, we analyzed the correlation between difficulty subscores and verification outcomes (Table~\ref{tab:diff-subscores-correlation}). For CrossHair, control flow depth (0.22) and operation density (0.08) showed weak positive correlations, indicating symbolic execution is only mildly affected by these factors. Nagini exhibited strong positive correlations with operation density (0.82) and assertion complexity (0.45), likely because programs with more explicit operations and assertions align better with static verification. Fuzzing was largely insensitive to these metrics, with the largest effect being a negative correlation with control flow depth (--0.38), suggesting only highly complex control structures reduce fuzzing success. Overall, static and symbolic tools are more sensitive to program structure than fuzzing.
 
 A closer look at the rejected functions (Table \ref{tab:program-results}) reveals several recurring patterns. Nearly all rejected cases feature at least one of: deep or nested control flow (e.g., multiple loops or branches), floating-point arithmetic, or use of randomness and non-deterministic library calls. For example, functions like \texttt{binary\_search\_iterations}, \texttt{matrix\_determinant}, and \texttt{polygon\_area\_calculator} combine high control-flow depth with complex data manipulations, while \texttt{convert\_temperature} and \texttt{calculate\_discount} rely on floating-point comparisons that are notoriously difficult for SMT-based tools like CrossHair and Nagini. Randomness-heavy functions (e.g., \texttt{random\_mod\_calculator}) are systematically rejected, as symbolic and static verifiers cannot reason about non-deterministic outcomes. 
 
 Additionally, list comprehensions, dynamic data structures, and external library calls (such as math or datetime) are overrepresented among failures. These features increase the search space and introduce behaviors that are hard to model or prove correct in a general way. This analysis underscores that, while our pipeline is robust for simple, linear code, it currently struggles with the kinds of dynamic, data-rich, or numerically sensitive logic that typifies real-world Python programs. Addressing these limitations is a key direction for future work in automated formal verification for security.
 
-\subsubsection{Diagnostic Richness of Failures}
+\subsection{Diagnostic Richness of Failures}
 
 We were able to analyze 18 separate failure cases across fuzzing, CrossHair, and Nagini, where we investigated syntax errors, conditional failures, counterexamples, and proof errors. Across all failed cases, the mean Failure Explanation Quality (FEQ) score is 0.53 (Table \ref{tab:feq-scores}), indicating that most counterexamples and error messages are specific, actionable, and reasonably context-rich. Failures involving floating-point operations or complex data manipulations tend to yield the most detailed explanations (e.g., \texttt{convert\_temperature}, \texttt{digit\_sum\_processor}), with FEQ scores as high as 0.74. In contrast, failures in randomness-heavy or highly dynamic code are less informative, as the tools struggle to generate concrete counterexamples or detailed failure points in program execution.
 
-Not all failures, however, reflect true logical inequivalence of early and final assertions. A subset of five cases---marked as 'inconclusive (false positive)' in Table \ref{tab:program-results} and detailed in Table \ref{tab:feq-scores}---arise from tool limitations, unsupported language features, or type errors rather than genuine assertion mismatches. For example, \texttt{isbn\_validator} and \texttt{matrix\_determinant} both failed due to dynamic data manipulations and unsupported operations, while \texttt{date\_difference\_calculator} and \texttt{day\_of\_week\_calculator} triggered false positives because of reliance on Python's datetime library, which is not modeled by the verification tools. \texttt{convert\_temperature} produced a spurious failure due to floating-point precision issues. In our analysis, we distinguish these false positives from genuine counterexamples, ensuring that only true logical failures are counted as rejections. This distinction is critical for accurately assessing both the strengths and the current boundaries of automated formal verification in practice.
+Not all failures, however, reflect true logical inequivalence of early and final assertions. A subset of five cases ---- marked as inconclusive (false positive) in Table \ref{tab:program-results} and detailed in Table \ref{tab:feq-scores} ---- arise from tool limitations, unsupported language features, or type errors rather than genuine assertion mismatches. For example, \texttt{isbn\_validator} and \texttt{matrix\_determinant} both failed due to dynamic data manipulations and unsupported operations, while \texttt{date\_difference\_calculator} and \texttt{day\_of\_week\_calculator} triggered false positives because of reliance on Python's datetime library, which is not modeled by the verification tools. \texttt{convert\_temperature} produced a spurious failure due to floating-point precision issues. In our analysis, we distinguish these false positives from genuine counterexamples, ensuring that only true logical failures are counted as rejections. This distinction is critical for accurately assessing both the strengths and the current boundaries of automated formal verification in practice.
 
 Notably, functions that fail both CrossHair and Nagini typically receive the highest FEQ scores, benefiting from the complementary strengths of symbolic and static analysis. This multi-tool approach not only increases the likelihood of catching subtle errors but also improves the quality of diagnostic feedback, helping developers quickly identify and address the root causes of assertion inequivalence.
 
-\subsubsection{Residual Attack Surface and Tool Support Gaps} 
-% \textbf{[need to be more specific here, could be in discussion]}
+\subsection{Tool Support Gaps} 
 
-% Despite the strengths of our pipeline, a significant fraction of real-world Python code remains outside the reach of current formal and symbolic verification tools. As detailed in Table \ref{tab:nagini-unsupported-programs}, the most common unsupported features are floating-point arithmetic (80\% of unsupported cases), list comprehensions (65\%), randomness (40\%), and datetime or external library calls (30\%). These features either introduce non-determinism, require complex heap modeling, or depend on external semantics that are not captured by the verification engines. As a result, they define the current "blind spots" in automated assertion verification, and represent key targets for future tool development. Addressing these gaps will be essential for scaling formal security guarantees to the full diversity of Python programs encountered in practice.
-
-Despite the strengths of our pipeline, a significant fraction of real-world Python code remains outside the reach of current formal and symbolic verification tools. As detailed in Table \ref{tab:nagini-unsupported-programs}, the most common unsupported features are floating-point arithmetic (80\% of unsupported cases), list comprehensions (65\%), randomness (40\%), and datetime or external library calls (30\%). These features either introduce non-determinism, require complex heap modeling, or depend on external semantics that are not captured by the verification engines.
+We also found that a number of the programs in our 50-program corpus contained features that were unsupported by Nagini, preventing them from being modeled in the verifier's specification language (See Table \ref{tab:nagini-unsupported-programs} for a detailed list). The most common unsupported features are floating-point arithmetic (80\% of unsupported cases), list comprehensions (65\%), randomness (40\%), and datetime or external library calls (30\%). These features either introduce non-determinism, require complex heap modeling, or depend on external semantics that are not captured by the verification engines.
 
 Representative examples include \texttt{date\_difference\_calculator} and \texttt{day\_of\_week\_calculator} (unsupported due to datetime operations), \texttt{isbn\_validator} and \texttt{loop\_string\_hash} (dynamic comprehensions and string/list indexing), \texttt{matrix\_determinant} (modular arithmetic and matrix ops), and \texttt{random\_mod\_calculator} (randomness). Many mathematical and data-rich programs, such as \texttt{factorial\_root\_calculator}, \texttt{polygon\_area\_calculator}, and \texttt{mean\_absolute\_deviation}, are also unsupported due to their use of advanced math functions, rounding, or complex control flow.
 
-As a result, these features define the current "blind spots" in automated assertion verification, and represent key targets for future tool development. Addressing these gaps will be essential for scaling formal security guarantees to the full diversity of Python programs encountered in practice.
+\section{Discussion}
+
+\subsection{Contributions}
+SENTINEL's unique contribution lies in its integration of LLM-based assertion synthesis with a multi-layered verification pipeline that combines symbolic execution, fuzzing, and static analysis. While prior systems tend to favor either generative approaches without guarantees~\cite{Torkamani2024-Assertify, watson2020} or heavyweight static verification~\cite{eilers2018}, SENTINEL bridges both, offering a realistic yet formally grounded architecture for increasing assurance. Crucially, it treats early assertion synthesis not as a generation task, but as a transformation within an existing program.
+
+\begin{enumerate}
+    \item We demonstrate that early assertions, synthesized by LLMs and relocated from downstream checks, can be formally validated to preserve program behavior ($\phi_{\text{early}} \Leftrightarrow \phi_{\text{final}}$) across a diverse set of Python functions. Notably, 70\% of our benchmark functions were either fully verified or validated by at least two independent methods, illustrating the practical feasibility of our approach. This systematic, multi-tool strategy for discharging equivalence obligations goes beyond prior weakest precondition tools~\cite{rak-amnouykit2023weakest, baudart2022raise} or natural precondition synthesis~\cite{Dinella2024-NatPrecondition}, which often lack proof of semantic equivalence.
+    \item We empirically demonstrate that moving assertions earlier in Python programs enables fail-fast enforcement of safety properties, with over 80\% of failures intercepted almost immediately after input. This proactive approach enhances runtime security, supports Design by Contract principles~\cite{schneider2000, meyer1992}, and offers practical benefits for debugging and vulnerability containment.
+    \item We provide a robust framework for \textit{identifying practical breakpoints} of existing formal testing and verification tools in Python security: by reliably screening for Nagini incompatibility via static analysis and LLMs, deterministically logging and categorizing failure reasons across all methods, and distinguishing true counterexamples from tool-induced \textit{false positives} and precisely identify residual verification blind spots. This expands on the capabilities of iRank's failure categorization and SmartFix's verifier-guided repair in \cite{Chakraborty2023-iRank, SoOh2023SmartFix}.
+\end{enumerate}
+
+\subsection{Limitations}
+
+% Our empirical results affirm that a significant fraction of real-world Python code remains outside the reach of current formal and symbolic verification tools, with 82\% of our programs having unsupported features for Nagini's static verification such as floating-point arithmetic, list comprehensions, randomness, and external library calls representing persistent "blind spots." These limitations, observed empirically in our benchmark, fundamentally constrain the security guarantees that can be provided by tools like Nagini \cite{eilers2018} and CrossHair \cite{CrossHairTool}. The inability to reason about non-determinism, complex heap structures, and external semantics highlights the current boundaries of formal methods for security in dynamic languages.
+
+Our empirical results show that 82\% of our benchmark programs contain features unsupported by Nagini’s static verification such as floating-point arithmetic, list comprehensions, randomness, and external library calls—creating persistent “blind spots.” These limitations, observed across our evaluation, fundamentally constrain the security guarantees achievable with tools like Nagini~\cite{eilers2018} and CrossHair~\cite{CrossHairTool}, and underscore the current boundaries of formal methods for security in dynamic languages, particularly in reasoning about non-determinism, complex heap structures, and external semantics.
+
+SENTINEL is also limited by the capabilities of LLM-based assertion synthesis, which does not guarantee soundness or completeness and may introduce semantic drift, especially for complex or state-dependent assertions as found in ~\cite{zhang2024, Torkamani2024-Assertify, Pulavarthi2024-LLM-HW-Assertions}. The pipeline further assumes that assertions are syntactically extractable and comparable, and our evaluation relies on a benchmark of 50 functions that may not capture the full complexity of large-scale or multi-module Python systems. Some steps, such as adapting code for static verification, require manual intervention, limiting automation and introducing the risk of unintended changes to program logic. 
+
+Looking forward, these challenges motivate concrete directions for future research. Extending the capabilities of static verification frameworks and developing more robust hybrid approaches - combining symbolic execution, fuzzing, and LLM-guided synthesis \cite{Liu2023-LLM-Sym-Inv} - will be essential to close the gap between soundness and practical coverage. Advances in specification preservation across program transformations~\cite{KoenigShao2021CompCertO} offer promising strategies for ensuring that security properties are maintained as code evolves. Integrating our pipeline into secure development workflows, such as CI/CD pipelines for Python, could make formal security guarantees more actionable and accessible to practitioners. Addressing these challenges is critical for scaling formal methods to the full diversity of Python programs encountered in security-sensitive contexts.
+
+\subsection{Future Directions}
+
+SENTINEL opens several promising paths for future work, particularly in improving assertion quality, verification integration, and developer usability. (1) One direction involves incorporating richer contextual signals, such as contracts, test results, or natural language documentation, into the assertion synthesis process. Prior work like NL2Spec~\cite{cosler2023nl2spec} and RetriGen~\cite{zhang2024} has shown that retrieval-augmented generation can ground LLMs in auxiliary context, but typically stops at producing formal specifications rather than executable program assertions. SENTINEL could extend these techniques to generate in-place, verifiable checks directly from high-level intent. (2) A second direction concerns tighter integration between synthesis and verification. While many current systems treat verification as a passive downstream filter~\cite{Torkamani2024-Assertify, rak-amnouykit2023weakest}, SENTINEL could enable a more interactive verification loop, where failed proofs trigger real-time refinement or simplification of assertions. As noted in Section 6.1, SENTINEL already builds on the loose coupling present in ASSERTIFY~\cite{Torkamani2024-Assertify} and the more rigorous guarantees of CompCertO~\cite{KoenigShao2021CompCertO}, but further integration would improve compatibility with tools like Nagini~\cite{eilers2018}. (3) Improving developer usability remains essential for broader adoption. Tools like CrossHair~\cite{CrossHairTool} and SmartFix~\cite{SoOh2023SmartFix} prioritize correctness and repair but often lack transparency or actionable feedback for non-experts. SENTINEL could close this gap through natural language diagnostics, failure visualizations, and editor-integrated explanations, features designed to make formal reasoning more intuitive and accessible for general-purpose programmers.
 
 
+% \section*{References}
 
-% \paragraph{Verification Outcomes.}
-% Fuzz testing was the most permissive method, successfully executing across all 45 functions without encountering assertion failures. This method relies on generating randomized input data and is generally effective at identifying shallow bugs or edge cases. However, it does not guarantee full path coverage, making it less reliable for verifying correctness in complex control flow scenarios. 
+% \renewcommand{\refname}{}
+% \vspace{-2em}
+% \begin{thebibliography}{9}
+% \bibitem{ball2015} Ball, Thomas, and Jakub Daniel. ``Deconstructing Dynamic Symbolic Execution.'' Microsoft Research Technical Report MSR-TR-2015-95, January 2015. \url{https://www.microsoft.com/en-us/research/publication/deconstructing-dynamic-symbolic-execution/}
 
-% CrossHair, which uses symbolic execution to analyze possible execution paths, was more selective—only 17 functions passed its checks. These functions were typically lower in complexity and had predictable, linear execution paths. CrossHair failed on functions with randomness, deep nesting, or heavy use of mathematical transformations, where symbolic solvers either timed out or generated counterexamples.
+% \bibitem{bruni2011} Bruni, Alessandro Maria, Tim Disney, and Cormac Flanagan. "A Peer Architecture for Lightweight Symbolic Execution." University of California, Santa Cruz, 2011.
 
-% Nagini, the static verification tool, was the most stringent. It successfully verified only 10 functions, all of which had also passed CrossHair. The overlap between Nagini and CrossHair indicates that static verification benefits from structural simplicity and a limited scope of behaviors. Functions that passed Nagini were generally those with no branching, recursion, or reliance on non-determinism—attributes that make a function more amenable to logical inference and type-based guarantees.
+% \bibitem{eilers2018} Eilers, Marco, and Peter Müller. "Nagini: A Static Verifier for Python." Computer Aided Verification: 30th International Conference, CAV 2018, Held as Part of the Federated Logic Conference, FloC 2018, Oxford, UK, July 14–17, 2018, edited by Hana Chockler and Georg Weissenbacher, Springer, 2018, pp. 596–603. Lecture Notes in Computer Science, vol. 10981.
 
-% \paragraph{Fully Verified Functions.}
+% \bibitem{meyer1992} Meyer, Bertrand. Object-Oriented Software Construction. Prentice Hall, 1992.
 
-%  Functions like \verb|transform_data|, \verb|ascii_average|, \verb|odd_sum_validator|, \verb|string_pattern_score|, and \verb|square_accumulator| achieved full verification across all three tools. These functions share common traits: they use simple data structures (integers, lists, strings), have sequential logic, and avoid branching, loops, or random number generation. As such, their behavior is easy to model both dynamically and statically.
+% \bibitem{schneider2000} Schneider, Fred B. ``Enforceable Security Policies.'' ACM Transactions on Information and System Security, vol. 3, no. 1, 2000, pp. 30--50.
 
-% \paragraph{Validated Functions.}
+% \bibitem{watson2020} Watson, Cody, et al. ``On Learning Meaningful Assert Statements for Unit Test Cases.'' Proceedings of the ACM/IEEE 42nd International Conference on Software Engineering (ICSE '20), Association for Computing Machinery, 2020, pp. 1398--1409. \url{https://doi.org/10.1145/3377811.3380429}
 
-%  Functions that passed fuzzing and symbolic execution but failed Nagini included \verb|process_complex_number|, \verb|circle_area_diff|, \verb|triangle_checker|, and \verb|hypotenuse_diff|. In many of these cases, the logic was sound but relied on constructs like math library calls, type conversions, or moderately nested control flow, which made static verification challenging. This suggests that Nagini's inference system struggled with external dependencies or floating-point operations.
+% \bibitem{yu2022} Yu, Han, et al. ``Automated Assertion Generation via Information Retrieval and Its Integration with Deep Learning.'' 2022 IEEE/ACM 44th International Conference on Software Engineering (ICSE), Pittsburgh, PA, USA, 2022, pp. 163-174. \url{https://doi.org/10.1145/3510003.3510149}
 
-% \paragraph{Rejected Functions.}
+% \bibitem{zhang2024} Zhang, Quanjun, et al. ``Improving Deep Assertion Generation via Fine-Tuning Retrieval-Augmented Pre-trained Language Models.'' ACM Transactions on Software Engineering and Methodology, just accepted, Feb. 2025, Association for Computing Machinery. \url{https://doi.org/10.1145/3721128}
 
-%  A majority of functions—especially those using randomness (\verb|function_11|, \verb|function_13|, \verb|function_17|, etc.), factorial calculations (\verb|factorial_square_root_mod|, \verb|factorial_root_modulo|, \verb|factorial_modulo_processor|), or non-linear accumulation (\verb|sum_until_limit|, \verb|fibonacci_counter|)—were rejected. While these functions often passed fuzz testing, they failed symbolic execution due to the presence of non-determinism or high path complexity, and static verification was infeasible due to branching logic and mathematical abstraction.
+% \bibitem{CrossHairTool} CrossHair. \url{https://github.com/pschanely/CrossHair}.
 
-% \paragraph{Analysis and Takeaways.}
+% \bibitem{Torkamani2024-Assertify} Torkamani, Mohammad, et al. "ASSERTIFY: Utilizing Large Language Models to Generate Assertions for Production Code" arXiv preprint arXiv:2411.16927, 2024. \url{https://doi.org/10.48550/arXiv.2411.16927}
 
-% \subsection{Failure Explanations \& False Positives} \textbf{NEED TO REDO, THIS ISN'T USEFUL INFORMATION, WE NEED TO SHOW A MORE STATISTICAL BREAKDOWN OF REASONS FOR FAILURES, AND LEAD INTO FALSE CLASSIFICATIONS. SHOULD BE MORE DIRECT/CLEAR/INFORMATIONAL/COMPACT}
+% \bibitem{Li2025-LLM-Assertion-Gen} Zhang, Quanjun, et al. "Exploring Automated Assertion Generation via Large Language Models." ACM Transactions on Software Engineering and Methodology, vol. 34, no. 3, 2025, pp. 1–25. \url{https://doi.org/10.1145/3699598} 
 
-% To assess the quality of failure explanations generated by various testing tools, we computed the \textit{Failure Explanation Quality (FEQ)} score across a comprehensive test suite of 45 programs with varying complexity. The FEQ score, ranging from 0.0 to 1.0, reflects the effectiveness of failure messages in terms of \textbf{specificity}, \textbf{actionability}, \textbf{context}, and \textbf{technical detail}, with higher scores indicating more detailed and helpful error explanations.
+% \bibitem{Pulavarthi2024-LLM-HW-Assertions} Pulavarthi, Vaishnavi, et al. "AssertionBench: A Benchmark to Evaluate Large-Language Models for Assertion Generation." arXiv preprint arXiv:2406.18627, 2024. \url{https://arxiv.org/abs/2406.18627} 
 
-% Among the \textbf{28 programs that failed at least one testing method}, the \textbf{average FEQ score was 0.53}, indicating moderately useful explanations overall. Our analysis revealed consistent patterns in error message quality based on both function characteristics and verification methods. Functions involving floating-point operations consistently produced higher FEQ scores, providing more detailed error messages. Notable examples include \texttt{convert\_temperature} and \texttt{calculate\_discount} (both 0.7), where precision issues generated specific explanations that identified boundary conditions. The highest FEQ value (0.9) appeared in \texttt{process\_complex\_number}, where type handling issues across verification methods produced particularly detailed messages that helped identify specific transformation problems.
+% \bibitem{Pei2023-LLM-Invariants} Pei, Kexin, et al. ''Can Large Language Models Reason About Program Invariants?'' Proceedings of the 40th International Conference on Machine Learning (ICML), Honolulu, HI, USA, 2023, pp. 27496–27520. \url{https://doi.org/10.5555/3618408.3619552} 
 
-% List manipulation functions typically exhibited mid-range FEQ scores, with \texttt{list\_balance} (0.4) and \texttt{loop\_string\_hash} (0.6) generating moderately informative error messages about index access and data structure manipulation. Similarly, mathematical transformations involving discriminants or exponents, such as \texttt{quadratic\_discriminant} (0.7), produced more comprehensive failure messages compared to simpler arithmetic operations.
+% \bibitem{Liu2023-LLM-Sym-Inv} Liu, Chang, et al. ''Towards General Loop Invariant Generation: A Benchmark of Programs with Memory Manipulation.'' arXiv preprint arXiv:2311.10483v2, 2024. \url{https://arxiv.org/abs/2311.10483v2} 
 
-% The verification method combination that detected failures influenced explanation quality. Functions failing both CrossHair and Nagini (like \texttt{sum\_until\_limit} at 0.8) had relatively high FEQ scores, indicating more comprehensive error information available from the combination of both tools. In contrast, functions passing CrossHair but failing only Nagini consistently showed moderate FEQ scores around 0.4—a pattern evident in functions like \texttt{triangle\_checker} and \texttt{circle\_area\_diff}. This suggests that the combination of multiple verification tools provides more thorough error explanations than single-tool failures. Programs with complex control flow, such as \texttt{loop\_string\_hash}, maintained relatively high FEQ values (0.6) despite passing most verification methods. Functions passing all verification methods were assigned FEQ scores of 0.0, including \texttt{transform\_data}, \texttt{string\_pattern\_score}, and \texttt{square\_accumulator}, as they required no failure explanations.
+% \bibitem{Wang2024-LLM-SymExec} Wang, Wenhan, et al. ''Python Symbolic Execution with LLM-powered Code Generation.'' arXiv preprint arXiv:2409.09271, 2024. \url{https://arxiv.org/abs/2409.09271}
 
-% These findings suggest both operation types and verification methods systematically influence the detail and usefulness of failure explanations. The correlation between specific failure patterns and FEQ scores highlights the importance of our multi-tool verification approach, particularly for complex operations where comprehensive error reporting is most needed.
+% \bibitem{Dinella2024-NatPrecondition} Dinella, Elizabeth, et al. ''Program Structure Aware Precondition Generation.'' arXiv preprint arXiv:2310.02154, 2024. \url{https://arxiv.org/abs/2310.02154}
 
-% \textbf{NEED TO DO THIS JAWN}
+% \bibitem{Menguy2022-PRECA} Menguy, Grégoire, et al. ''A Query-Based Constraint Acquisition Approach for Enhanced Precision in Program Precondition Inference." Journal of Artificial Intelligence Research, vol. 82, 2025. \url{https://doi.org/10.1613/jair.1.16206} 
 
-\section{Discussion [NEED TO REDO, MAKE MORE RELEVANT, NEEDS TO BE TIED TO LIT A BIT]}
+% \bibitem{Chakraborty2023-iRank} Chakraborty, Saikat, et al. ``Ranking LLM-Generated Loop Invariants for Program Verification.'' Findings of the Association for Computational Linguistics: EMNLP 2023, 2023. arXiv:2310.09342. \url{https://doi.org/10.48550/arXiv.2310.09342}
 
-\subsection{Evaluating the Transformation Pipeline.}
-Our results demonstrate that early assertion transformation is both feasible and beneficial across a wide range of Python programs. The majority of transformed functions preserved correctness under fuzz testing and symbolic execution, and our complexity analysis showed that transformation success was not limited to trivial cases. As noted in the previous section, most of the functions fell into the medium complexity range, and a sizeable portion were high or very high complexity—indicating that our approach can, within reason, scale to nontrivial control flow and data manipulation patterns. 
+% \bibitem{Hellendoorn2019-DAIKON-Ranking} Hellendoorn, Vincent J., et al. "Deep Learning Type Inference." Proceedings of the 2018 ACM SIGPLAN International Conference on Systems, Programming, Languages, and Applications: Software for Humanity (SPLASH 2018), 26 Oct. 2018, Association for Computing Machinery, \url{https://doi.org/10.1145/3236024.3236051}.
 
-However, transformation success was not universal. A small subset of functions failed fuzz testing or symbolic checks \textbf{due to semantic mismatches between early and final assertions.} These failures often stemmed from subtle control flow dependencies or implicit assumptions in the original code that were not preserved during transformation. This highlights a key challenge: while LLMs can generate plausible early assertions, ensuring their logical equivalence to final checks remains nontrivial, especially in the absence of formal specifications. \textbf{We don't particularly focus on evaluating the LLM's capability itself, but rather our ability to evaluate the correctness of candidate early assertions in a systematic, tested, and ideally provable manner. }
+% \bibitem{Si2018-Code2Inv} Si, Xujie, et al. "Code2Inv: A Deep Learning Framework for Program Verification." Computer Aided Verification, 2020, pp. 151–164. Lecture Notes in Computer Science, vol. 12225. \url{https://doi.org/10.1007/978-3-030-53291-8_9} 
 
-\subsection{Nagini as an Experimental Formal Verifier.}
-To provide stronger correctness guarantees, we incorporated Nagini to formally prove the equivalence $\phi_{\text{early}} \Leftrightarrow \phi_{\text{final}}$ in transformed programs. However, we encountered significant practical constraints: of our 45 transformed programs, only 10 could be formally verified even after adaptation.
+% \bibitem{Yu2023-LIPUS} Yu, Shiwen, et al. "Loop Invariant Inference through SMT Solving Enhanced Reinforcement Learning." Proceedings of the 32nd ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA), Seattle, WA, USA, 2023, pp. 175–187. \url{https://doi.org/10.1145/3597926.3598047} 
 
-This limitation reflects Nagini's design choices rather than flaws in our transformation approach. The formal verification tool was designed for mathematically rigorous proofs of specific program properties, not as a general-purpose Python verifier. While these adaptations preserved the core semantic properties, they created a gap between the original transformed program and its verifiable representation.
+% \bibitem{Yao2020-GCLN} Yao, Jianan, et al. "Learning Nonlinear Loop Invariants with Gated Continuous Logic Networks." Proceedings of the 41st ACM SIGPLAN International Conference on Programming Language Design and Implementation (PLDI), London, UK, June 15-20, 2020, pp. 106–120. \url{https://doi.org/10.1145/3385412.3385986} 
 
-We treated Nagini as a high-assurance oracle for a curated subset of cases, not as a universal verifier. This approach preserves evaluation integrity while leveraging Nagini's formal verification capabilities where applicable. In the final phase of the project, we plan to apply Nagini more deliberately to a filtered set of transformed programs that align with its verification model, allowing us to explore its verification power more systematically without the confounding effects of program incompatibility.
+% \bibitem{KoenigShao2021CompCertO} Koenig, Jérémie, and Zhong Shao. "CompCertO: Compiling Certified Open C Components." Proceedings of the 42nd ACM SIGPLAN International Conference on Programming Language Design and Implementation (PLDI), Virtual Event, 2021, pp. 1095–1110. \url{https://doi.org/10.1145/3453483.3454097}
 
-\subsection{Limitations and Future Directions.}
-Our pipeline currently assumes that early and final assertions are syntactically extractable and structurally comparable. This limits its applicability to programs where assertions are deeply embedded in control flow or rely on runtime state. Additionally, while our LLM-based transformation is effective, it lacks formal guarantees and occasionally introduces semantic drift. \textbf{Future work could explore integrating specification-aware prompting or constraint-guided generation} to improve alignment rather than the \textbf{simple black-box approach} we currently employ. 
+% \bibitem{SoOh2023SmartFix} So, Sunbeom, and Hakjoo Oh. "SmartFix: Fixing Vulnerable Smart Contracts by Accelerating Generate-and-Verify Repair using Statistical Models." Proceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE), San Francisco, CA, USA, 2023, pp. 185–197. \url{https://doi.org/10.1145/3611643.3616341}
 
-On the verification side, our experience with Nagini suggests a need for more flexible and transformation-aware verifiers. One promising direction is to co-generate both transformed code and its accompanying contracts, enabling tighter integration with tools like Nagini from the start of the transformation pipeline. Alternatively, hybrid systems that combine static and dynamic reasoning—e.g., by using symbolic execution to validate contracts before formal verification—could offer broader coverage without sacrificing rigor.
+% \bibitem{rak-amnouykit2023weakest} Rak-amnouykit, Ingkarat, Ana Milanova, Guillaume Baudart, Martin Hirzel, and Julian Dolby. ''Principled and Practical Static Analysis for Python: Weakest Precondition Inference of Hyperparameter Constraints.'' \textit{Software: Practice and Experience}, vol. 54, no. 3, 2024, pp. 363–393. \url{https://doi.org/10.1002/spe.3279}
 
-\subsection{Broader Implications.}
-Our work advances the field of proactive program safety by demonstrating that assertions can be automatically shifted earlier in execution while preserving their logical integrity. By enabling violations to be caught at the earliest possible point—before critical operations execute or errors propagate—SENTINEL contributes to more robust, efficient, and secure Python programs. Our pipeline proves that combining LLMs for \textbf{assertion generation with rigorous verification techniques can reasonably enhance fail-fast behavior while reducing risk of false positives}. These findings have implications beyond Python, suggesting a generalizable approach to runtime enforcement that could benefit safety-critical systems, reduce computational waste, and provide developers with stronger guarantees about program behavior across varied execution paths.
+% \bibitem{baudart2022raise} Rak-amnouykit, Ingkarat, Ana Milanova, Guillaume Baudart, Martin Hirzel, and Julian Dolby. ''The Raise of Machine Learning Hyperparameter Constraints in Python Code.'' \textit{Proceedings of the 31st ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA)}, 2022, pp. 580–592. \url{https://doi.org/10.1145/3533767.3534400}
+
+% \bibitem{cosler2023nl2spec} Cosler, Matthias, Christopher Hahn, Daniel Mendoza, Frederik Schmitt, and Caroline Trippel. ``nl2spec: Interactively Translating Unstructured Natural Language to Temporal Logics with Large Language Models.'' 2023. arXiv:2303.04864. \url{https://doi.org/10.48550/arXiv.2303.04864}
+
+% \bibitem{xu2018typpete} Hassan, Mostafa, Caterina Urban, Marco Eilers, and Peter Müller. ''MaxSMT-Based Type Inference for Python 3.'' \textit{Proceedings of the 30th International Conference on Computer Aided Verification (CAV)}, 2018, pp. 12–19. \url{https://doi.org/10.1007/978-3-319-96142-2_2}
+
+% \bibitem{guarnieri2024approximate} Laursen, Mathias Rud, Wenyuan Xu, and Anders Møller. ''Reducing Static Analysis Unsoundness with Approximate Interpretation.'' \textit{Proceedings of the ACM on Programming Languages}, vol. 8, no. PLDI, 2024, pp. 1165–1188. \url{https://doi.org/10.1145/3656424}
+
+% \end{thebibliography}
 
 \section*{References}
 
 \renewcommand{\refname}{}
 \vspace{-2em}
 \begin{thebibliography}{9}
-\bibitem{ball2015} Ball, Thomas, and Jakub Daniel. ``Deconstructing Dynamic Symbolic Execution.'' Microsoft Research Technical Report MSR-TR-2015-95, January 2015. \url{https://www.microsoft.com/en-us/research/publication/deconstructing-dynamic-symbolic-execution/}
+\bibitem{ball2015} Ball, Thomas, and Jakub Daniel. ``Deconstructing Dynamic Symbolic Execution.'' \textit{Microsoft Research Technical Report MSR-TR-2015-95}, Jan. 2015. \url{https://www.microsoft.com/en-us/research/publication/deconstructing-dynamic-symbolic-execution/}
 
-\bibitem{bruni2011} Bruni, Alessandro Maria et al. "A Peer Architecture for Lightweight Symbolic Execution." (2011).
+\bibitem{bruni2011} Bruni, Alessandro Maria, Tim Disney, and Cormac Flanagan. ``A Peer Architecture for Lightweight Symbolic Execution.'' \textit{University of California, Santa Cruz}, 2011.
 
-\bibitem{eilers2018} Eilers, Marco, and Peter Muller. ``Nagini: A Static Verifier for Python.'' Lecture Notes in Computer Science, vol. 10981, Springer Nature, 2018, pp. 596-603.
+\bibitem{eilers2018} Eilers, Marco, and Peter Müller. ``Nagini: A Static Verifier for Python.'' \textit{Computer Aided Verification: 30th International Conference, CAV 2018, Held as Part of the Federated Logic Conference, FloC 2018, Oxford, UK, July 14--17, 2018}. Ed. Hana Chockler and Georg Weissenbacher. Springer, 2018, pp. 596--603. Lecture Notes in Computer Science, vol. 10981.
 
-\bibitem{meyer1992} Meyer, Bertrand. Object-Oriented Software Construction. Prentice Hall, 1992.
+\bibitem{meyer1992} Meyer, Bertrand. \textit{Object-Oriented Software Construction}. Prentice Hall, 1992.
 
-\bibitem{schneider2000} Schneider, Fred B. ``Enforceable Security Policies.'' ACM Transactions on Information and System Security, vol. 3, no. 1, 2000, pp. 30--50.
+\bibitem{schneider2000} Schneider, Fred B. ``Enforceable Security Policies.'' \textit{ACM Transactions on Information and System Security}, vol. 3, no. 1, 2000, pp. 30--50.
 
-\bibitem{watson2020} Watson, Cody, et al. ``On Learning Meaningful Assert Statements for Unit Test Cases.'' Proceedings of the ACM/IEEE 42nd International Conference on Software Engineering (ICSE '20), Association for Computing Machinery, 2020, pp. 1398--1409. \url{https://doi.org/10.1145/3377811.3380429}
+\bibitem{watson2020} Watson, Cody, et al. ``On Learning Meaningful Assert Statements for Unit Test Cases.'' \textit{Proceedings of the ACM/IEEE 42nd International Conference on Software Engineering (ICSE '20)}, Association for Computing Machinery, 2020, pp. 1398--1409. \url{https://doi.org/10.1145/3377811.3380429}
 
-\bibitem{yu2022} Yu, Han, et al. ``Automated Assertion Generation via Information Retrieval and Its Integration with Deep Learning.'' 2022 IEEE/ACM 44th International Conference on Software Engineering (ICSE), Pittsburgh, PA, USA, 2022, pp. 163-174. \url{https://doi.org/10.1145/3510003.3510149}
+\bibitem{yu2022} Yu, Han, et al. ``Automated Assertion Generation via Information Retrieval and Its Integration with Deep Learning.'' \textit{Proceedings of the IEEE/ACM 44th International Conference on Software Engineering (ICSE)}, 2022, pp. 163--174. \url{https://doi.org/10.1145/3510003.3510149}
 
-\bibitem{zhang2024} Zhang, Quanjun, et al. ``Improving Deep Assertion Generation via Fine-Tuning Retrieval-Augmented Pre-trained Language Models.'' ACM Transactions on Software Engineering and Methodology, just accepted, Feb. 2025, Association for Computing Machinery. \url{https://doi.org/10.1145/3721128}
+\bibitem{zhang2024} Zhang, Quanjun, et al. ``Improving Deep Assertion Generation via Fine-Tuning Retrieval-Augmented Pre-trained Language Models.'' \textit{ACM Transactions on Software Engineering and Methodology}, just accepted, Feb. 2025, Association for Computing Machinery. \url{https://doi.org/10.1145/3721128}
 
-\bibitem{CrossHairTool} CrossHair. \url{https://github.com/pschanely/CrossHair}.
+\bibitem{CrossHairTool} ``CrossHair.'' \url{https://github.com/pschanely/CrossHair}
 
-\bibitem{Torkamani2024-Assertify} Torkamani, Mohammad, et al. "ASSERTIFY: Utilizing Large Language Models to Generate Assertions for Production Code" arXiv preprint arXiv:2411.16927, 2024. \url{https://doi.org/10.48550/arXiv.2411.16927}
+\bibitem{Torkamani2024-Assertify} Torkamani, Mohammad, et al. ``ASSERTIFY: Utilizing Large Language Models to Generate Assertions for Production Code.'' \textit{arXiv preprint arXiv:2411.16927}, 2024. \url{https://doi.org/10.48550/arXiv.2411.16927}
 
-\bibitem{Li2025-LLM-Assertion-Gen} Li, Hongyan, et al. "Exploring Automated Assertion Generation via Large Language Models." ACM Transactions on Software Engineering and Methodology, vol. 34, no. 3, 2025, pp. 1–25. \url{https://doi.org/10.1145/3699598} 
+\bibitem{Li2025-LLM-Assertion-Gen} Zhang, Quanjun, et al. ``Exploring Automated Assertion Generation via Large Language Models.'' \textit{ACM Transactions on Software Engineering and Methodology}, vol. 34, no. 3, 2025, pp. 1--25. \url{https://doi.org/10.1145/3699598}
 
-\bibitem{Pulavarthi2024-LLM-HW-Assertions} Pulavarthi, Vaishnavi, et al. "AssertionBench: A Benchmark to Evaluate Large-Language Models for Assertion Generation." arXiv preprint arXiv:2406.18627, 2024. \url{https://arxiv.org/abs/2406.18627} 
+\bibitem{Pulavarthi2024-LLM-HW-Assertions} Pulavarthi, Vaishnavi, et al. ``AssertionBench: A Benchmark to Evaluate Large-Language Models for Assertion Generation.'' \textit{arXiv preprint arXiv:2406.18627}, 2024. \url{https://arxiv.org/abs/2406.18627}
 
-\bibitem{Pei2023-LLM-Invariants} Pei, Kexin, et al. "Can Large Language Models Reason About Program Invariants?" Proceedings of the 40th International Conference on Machine Learning (ICML), Honolulu, HI, USA, 2023, pp. 27496–27520. \url{https://doi.org/10.5555/3618408.3619552} 
+\bibitem{Pei2023-LLM-Invariants} Pei, Kexin, et al. ``Can Large Language Models Reason About Program Invariants?'' \textit{Proceedings of the 40th International Conference on Machine Learning (ICML)}, Honolulu, HI, USA, 2023, pp. 27496--27520. \url{https://doi.org/10.5555/3618408.3619552}
 
-\bibitem{Liu2023-LLM-Sym-Inv} Liu, Chang, et al. "Towards General Loop Invariant Generation: A Benchmark of Programs with Memory Manipulation." arXiv preprint arXiv:2311.10483v2, 2024. \url{https://arxiv.org/abs/2311.10483v2} 
+\bibitem{Liu2023-LLM-Sym-Inv} Liu, Chang, et al. ``Towards General Loop Invariant Generation: A Benchmark of Programs with Memory Manipulation.'' \textit{arXiv preprint arXiv:2311.10483v2}, 2024. \url{https://arxiv.org/abs/2311.10483v2}
 
-\bibitem{Wang2024-LLM-SymExec} Wang, Wenhan, et al. "Python Symbolic Execution with LLM-powered Code Generation." arXiv preprint arXiv:2409.09271, 2024. \url{https://arxiv.org/abs/2409.09271}
+\bibitem{Wang2024-LLM-SymExec} Wang, Wenhan, et al. ``Python Symbolic Execution with LLM-powered Code Generation.'' \textit{arXiv preprint arXiv:2409.09271}, 2024. \url{https://arxiv.org/abs/2409.09271}
 
-\bibitem{Dinella2024-NatPrecondition} Dinella, Elizabeth, et al. "Program Structure Aware Precondition Generation." arXiv preprint arXiv:2310.02154, 2024. \url{https://arxiv.org/abs/2310.02154}
+\bibitem{Dinella2024-NatPrecondition} Dinella, Elizabeth, et al. ``Program Structure Aware Precondition Generation.'' \textit{arXiv preprint arXiv:2310.02154}, 2024. \url{https://arxiv.org/abs/2310.02154}
 
-\bibitem{Menguy2022-PRECA} Menguy, Grégoire, et al. "A Query-Based Constraint Acquisition Approach for Enhanced Precision in Program Precondition Inference." Journal of Artificial Intelligence Research, vol. 82, 2025. \url{https://doi.org/10.1613/jair.1.16206} 
+\bibitem{Menguy2022-PRECA} Menguy, Grégoire, et al. ``A Query-Based Constraint Acquisition Approach for Enhanced Precision in Program Precondition Inference.'' \textit{Journal of Artificial Intelligence Research}, vol. 82, 2025. \url{https://doi.org/10.1613/jair.1.16206}
 
-\bibitem{Chakraborty2023-iRank} Chakraborty, Saikat, et al. "iRank: Learning to Rank LLM-Generated Invariants Using Verification Feedback." In *arXiv preprint arXiv:2305.11011*, 2023. 
+\bibitem{Chakraborty2023-iRank} Chakraborty, Saikat, et al. ``Ranking LLM-Generated Loop Invariants for Program Verification.'' \textit{Findings of the Association for Computational Linguistics: EMNLP}, 2023. arXiv:2310.09342. \url{https://doi.org/10.48550/arXiv.2310.09342}
 
-\bibitem{Hellendoorn2019-DAIKON-Ranking} Hellendoorn, Vincent, et al. "Deep Learning Type Inference." In *Proceedings of the 2019 ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE)*, 2019, pp. 578–589. 
+\bibitem{Hellendoorn2019-DAIKON-Ranking} Hellendoorn, Vincent J., et al. ``Deep Learning Type Inference.'' \textit{Proceedings of the 2018 ACM SIGPLAN International Conference on Systems, Programming, Languages, and Applications: Software for Humanity (SPLASH 2018)}, 26 Oct. 2018, Association for Computing Machinery. \url{https://doi.org/10.1145/3236024.3236051}
 
-\bibitem{Si2018-Code2Inv} Si, Xujie, et al. "Code2Inv: A Deep Learning Framework for Program Verification." Computer Aided Verification, 2020, pp. 151–164. Lecture Notes in Computer Science, vol. 12225. \url{https://doi.org/10.1007/978-3-030-53291-8_9} 
+\bibitem{Si2018-Code2Inv} Si, Xujie, et al. ``Code2Inv: A Deep Learning Framework for Program Verification.'' \textit{Computer Aided Verification}, 2020, pp. 151--164. Lecture Notes in Computer Science, vol. 12225. \url{https://doi.org/10.1007/978-3-030-53291-8_9}
 
-\bibitem{Yu2023-LIPUS} Yu, Shiwen, et al. "Loop Invariant Inference through SMT Solving Enhanced Reinforcement Learning." Proceedings of the 32nd ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA), Seattle, WA, USA, 2023, pp. 175–187. \url{https://doi.org/10.1145/3597926.3598047} 
+\bibitem{Yu2023-LIPUS} Yu, Shiwen, et al. ``Loop Invariant Inference through SMT Solving Enhanced Reinforcement Learning.'' \textit{Proceedings of the 32nd ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA)}, Seattle, WA, USA, 2023, pp. 175--187. \url{https://doi.org/10.1145/3597926.3598047}
 
-\bibitem{Yao2020-GCLN} Yao, Jianan, et al. "Learning Nonlinear Loop Invariants with Gated Continuous Logic Networks." Proceedings of the 41st ACM SIGPLAN International Conference on Programming Language Design and Implementation (PLDI), London, UK, June 15-20, 2020, pp. 106–120. \url{https://doi.org/10.1145/3385412.3385986} 
+\bibitem{Yao2020-GCLN} Yao, Jianan, et al. ``Learning Nonlinear Loop Invariants with Gated Continuous Logic Networks.'' \textit{Proceedings of the 41st ACM SIGPLAN International Conference on Programming Language Design and Implementation (PLDI)}, London, UK, June 15--20, 2020, pp. 106--120. \url{https://doi.org/10.1145/3385412.3385986}
 
-\bibitem{KoenigShao2021CompCertO} Koenig, Jérémie, and Zhong Shao. "CompCertO: Compiling Certified Open C Components." Proceedings of the 42nd ACM SIGPLAN International Conference on Programming Language Design and Implementation (PLDI), Virtual Event, 2021, pp. 1095–1110. \url{https://doi.org/10.1145/3453483.3454097}
+\bibitem{KoenigShao2021CompCertO} Koenig, Jérémie, and Zhong Shao. ``CompCertO: Compiling Certified Open C Components.'' \textit{Proceedings of the 42nd ACM SIGPLAN International Conference on Programming Language Design and Implementation (PLDI)}, Virtual Event, 2021, pp. 1095--1110. \url{https://doi.org/10.1145/3453483.3454097}
 
-\bibitem{SoOh2023SmartFix} So, Sunbeom, and Hakjoo Oh. "SmartFix: Fixing Vulnerable Smart Contracts by Accelerating Generate-and-Verify Repair using Statistical Models." Proceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE), San Francisco, CA, USA, 2023, pp. 185–197. \url{https://doi.org/10.1145/3611643.3616341}
+\bibitem{SoOh2023SmartFix} So, Sunbeom, and Hakjoo Oh. ``SmartFix: Fixing Vulnerable Smart Contracts by Accelerating Generate-and-Verify Repair using Statistical Models.'' \textit{Proceedings of the 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE)}, San Francisco, CA, USA, 2023, pp. 185--197. \url{https://doi.org/10.1145/3611643.3616341}
 
-\bibitem{rak-amnouykit2023weakest} Rak-amnouykit, Ingkarat, Ana Milanova, Guillaume Baudart, Martin Hirzel, and Julian Dolby. "Principled and Practical Static Analysis for Python: Weakest Precondition Inference of Hyperparameter Constraints." \textit{Software: Practice and Experience}, vol. 54, no. 3, 2024, pp. 363–393. \url{https://doi.org/10.1002/spe.3279}
+\bibitem{rak-amnouykit2023weakest} Rak-amnouykit, Ingkarat, Ana Milanova, Guillaume Baudart, Martin Hirzel, and Julian Dolby. ``Principled and Practical Static Analysis for Python: Weakest Precondition Inference of Hyperparameter Constraints.'' \textit{Software: Practice and Experience}, vol. 54, no. 3, 2024, pp. 363--393. \url{https://doi.org/10.1002/spe.3279}
 
-\bibitem{baudart2022raise} Rak-amnouykit, Ingkarat, Ana Milanova, Guillaume Baudart, Martin Hirzel, and Julian Dolby. "The Raise of Machine Learning Hyperparameter Constraints in Python Code." \textit{Proceedings of the 31st ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA)}, 2022, pp. 580–592. \url{https://doi.org/10.1145/3533767.3534400}
+\bibitem{baudart2022raise} Rak-amnouykit, Ingkarat, Ana Milanova, Guillaume Baudart, Martin Hirzel, and Julian Dolby. ``The Raise of Machine Learning Hyperparameter Constraints in Python Code.'' \textit{Proceedings of the 31st ACM SIGSOFT International Symposium on Software Testing and Analysis (ISSTA)}, 2022, pp. 580--592. \url{https://doi.org/10.1145/3533767.3534400}
 
-\bibitem{cosler2023nl2spec} Cosler, Matthias, Christopher Hahn, Daniel Mendoza, Frederik Schmitt, and Caroline Trippel. "nl2spec: Interactively Translating Unstructured Natural Language to Temporal Logics with Large Language Models." \textit{arXiv preprint arXiv:2303.04864}, 2023. \url{https://arxiv.org/abs/2303.04864}
+\bibitem{cosler2023nl2spec} Cosler, Matthias, Christopher Hahn, Daniel Mendoza, Frederik Schmitt, and Caroline Trippel. ``nl2spec: Interactively Translating Unstructured Natural Language to Temporal Logics with Large Language Models.'' \textit{arXiv preprint arXiv:2303.04864}, 2023. \url{https://doi.org/10.48550/arXiv.2303.04864}
 
-\bibitem{xu2018typpete} Hassan, Mostafa, Caterina Urban, Marco Eilers, and Peter Müller. "MaxSMT-Based Type Inference for Python 3." \textit{Proceedings of the 30th International Conference on Computer Aided Verification (CAV)}, 2018, pp. 12–19. \url{https://doi.org/10.1007/978-3-319-96142-2_2}
+\bibitem{xu2018typpete} Hassan, Mostafa, Caterina Urban, Marco Eilers, and Peter Müller. ``MaxSMT-Based Type Inference for Python 3.'' \textit{Proceedings of the 30th International Conference on Computer Aided Verification (CAV)}, 2018, pp. 12--19. \url{https://doi.org/10.1007/978-3-319-96142-2_2}
 
-\bibitem{guarnieri2024approximate} Laursen, Mathias Rud, Wenyuan Xu, and Anders Møller. "Reducing Static Analysis Unsoundness with Approximate Interpretation." \textit{Proceedings of the ACM on Programming Languages}, vol. 8, no. PLDI, 2024, pp. 1165–1188. \url{https://doi.org/10.1145/3656424}
-
-
-
-
-
+\bibitem{guarnieri2024approximate} Laursen, Mathias Rud, Wenyuan Xu, and Anders Møller. ``Reducing Static Analysis Unsoundness with Approximate Interpretation.'' \textit{Proceedings of the ACM on Programming Languages}, vol. 8, no. PLDI, 2024, pp. 1165--1188. \url{https://doi.org/10.1145/3656424}
 
 \end{thebibliography}
 
@@ -677,56 +678,6 @@ word\_frequency\_counter & 10 & pass & pass & unsupported & NA \\
 \hline
 \caption{Program Execution Results Across Verification Methods\label{tab:program-results}}
 \end{longtable}
-
-% \begin{table}[H]
-% \centering
-% \begin{tabular}{|l|c|c|c|}
-% \hline
-% \textbf{Code Structure} & \textbf{Overall Success} & \textbf{CrossHair} & \textbf{Nagini} \\
-% \hline
-% Pure functions without loops & 85\% & 70\% & 40\% \\
-% \hline
-% Pure functions with simple loops & 70\% & 55\% & 15\% \\
-% \hline
-% Pure functions with single nested loops & 55\% & 40\% & 5\% \\
-% \hline
-% Pure functions with deep nesting & 40\% & 20\% & 0\% \\
-% \hline
-% Complex mathematical operations & 65\% & 30\% & 10\% \\
-% \hline
-% Contains single random operation & 45\% & 0\% & 0\% \\
-% \hline
-% Contains multiple random operations & 30\% & 0\% & 0\% \\
-% \hline
-% \end{tabular}
-% \caption{Impact of different code structures on transformation and verification success rates.}
-% \label{tab:code-structure-impact}
-% \end{table}
-
-% \begin{table}[H]
-% \centering
-% \begin{tabular}{|l|c|c|c|}
-% \hline
-% \textbf{Code Structure} & \textbf{Fuzz Success} & \textbf{CrossHair Success} & \textbf{Nagini Success} \\
-% \hline
-% Pure functions without loops & 100\% & 82\% & 22\% \\
-% \hline
-% Pure functions with simple loops & 89\% & 78\% & 11\% \\
-% \hline
-% Functions with single nested loops & 100\% & 100\% & 0\% \\
-% \hline
-% Functions with mathematical operations & 86\% & 71\% & 17\% \\
-% \hline
-% Functions with string operations & 83\% & 67\% & 0\% \\
-% \hline
-% Functions with list/array operations & 73\% & 73\% & 7\% \\
-% \hline
-% Functions with randomness or non-determinism & 100\% & 0\% & 0\% \\
-% \hline
-% \end{tabular}
-% \caption{Impact of different code structures on verification success rates across methods.}
-% \label{tab:code-structure-impact}
-% \end{table}
 
 \begin{table}[H]
 \centering
@@ -929,7 +880,7 @@ string\_pattern\_score & 1.76 & 0.30 & 1.80 & 0.00 & 0.25 & 0.55 & 0.09 & 0.00 &
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\linewidth]{verification_by_difficulty.png}
+    \includegraphics[width=\linewidth]{verification_by_difficulty.png}
     \caption{Correlation between difficulty scores and verification method outcomes.}
     \label{fig:diff-scores-correlation}
 \end{figure}
@@ -937,12 +888,13 @@ string\_pattern\_score & 1.76 & 0.30 & 1.80 & 0.00 & 0.25 & 0.55 & 0.09 & 0.00 &
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|p{1.2cm}|c|c|c|c|c|c|c|c|c|}
+\renewcommand{\arraystretch}{0.95}
+\begin{tabular}{|p{1.1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|p{1cm}|}
 \hline
-\textbf{Method} & \textbf{Parameter} & \textbf{Operation} & \textbf{Control Flow} & \textbf{Data Type} & \textbf{Assertion} & \textbf{Math} & \textbf{Loop} & \textbf{Call} & \textbf{Branch} \\
- & \textbf{Complexity} & \textbf{Density} & \textbf{Depth} & \textbf{Diversity} & \textbf{Complexity} & \textbf{Sophistication} & \textbf{Complexity} & \textbf{Density} & \textbf{Complexity} \\
+\textbf{Method} & \textbf{Param} & \textbf{Op} & \textbf{CF} & \textbf{Type} & \textbf{Assert} & \textbf{Math} & \textbf{Loop} & \textbf{Call} & \textbf{Branch} \\
+ & Comp. & Dens. & Depth & Div. & Comp. & Soph. & Comp. & Dens. & Comp. \\
 \hline
-Fuzz Testing & 0.02 & -0.16 & -0.38 & -0.37 & -0.09 & 0.11 & NA & NA & NA \\
+Fuzz & 0.02 & -0.16 & -0.38 & -0.37 & -0.09 & 0.11 & NA & NA & NA \\
 \hline
 CrossHair & 0.10 & 0.08 & 0.22 & 0.10 & -0.13 & 0.03 & NA & NA & NA \\
 \hline
